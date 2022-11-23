@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Auth.base extends Component
+class AuthCard extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Auth.base extends Component
      */
     public function render()
     {
-        return view('components.auth.base');
+        return view('components.auth-card');
     }
 }

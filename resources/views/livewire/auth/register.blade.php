@@ -1,19 +1,21 @@
 <x-auth-card>
-    <form wire:submit.prevent="login()" class="space-y-6">
+    <form wire:submit.prevent="login()" action="#" method="POST" class="space-y-6">
 
         {{-- <x-input.group group-size="sm:col-span-2" label="Document Number :" for="doc_no"
             :error="$errors->first('editing.doc_no')">
             <x-forms.input id="username" name="username" type="text" :value="old('username')" autofocus />
         </x-input.group> --}}
         <div>
-            <x-label for="username">Username :</x-label>
+            <label for="username" class="block text-sm font-medium text-gray-700">
+                Username
+            </label>
             <div class="mt-1">
-                <x-input
-                    wire:model.lazy="username"
-                    id="username" type="text"
+                <input wire:model.debounce.500ms="username" id="username" name="username" type="username"
                     autocomplete="username" placeholder="Enter Username"
-                />
-                @error('username')<span class="text-red-500">{{ $message }}</span>@enderror
+                    class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                @error('username')
+                <span class="text-red-500">{{ $message }}</span>
+                @enderror
             </div>
         </div>
 
@@ -50,13 +52,13 @@
         <div>
             <button type="submit"
                 class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                Login
+                Register
             </button>
         </div>
     </form>
     <div class="flex items-center justify-center py-4">
-        <a href="{{route('Register')}}" class="font-medium text-indigo-600 hover:text-indigo-500">
-            Don't have an account yet? Sign Up!
+        <a href="{{route('Login')}}" class="font-medium text-indigo-600 hover:text-indigo-500">
+            Already have an account, login!
         </a>
     </div>
 </x-auth-card>
