@@ -1,37 +1,53 @@
 <x-auth-card>
-    <form wire:submit.prevent="login()" action="#" method="POST" class="space-y-6">
-
-        {{-- <x-input.group group-size="sm:col-span-2" label="Document Number :" for="doc_no"
-            :error="$errors->first('editing.doc_no')">
-            <x-forms.input id="username" name="username" type="text" :value="old('username')" autofocus />
-        </x-input.group> --}}
+    <form wire:submit.prevent="register()" action="#" method="POST" class="space-y-6">
         <div>
-            <label for="username" class="block text-sm font-medium text-gray-700">
-                Username
-            </label>
+            <x-label for="fullname">Fullname :</x-label>
             <div class="mt-1">
-                <input wire:model.debounce.500ms="username" id="username" name="username" type="username"
-                    autocomplete="username" placeholder="Enter Username"
-                    class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                @error('username')
-                <span class="text-red-500">{{ $message }}</span>
-                @enderror
+                <x-input
+                    wire:model.lazy="fullname"
+                    id="fullname" type="text"
+                    autocomplete="fullname" placeholder="Enter fullname"
+                />
+                @error('fullname')<span class="text-red-500">{{ $message }}</span>@enderror
             </div>
         </div>
 
-        <div class="space-y-1">
-            <label for="password" class="block text-sm font-medium text-gray-700">
-                Password
-            </label>
+        <div>
+            <x-label for="username">Username :</x-label>
             <div class="mt-1">
-                <input wire:model.lazy="password" id="password" name="password" type="password"
-                    autocomplete="current-password" placeholder="Enter Password"
-                    class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                @error('password')
-                <span class="text-red-500">{{ $message }}</span>
-                @enderror
+                <x-input
+                    wire:model.lazy="username"
+                    id="username" type="text"
+                    autocomplete="username" placeholder="Enter Username"
+                />
+                @error('username')<span class="text-red-500">{{ $message }}</span>@enderror
             </div>
         </div>
+
+        <div>
+            <x-label for="password">Password :</x-label>
+            <div class="mt-1">
+                <x-input
+                    wire:model.lazy="password"
+                    id="password" type="password"
+                    autocomplete="password" placeholder="Enter password"
+                />
+                @error('password')<span class="text-red-500">{{ $message }}</span>@enderror
+            </div>
+        </div>
+
+        <div>
+            <x-label for="passwordConfirmation">Re-type password :</x-label>
+            <div class="mt-1">
+                <x-input
+                    wire:model.lazy="passwordConfirmation"
+                    id="passwordConfirmation" type="password"
+                    autocomplete="passwordConfirmation" placeholder="Enter passwordConfirmation"
+                />
+                @error('passwordConfirmation')<span class="text-red-500">{{ $message }}</span>@enderror
+            </div>
+        </div>
+
 
         <div class="flex items-center justify-between">
             {{-- <div class="flex items-center">
