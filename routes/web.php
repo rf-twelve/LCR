@@ -21,3 +21,9 @@ Route::get('/', function () {
 
 Route::get('/login', Login::class)->name('Login');
 Route::get('/register', Register::class)->name('Register');
+route::prefix('admin')->group(function () {
+    // Route::get('/users', function () {
+        // Matches The "/admin/users" URL
+    //});
+});
+Route::get('/home', Register::class)->name('Register');
