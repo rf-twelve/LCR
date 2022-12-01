@@ -90,49 +90,83 @@
             </div>
         </div>
         <!-- Navigation -->
-        <nav class="px-3 mt-6">
-            <div class="space-y-1">
-                <!-- Current: "bg-gray-200 text-gray-900", Default: "text-gray-700 hover:text-gray-900 hover:bg-gray-50" -->
+        <nav class="flex-1 px-2 space-y-1" aria-label="Sidebar">
+            <div>
+                <!-- Current: "bg-gray-100 text-gray-900", Default: "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
                 <a href="#"
-                    class="flex items-center px-2 py-2 text-sm font-medium text-gray-900 bg-gray-200 rounded-md group"
-                    aria-current="page">
-                    <!--
-                    Heroicon name: outline/home
-
-                    Current: "text-gray-500", Default: "text-gray-400 group-hover:text-gray-500"
-                  -->
-                    <svg class="flex-shrink-0 w-6 h-6 mr-3 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                    Home
-                </a>
-
-                <a href="#"
-                    class="flex items-center px-2 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50 group">
-                    <!-- Heroicon name: outline/view-list -->
-                    <svg class="flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 10h16M4 14h16M4 18h16" />
-                    </svg>
-                    My tasks
-                </a>
-
-                <a href="#"
-                    class="flex items-center px-2 py-2 text-sm font-medium text-gray-700 rounded-md hover:text-gray-900 hover:bg-gray-50 group">
-                    <!-- Heroicon name: outline/clock -->
-                    <svg class="flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    Recent
+                    class="bg-gray-100 text-gray-900 group w-full flex items-center pl-2 py-2 text-sm font-medium rounded-md">
+                    <x-icon.home class="flex-shrink-0 w-6 h-6 mr-3" />
+                    Dashboard
                 </a>
             </div>
+
+            <div class="space-y-1">
+                <!-- Current: "bg-gray-100 text-gray-900", Default: "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+                <button type="button"
+                    class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    aria-controls="sub-menu-4" aria-expanded="false">
+                    <x-icon.document class="flex-shrink-0 w-6 h-6 mr-3" />
+                    <span class="flex-1"> Documents </span>
+                    <!-- Expanded: "text-gray-400 rotate-90", Collapsed: "text-gray-300" -->
+                    <svg class="text-gray-300 ml-3 flex-shrink-0 h-5 w-5 rotate-90 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150"
+                        viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M6 6L14 10L6 14V6Z" fill="currentColor" />
+                    </svg>
+                </button>
+                <!-- Expandable link section, show/hide based on state. -->
+                <div class="space-y-1" id="sub-menu-4">
+                    <a href="#"
+                        class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
+                    <span class="flex-1"> My Documents </span></a>
+
+                    <a href="#"
+                        class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
+                    <span class="flex-1"> Office Documents </span></a>
+
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <!-- Current: "bg-gray-100 text-gray-900", Default: "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+                <button type="button"
+                    class="bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900 group w-full flex items-center pl-2 pr-1 py-2 text-left text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    aria-controls="sub-menu-5" aria-expanded="false">
+                    <!-- Heroicon name: outline/chart-bar -->
+                    <svg class="mr-3 flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                    <span class="flex-1"> Reports </span>
+                    <!-- Expanded: "text-gray-400 rotate-90", Collapsed: "text-gray-300" -->
+                    <svg class="text-gray-300 ml-3 flex-shrink-0 h-5 w-5 transform group-hover:text-gray-400 transition-colors ease-in-out duration-150"
+                        viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M6 6L14 10L6 14V6Z" fill="currentColor" />
+                    </svg>
+                </button>
+                <!-- Expandable link section, show/hide based on state. -->
+                <div class="space-y-1" id="sub-menu-5">
+                    <a href="#"
+                        class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        Overview </a>
+
+                    <a href="#"
+                        class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        Members </a>
+
+                    <a href="#"
+                        class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        Calendar </a>
+
+                    <a href="#"
+                        class="group w-full flex items-center pl-11 pr-2 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                        Settings </a>
+                </div>
+            </div>
+
             <div class="mt-8">
                 <!-- Secondary navigation -->
                 <h3 class="px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase"
