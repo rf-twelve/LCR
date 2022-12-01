@@ -55,7 +55,7 @@
         </div>
     </form>
     <div class="flex items-center justify-center py-4">
-        <a href="{{route('Register')}}" class="font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="{{route('register')}}" class="font-medium text-indigo-600 hover:text-indigo-500">
             Don't have an account yet? Sign Up!
         </a>
     </div>

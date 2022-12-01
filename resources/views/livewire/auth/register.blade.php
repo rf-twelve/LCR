@@ -73,7 +73,7 @@
         </div>
     </form>
     <div class="flex items-center justify-center py-4">
-        <a href="{{route('Login')}}" class="font-medium text-indigo-600 hover:text-indigo-500">
+        <a href="{{route('login')}}" class="font-medium text-indigo-600 hover:text-indigo-500">
             Already have an account, login!
         </a>
     </div>

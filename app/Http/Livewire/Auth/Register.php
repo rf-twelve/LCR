@@ -38,7 +38,7 @@ class Register extends Component
 
         $this->notify('Successfully registered!');
 
-        return to_route('Home');
+        return to_route('User Dashboard');
     }
 
     public function render()

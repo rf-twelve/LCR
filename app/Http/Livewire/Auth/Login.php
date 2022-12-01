@@ -20,7 +20,7 @@ class Login extends Component
         $credentials = $this->validate();
 
         return auth()->attempt($credentials)
-            ? to_route('Home')
+            ? to_route('User Dashboard')
             : $this->addError('username', trans('auth.failed'));
     }
 
