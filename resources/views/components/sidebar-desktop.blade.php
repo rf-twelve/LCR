@@ -1,8 +1,11 @@
 <div
     class="hidden lg:flex lg:flex-col lg:w-64 lg:fixed lg:inset-y-0 lg:border-r lg:border-gray-200 lg:pt-5 lg:pb-4 lg:bg-gray-100">
     <div class="flex items-center flex-shrink-0 px-6">
-        <img class="w-auto h-8" src="https://tailwindui.com/img/logos/workflow-logo-purple-500-mark-gray-700-text.svg"
-            alt="Workflow">
+        <img class="w-auto h-8" src="{{ asset('img/dts/logo.png') }}" alt="Workflow">
+        <span class="flex flex-col flex-1 min-w-0 pl-2">
+            <span class="text-sm font-medium text-gray-900 truncate">LGU KALIBO</span>
+            <span class="text-sm text-gray-500 truncate">Province of Aklan</span>
+        </span>
     </div>
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <div class="flex flex-col flex-1 h-0 mt-4 overflow-y-auto">
@@ -15,10 +18,10 @@
                     <span class="flex items-center justify-between w-full">
                         <span class="flex items-center justify-between min-w-0 space-x-3">
                             <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
-                                src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80"
-                                alt="">
+                                src="{{ asset('img/users/avatar.png') }}" alt="">
                             <span class="flex flex-col flex-1 min-w-0">
-                                <span class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->firstname }}</span>
+                                <span class="text-sm font-medium text-gray-900 truncate">{{ Auth::user()->fullname
+                                    }}</span>
                                 <span class="text-sm text-gray-500 truncate">{{ Auth::user()->email }}</span>
                             </span>
                         </span>

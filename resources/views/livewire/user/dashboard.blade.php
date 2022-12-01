@@ -203,7 +203,8 @@
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">View</a>
                                         </div>
                                         <div class="py-1" role="none">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from pinned</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
+                                                pinned</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
@@ -251,7 +252,8 @@
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">View</a>
                                         </div>
                                         <div class="py-1" role="none">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from pinned</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
+                                                pinned</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
@@ -299,7 +301,8 @@
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">View</a>
                                         </div>
                                         <div class="py-1" role="none">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from pinned</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
+                                                pinned</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
@@ -341,12 +344,13 @@
                                         x-transition:leave-start="transform opacity-100 scale-100"
                                         x-transition:leave-end="transform opacity-0 scale-95"
                                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
-                                       style="display: none;">
+                                        style="display: none;">
                                         <div class="py-1" role="none">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">View</a>
                                         </div>
                                         <div class="py-1" role="none">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from pinned</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
+                                                pinned</a>
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
@@ -392,18 +396,188 @@
                     </ul>
                 </div>
 
+
+                <!-- Dashboard Content -->
+
+                <ul role="list" class="grid grid-cols-1 gap-6 p-8 sm:grid-cols-2 lg:grid-cols-3">
+
+                    <li class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
+                        <div class="flex items-center justify-between w-full p-6 space-x-6">
+                            <div class="flex-1 truncate">
+                                <div class="flex items-center space-x-3">
+                                    <h2 class="text-sm font-medium text-gray-900 truncate">TRACK DOCUMENT</h2>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Trace the location of document.</p>
+                            </div>
+                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
+                                src="{{ asset('\img\dts\dms_2.jpg') }}" alt="Tracking image">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex mt-1 rounded-md shadow-sm">
+                                <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
+                                        placeholder="Enter Tracking Number">
+                                </div>
+                                <button type="button"
+                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <!-- Heroicon name: solid/sort-ascending -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                    </svg>
+                                    <span>Track</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
+                        <div class="flex items-center justify-between w-full p-6 space-x-6">
+                            <div class="flex-1 truncate">
+                                <div class="flex items-center space-x-3">
+                                    <h2 class="text-sm font-medium text-gray-900 truncate">RECEIVE DOCUMENT</h2>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Notify that a document was received.</p>
+                            </div>
+                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
+                                src="{{ asset('\img\dts\dms_received_docs.jpg') }}" alt="Received image">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex mt-1 rounded-md shadow-sm">
+                                <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
+                                        placeholder="Enter Tracking Number">
+                                </div>
+                                <button type="button"
+                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <!-- Heroicon name: arrow-up-on-square -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
+                                    </svg>
+
+                                    <span>Receive</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
+                        <div class="flex items-center justify-between w-full p-6 space-x-6">
+                            <div class="flex-1 truncate">
+                                <div class="flex items-center space-x-3">
+                                    <h2 class="text-sm font-medium text-gray-900 truncate">RELEASE DOCUMENT</h2>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Notify that a document was released.</p>
+                            </div>
+                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
+                                src="{{ asset('\img\dts\dms_release_docs.jpg') }}" alt="Received image">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex mt-1 rounded-md shadow-sm">
+                                <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
+                                        placeholder="Enter Tracking Number">
+                                </div>
+                                <button type="button"
+                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <!-- Heroicon name: arrow-up-on-square -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
+                                    </svg>
+
+                                    <span>Release</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
+                        <div class="flex items-center justify-between w-full p-6 space-x-6">
+                            <div class="flex-1 truncate">
+                                <div class="flex items-center space-x-3">
+                                    <h2 class="text-sm font-medium text-gray-900 truncate">DOCUMENT TERMINAL</h2>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Notify that a receiver was terminal.</p>
+                            </div>
+                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
+                                src="{{ asset('\img\dts\dms_terminal.jpg') }}" alt="Received image">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex mt-1 rounded-md shadow-sm">
+                                <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
+                                        placeholder="Enter Tracking Number">
+                                </div>
+                                <button type="button"
+                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <!-- Heroicon name: solid/sort-ascending -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 019 14.437V9.564z" />
+                                    </svg>
+
+                                    <span>Add New</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow">
+                        <div class="flex items-center justify-between w-full p-6 space-x-6">
+                            <div class="flex-1 truncate">
+                                <div class="flex items-center space-x-3">
+                                    <h2 class="text-sm font-medium text-gray-900 truncate">CREATE DOCUMENT</h2>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500">Creation of a new document.</p>
+                            </div>
+                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
+                                src="{{ asset('\img\dts\dms_create.jpg') }}" alt="Received image">
+                        </div>
+                        <div class="p-2">
+                            <div class="flex mt-1 rounded-md shadow-sm">
+                                <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                                    <input type="email" name="email" id="email"
+                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
+                                        placeholder="Enter Tracking Number">
+                                </div>
+                                <button type="button"
+                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <!-- Heroicon name: Add New -->
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
+                                    </svg>
+
+                                    <span>Create</span>
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Add more... -->
+                </ul>
+
+
                 <!-- Data table (small breakpoint and up) -->
 
                 {{-- <div class="grid grid-cols-1 gap-4 px-4 mt-6 lg:px-8 sm:px-6 lg:grid-cols-2 ">
                     <div class="flex items-center flex-1">
                         <div class="w-full lg:max-w-xs">
-                          <label for="search" class="sr-only">Search</label>
-                          <div class="relative">
-                            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                <x-icon.search class="w-5 h-5 text-gray-500" />
+                            <label for="search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                    <x-icon.search class="w-5 h-5 text-gray-500" />
+                                </div>
+                                <x-form.input-text wire:model.debounce.500ms="filters.search" id="searchTerm"
+                                    class="block w-full py-2 pl-10 pr-3 leading-5 placeholder-gray-500 bg-white border border-gray-300 rounded-xl focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    placeholder="Search" placeholder="Type any keyword..." type="search" />
                             </div>
-                            <x-form.input-text wire:model.debounce.500ms="filters.search" id="searchTerm" class="block w-full py-2 pl-10 pr-3 leading-5 placeholder-gray-500 bg-white border border-gray-300 rounded-xl focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Search" placeholder="Type any keyword..." type="search"/>
-                          </div>
                         </div>
                     </div>
                     <div>
@@ -418,19 +592,22 @@
                             </div>
                             <div>
                                 <x-form.dropdown class="rounded-xl" label="Actions">
-                                    <x-form.dropdown-item class="rounded-xl" type="button" wire:click="$toggle('showDeleteModal')" class="flex items-center space-x-2">
-                                        <x-icon.trash class="text-cool-gray-400"/> <span>Delete</span>
+                                    <x-form.dropdown-item class="rounded-xl" type="button"
+                                        wire:click="$toggle('showDeleteModal')" class="flex items-center space-x-2">
+                                        <x-icon.trash class="text-cool-gray-400" /> <span>Delete</span>
                                     </x-form.dropdown-item>
                                 </x-form.dropdown>
                             </div>
                             <div>
-                                <x-form.button wire:click="$toggle('showImportModal')" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-600 bg-white border border-transparent shadow-sm rounded-xl hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
-                                    <x-icon.download class="w-5 h-5"/> <span>Import</span>
+                                <x-form.button wire:click="$toggle('showImportModal')"
+                                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-600 bg-white border border-transparent shadow-sm rounded-xl hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                                    <x-icon.download class="w-5 h-5" /> <span>Import</span>
                                 </x-form.button>
                             </div>
                             <div>
-                                <x-form.button wire:click="create" class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-600 bg-white border border-transparent shadow-sm w-max rounded-xl hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
-                                    <x-icon.plus class="w-5 h-5"/> <span>New</span>
+                                <x-form.button wire:click="create"
+                                    class="relative inline-flex items-center px-2 py-2 text-sm font-medium text-gray-600 bg-white border border-transparent shadow-sm w-max rounded-xl hover:bg-sky-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                                    <x-icon.plus class="w-5 h-5" /> <span>New</span>
                                 </x-form.button>
                             </div>
                         </div>
