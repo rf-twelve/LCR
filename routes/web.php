@@ -2,6 +2,8 @@
 
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Register;
+use App\Http\Livewire\Dts\Document;
+use App\Http\Livewire\Dts\DocumentOverview;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use App\Http\Livewire\User\TrackingNumbers;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +34,8 @@ route::prefix('admin')->group(function () {
 Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
 {
     Route::get('dashboard', UserDashboard::class)->name('User Dashboard');
-    Route::get('tracking-numbers', TrackingNumbers::class)->name('Tracking Numbers');
+    // Route::get('tracking-numbers', TrackingNumbers::class)->name('Tracking Numbers');
+    Route::get('document/{tr_number}', DocumentOverview::class)->name('Document Overview');
 });
 Route::get('/home', Register::class)->name('Register');
 // For grouping prefix and middleware

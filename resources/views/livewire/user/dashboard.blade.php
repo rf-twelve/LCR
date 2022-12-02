@@ -166,37 +166,24 @@
                         <li class="relative flex col-span-1 rounded-md shadow-sm">
                             <div
                                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-indigo-600 rounded-l-md">
-                                N
+                                <x-icon.folder-open class="flex-shrink-0 h-6 w-6 text-white" />
                             </div>
                             <div
                                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
                                 <div class="flex-1 px-4 py-2 text-sm truncate">
                                     <a href="#" class="font-medium text-gray-900 hover:text-gray-600">
-                                        New
+                                        Office Documents
                                     </a>
                                     <p class="text-gray-500">12 Records</p>
                                 </div>
                                 <div x-data="{openOptions:false}" @click.away="openOptions = false"
                                     class="flex-shrink-0 pr-2">
                                     <button type="button" x-on:click="openOptions = !openOptions"
-                                        class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-                                        x-on:click="openOptions =! openOptions">
-                                        <span class="sr-only">Open options</span>
-                                        <svg class="w-5 h-5" x-description="Heroicon name: solid/dots-vertical"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                            aria-hidden="true">
-                                            <path
-                                                d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
-                                            </path>
-                                        </svg>
+                                        class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600">
+                                        <x-icon.dots-vertical class="w-5 h-5" />
                                     </button>
 
-                                    <div x-show="openOptions" x-transition:enter="transition ease-out duration-100"
-                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-75"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95"
+                                    <div x-show="openOptions" x-transition.duration.500ms
                                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         style="display: none;">
                                         <div class="py-1" role="none">
@@ -205,7 +192,6 @@
                                         <div class="py-1" role="none">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
                                                 pinned</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
 
@@ -216,36 +202,24 @@
                         <li class="relative flex col-span-1 rounded-md shadow-sm">
                             <div
                                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-yellow-500 rounded-l-md">
-                                D
+                                <x-icon.users class="flex-shrink-0 h-6 w-6 text-white" />
                             </div>
                             <div
                                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
                                 <div class="flex-1 px-4 py-2 text-sm truncate">
                                     <a href="#" class="font-medium text-gray-900 hover:text-gray-600">
-                                        Duplicates
+                                        Users
                                     </a>
-                                    <p class="text-gray-500">8 Records</p>
+                                    <p class="text-gray-500">12 Records</p>
                                 </div>
-                                <div x-data="{ openOptions: false }" @click.away="openOptions = false"
+                                <div x-data="{openOptions:false}" @click.away="openOptions = false"
                                     class="flex-shrink-0 pr-2">
                                     <button type="button" x-on:click="openOptions = !openOptions"
                                         class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                                        <span class="sr-only">Open options</span>
-                                        <svg class="w-5 h-5" x-description="Heroicon name: solid/dots-vertical"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                            aria-hidden="true">
-                                            <path
-                                                d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
-                                            </path>
-                                        </svg>
+                                        <x-icon.dots-vertical class="w-5 h-5" />
                                     </button>
 
-                                    <div x-show="openOptions" x-transition:enter="transition ease-out duration-100"
-                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-75"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95"
+                                    <div x-show="openOptions" x-transition.duration.500ms
                                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         style="display: none;">
                                         <div class="py-1" role="none">
@@ -254,7 +228,6 @@
                                         <div class="py-1" role="none">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
                                                 pinned</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
 
@@ -265,36 +238,24 @@
                         <li class="relative flex col-span-1 rounded-md shadow-sm">
                             <div
                                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-green-500 rounded-l-md">
-                                V
+                                <x-icon.bell class="flex-shrink-0 h-6 w-6 text-white" />
                             </div>
                             <div
                                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
                                 <div class="flex-1 px-4 py-2 text-sm truncate">
                                     <a href="#" class="font-medium text-gray-900 hover:text-gray-600">
-                                        Verified
+                                        New Documents
                                     </a>
-                                    <p class="text-gray-500">14 Records</p>
+                                    <p class="text-gray-500">12 Records</p>
                                 </div>
-                                <div x-data="{ openOptions: false }" @click.away="openOptions = false"
+                                <div x-data="{openOptions:false}" @click.away="openOptions = false"
                                     class="flex-shrink-0 pr-2">
                                     <button type="button" x-on:click="openOptions = !openOptions"
                                         class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                                        <span class="sr-only">Open options</span>
-                                        <svg class="w-5 h-5" x-description="Heroicon name: solid/dots-vertical"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                            aria-hidden="true">
-                                            <path
-                                                d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
-                                            </path>
-                                        </svg>
+                                        <x-icon.dots-vertical class="w-5 h-5" />
                                     </button>
 
-                                    <div x-show="openOptions" x-transition:enter="transition ease-out duration-100"
-                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-75"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95"
+                                    <div x-show="openOptions" x-transition.duration.500ms
                                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         style="display: none;">
                                         <div class="py-1" role="none">
@@ -303,7 +264,6 @@
                                         <div class="py-1" role="none">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
                                                 pinned</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
 
@@ -313,36 +273,25 @@
 
                         <li class="relative flex col-span-1 rounded-md shadow-sm">
                             <div
-                                class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-pink-600 rounded-l-md">
-                                U
+                                class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-teal-500 rounded-l-md">
+                                <x-icon.envelop class="flex-shrink-0 h-6 w-6 text-white" />
                             </div>
                             <div
                                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
                                 <div class="flex-1 px-4 py-2 text-sm truncate">
                                     <a href="#" class="font-medium text-gray-900 hover:text-gray-600">
-                                        Unverified</a>
-                                    <p class="text-gray-500">2 Records</p>
+                                        Messages
+                                    </a>
+                                    <p class="text-gray-500">12 Records</p>
                                 </div>
-                                <div x-data="{ openOptions: false }" @click.away="openOptions = false"
+                                <div x-data="{openOptions:false}" @click.away="openOptions = false"
                                     class="flex-shrink-0 pr-2">
                                     <button type="button" x-on:click="openOptions = !openOptions"
-                                        class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-600">
-                                        <span class="sr-only">Open options</span>
-                                        <svg class="w-5 h-5" x-description="Heroicon name: solid/dots-vertical"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                            aria-hidden="true">
-                                            <path
-                                                d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z">
-                                            </path>
-                                        </svg>
+                                        class="inline-flex items-center justify-center w-8 h-8 text-gray-400 bg-white rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+                                        <x-icon.dots-vertical class="w-5 h-5" />
                                     </button>
 
-                                    <div x-show="openOptions" x-transition:enter="transition ease-out duration-100"
-                                        x-transition:enter-start="transform opacity-0 scale-95"
-                                        x-transition:enter-end="transform opacity-100 scale-100"
-                                        x-transition:leave="transition ease-in duration-75"
-                                        x-transition:leave-start="transform opacity-100 scale-100"
-                                        x-transition:leave-end="transform opacity-0 scale-95"
+                                    <div x-show="openOptions" x-transition.duration.500ms
                                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                                         style="display: none;">
                                         <div class="py-1" role="none">
@@ -351,7 +300,6 @@
                                         <div class="py-1" role="none">
                                             <a href="#" class="block px-4 py-2 text-sm text-gray-700">Removed from
                                                 pinned</a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">Share</a>
                                         </div>
                                     </div>
 
@@ -363,39 +311,6 @@
                 </div>
 
                 <!-- Navigation for search, filter and sort -->
-
-                <!-- Projects list (only on smallest breakpoint) -->
-                <div class="mt-10 sm:hidden">
-                    <div class="px-4 sm:px-6">
-                        <h2 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Projects</h2>
-                    </div>
-                    <ul role="list" class="mt-3 border-t border-gray-200 divide-y divide-gray-100">
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-between px-4 py-4 group hover:bg-gray-50 sm:px-6">
-                                <span class="flex items-center space-x-3 truncate">
-                                    <span class="w-2.5 h-2.5 flex-shrink-0 rounded-full bg-pink-600"
-                                        aria-hidden="true"></span>
-                                    <span class="text-sm font-medium leading-6 truncate">
-                                        GraphQL API
-                                        <span class="font-normal text-gray-500 truncate">in Engineering</span>
-                                    </span>
-                                </span>
-                                <!-- Heroicon name: solid/chevron-right -->
-                                <svg class="w-5 h-5 ml-4 text-gray-400 group-hover:text-gray-500"
-                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                                    aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </li>
-
-                        <!-- More projects... -->
-                    </ul>
-                </div>
-
 
                 <!-- Dashboard Content -->
 
@@ -409,28 +324,17 @@
                                 </div>
                                 <p class="mt-1 text-sm text-gray-500">Trace the location of document.</p>
                             </div>
-                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
-                                src="{{ asset('\img\dts\dms_2.jpg') }}" alt="Tracking image">
+                            <img src="{{ asset('\img\dts\dms_2.jpg') }}"
+                                class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
                         </div>
                         <div class="p-2">
                             <div class="flex mt-1 rounded-md shadow-sm">
                                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                                    <input type="email" name="email" id="email"
-                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
-                                        placeholder="Enter Tracking Number">
+                                    <x-form.input-text type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
                                 </div>
-                                <button type="button"
-                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <!-- Heroicon name: solid/sort-ascending -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                                    </svg>
-                                    <span>Track</span>
-                                </button>
+                                <x-form.button class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 rounded-none">
+                                    <x-icon.location class="w-6 h-6" /><span>Track</span>
+                                </x-form.button>
                             </div>
                         </div>
                     </li>
@@ -443,25 +347,17 @@
                                 </div>
                                 <p class="mt-1 text-sm text-gray-500">Notify that a document was received.</p>
                             </div>
-                            <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
-                                src="{{ asset('\img\dts\dms_received_docs.jpg') }}" alt="Received image">
+                            <img src="{{ asset('\img\dts\dms_received_docs.jpg') }}"
+                                class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
                         </div>
-                        <div class="p-2">
-                            <div class="flex mt-1 rounded-md shadow-sm">
+                        <div>
+                            <div class="flex mt-1 rounded-md shadow-sm p-2">
                                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                                    <input type="email" name="email" id="email"
-                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
-                                        placeholder="Enter Tracking Number">
+                                    <x-form.input-text type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
                                 </div>
-                                <button type="button"
-                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <!-- Heroicon name: arrow-up-on-square -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
-                                    </svg>
-
-                                    <span>Receive</span>
-                                </button>
+                                <x-form.button class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 rounded-none">
+                                    <x-icon.arrow-down-on-square class="w-6 h-6" /><span>Receive</span>
+                                </x-form.button>
                             </div>
                         </div>
                     </li>
@@ -477,22 +373,14 @@
                             <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
                                 src="{{ asset('\img\dts\dms_release_docs.jpg') }}" alt="Received image">
                         </div>
-                        <div class="p-2">
-                            <div class="flex mt-1 rounded-md shadow-sm">
+                        <div>
+                            <div class="flex mt-1 rounded-md shadow-sm p-2">
                                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                                    <input type="email" name="email" id="email"
-                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
-                                        placeholder="Enter Tracking Number">
+                                    <x-form.input-text type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
                                 </div>
-                                <button type="button"
-                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <!-- Heroicon name: arrow-up-on-square -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75" />
-                                    </svg>
-
-                                    <span>Release</span>
-                                </button>
+                                <x-form.button class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 rounded-none">
+                                    <x-icon.arrow-up-on-square class="w-6 h-6" /><span>Release</span>
+                                </x-form.button>
                             </div>
                         </div>
                     </li>
@@ -503,28 +391,19 @@
                                 <div class="flex items-center space-x-3">
                                     <h2 class="text-sm font-medium text-gray-900 truncate">DOCUMENT TERMINAL</h2>
                                 </div>
-                                <p class="mt-1 text-sm text-gray-500">Notify that a receiver was terminal.</p>
+                                <p class="mt-1 text-sm text-gray-500">Notify that a paper trail was terminal.</p>
                             </div>
                             <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
                                 src="{{ asset('\img\dts\dms_terminal.jpg') }}" alt="Received image">
                         </div>
-                        <div class="p-2">
-                            <div class="flex mt-1 rounded-md shadow-sm">
+                        <div>
+                            <div class="flex mt-1 rounded-md shadow-sm p-2">
                                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                                    <input type="email" name="email" id="email"
-                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
-                                        placeholder="Enter Tracking Number">
+                                    <x-form.input-text type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
                                 </div>
-                                <button type="button"
-                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <!-- Heroicon name: solid/sort-ascending -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9.563C9 9.252 9.252 9 9.563 9h4.874c.311 0 .563.252.563.563v4.874c0 .311-.252.563-.563.563H9.564A.562.562 0 019 14.437V9.564z" />
-                                    </svg>
-
-                                    <span>Add New</span>
-                                </button>
+                                <x-form.button class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 rounded-none">
+                                    <x-icon.terminal class="w-6 h-6" /><span>Terminal</span>
+                                </x-form.button>
                             </div>
                         </div>
                     </li>
@@ -540,22 +419,14 @@
                             <img class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full"
                                 src="{{ asset('\img\dts\dms_create.jpg') }}" alt="Received image">
                         </div>
-                        <div class="p-2">
-                            <div class="flex mt-1 rounded-md shadow-sm">
+                        <div>
+                            <div class="flex mt-1 rounded-md shadow-sm p-2">
                                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                                    <input type="email" name="email" id="email"
-                                        class="block w-full pl-2 border border-gray-300 rounded-none focus:ring-indigo-500 focus:border-indigo-500 rounded-l-md sm:text-sm"
-                                        placeholder="Enter Tracking Number">
+                                    <x-form.input-text type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
                                 </div>
-                                <button type="button"
-                                    class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 border border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
-                                    <!-- Heroicon name: Add New -->
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 10.5v6m3-3H9m4.06-7.19l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z" />
-                                    </svg>
-
-                                    <span>Create</span>
-                                </button>
+                                <x-form.button class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-r-md bg-gray-50 hover:bg-gray-100 rounded-none">
+                                    <x-icon.folder-plus class="w-6 h-6" /><span>Create</span>
+                                </x-form.button>
                             </div>
                         </div>
                     </li>
