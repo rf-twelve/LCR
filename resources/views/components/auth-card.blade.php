@@ -2,10 +2,9 @@
 <div class="flex min-h-screen bg-white">
     <div class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="w-full max-w-sm mx-auto lg:w-96">
-            <div class="mb-4 text-center">
+            <div class="text-center">
                 <div class="inline-block max-w-[160px] mx-auto">
-                    <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt="Company Logo" />
+                    <img class="w-auto h-12 mx-auto" src="{{ asset(env('APP_LOGO')) }}" alt="Company Logo" />
                     {{-- <img class="w-16 h-16" src="{{ asset(env('APP_LOGO')) }}" alt="Company Logo"> --}}
                 </div>
             </div>
@@ -31,9 +30,6 @@
     </div>
     <div class="relative flex-1 hidden w-0 lg:block">
         <img class="absolute inset-0 object-cover w-full h-full"
-            src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"
-            alt="">
-        {{-- <img class="absolute inset-0 object-cover w-full h-full" src="{{ asset(env('APP_BG_LOGIN')) }}" alt="">
-        --}}
+        src="{{ asset(env('APP_BG_LOGIN')) }}" alt="Company office" />
     </div>
 </div>

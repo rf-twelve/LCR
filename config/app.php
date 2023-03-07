@@ -69,7 +69,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    // 'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -185,6 +186,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Spatie\Permission\PermissionServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -194,6 +196,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -209,6 +212,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        // 'Barryvdh\Debugbar\ServiceProvider',
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

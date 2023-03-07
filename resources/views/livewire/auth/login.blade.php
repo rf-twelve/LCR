@@ -16,18 +16,15 @@
                 @error('username')<span class="text-red-500">{{ $message }}</span>@enderror
             </div>
         </div>
-
-        <div class="space-y-1">
-            <label for="password" class="block text-sm font-medium text-gray-700">
-                Password
-            </label>
+        <div>
+            <x-label for="password">Password :</x-label>
             <div class="mt-1">
-                <input wire:model.lazy="password" id="password" name="password" type="password"
-                    autocomplete="current-password" placeholder="Enter Password"
-                    class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                @error('password')
-                <span class="text-red-500">{{ $message }}</span>
-                @enderror
+                <x-input
+                    wire:model.lazy="password"
+                    id="password" type="password"
+                    placeholder="Enter Password"
+                />
+                @error('password')<span class="text-red-500">{{ $message }}</span>@enderror
             </div>
         </div>
 
@@ -49,7 +46,7 @@
 
         <div>
             <button type="submit"
-                class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                class="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent shadow-sm rounded-xl hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                 Login
             </button>
         </div>

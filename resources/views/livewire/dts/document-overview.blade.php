@@ -1,82 +1,77 @@
-<div class="flex h-full flex-col">
+<div class="min=h-full">
+<div class="flex flex-col min-h-0">
     <!-- Top nav-->
 
     <!-- Bottom section -->
-    <div class="flex min-h-0 flex-1 overflow-hidden">
+    <div class="flex flex-1 min-h-0 overflow-hidden">
         <!-- Main area -->
-        <main class="min-w-0 flex-1 border-t border-gray-200 xl:flex">
+        <main class="flex-1 min-w-0 border-t border-gray-200 xl:flex">
             <section aria-labelledby="message-heading"
-                class="flex h-full min-w-0 flex-1 flex-col overflow-hidden xl:order-last">
+                class="flex flex-col flex-1 h-full min-w-0 overflow-hidden xl:order-last">
                 <!-- Top section -->
-                <div class="flex-shrink-0 border-b border-gray-200 bg-white">
+                <div class="flex-shrink-0 bg-white border-b border-gray-200">
                     <!-- Toolbar-->
-                    <div class="flex h-16 flex-col justify-center">
-                        <div class="px-4 sm:px-6 lg:px-8">
+                    <div class="flex flex-col justify-center h-16">
+                        <div class="px-4 bg-gray-300 sm:px-6 lg:px-8">
                             <div class="flex justify-between py-3">
                                 <!-- Left buttons -->
                                 <div>
                                     <span
                                         class="relative z-0 inline-flex rounded-md shadow-sm sm:space-x-3 sm:shadow-none">
                                         <span class="inline-flex space-x-2">
-                                            <button type="button"
-                                                class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                            <a href="{{ url()->previous() }}"
+                                                class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white rounded-xl hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600">
                                                 <x-icon.arrow-curve-left class="mr-2.5 h-5 w-5 text-gray-400" />
                                                 <span>Back</span>
-                                            </button>
+                                            </a>
+                                            <x-dropdown class="px-1 border border-gray-300 rounded-sm" label="Options">
+                                                <x-dropdown.item wire:click="$toggle('showDeleteSelectedRecordModal')"
+                                                    type="button" class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.trash class="w-5 h-5" /> <span>Delete</span>
+                                                </x-dropdown.item>
 
-                                            <button type="button"
-                                                class="relative -ml-px hidden rounded-md items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 sm:inline-flex">
-                                                <x-icon.unlock class="mr-2.5 h-5 w-5 text-gray-400" />
-                                                <span>Unlock</span>
-                                            </button>
+                                                <x-dropdown.item wire:click="edit" type="button"
+                                                    class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.edit class="w-5 h-5" /> <span>Edit</span>
+                                                </x-dropdown.item>
 
-                                            <button type="button"
-                                                class="relative -ml-px hidden rounded-md items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 sm:inline-flex">
-                                                <x-icon.arrows-right-left class="mr-2.5 h-5 w-5 text-gray-400" />
-                                                <span>Transfer</span>
-                                            </button>
+                                                <x-dropdown.item wire:click="receive" type="button"
+                                                    class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.arrow-down-on-square class="w-5 h-5" /> <span>Receive</span>
+                                                </x-dropdown.item>
 
-                                            <button type="button"
-                                                class="relative -ml-px hidden rounded-md items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 sm:inline-flex">
-                                                <x-icon.terminal class="mr-2.5 h-5 w-5 text-gray-400" />
-                                                <span>Terminal</span>
-                                            </button>
+                                                <x-dropdown.item wire:click="release" type="button"
+                                                    class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.arrow-up-on-square class="w-5 h-5" /> <span>Release</span>
+                                                </x-dropdown.item>
 
-                                            <button type="button"
-                                                class="relative -ml-px hidden rounded-md items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 sm:inline-flex">
-                                                <x-icon.arrow-up-on-square class="mr-2.5 h-5 w-5 text-gray-400" />
-                                                <span>Release</span>
-                                            </button>
+                                                <x-dropdown.item wire:click="terminal" type="button"
+                                                    class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.terminal class="w-5 h-5" /> <span>Terminal</span>
+                                                </x-dropdown.item>
 
+                                                <x-dropdown.item wire:click="transfer" type="button"
+                                                    class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.arrows-right-left class="w-5 h-5" /> <span>Transfer</span>
+                                                </x-dropdown.item>
 
-                                            <button type="button"
-                                                class="relative hidden items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600 sm:inline-flex">
-                                                <!-- Heroicon name: solid/folder-download -->
-                                                <svg class="mr-2.5 h-5 w-5 text-gray-400"
-                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                    fill="currentColor" aria-hidden="true">
-                                                    <path
-                                                        d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z">
-                                                    </path>
-                                                    <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2"></path>
-                                                </svg>
-                                                <span>Move</span>
-                                            </button>
+                                                <x-dropdown.item wire:click="unlock" type="button"
+                                                    class="flex items-center space-x-2 rounded-md">
+                                                    <x-icon.unlock class="w-5 h-5" /> <span>Unlock</span>
+                                                </x-dropdown.item>
 
+                                            </x-dropdown>
                                         </span>
-
                                     </span>
                                 </div>
-
                                 <!-- Right buttons -->
                                 <nav aria-label="Pagination">
                                     <span class="relative z-0 inline-flex rounded-md shadow-sm">
                                         <a href="#"
-                                            class="relative inline-flex items-center rounded-l-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                            class="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-l-md hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600">
                                             <span class="sr-only">Next</span>
                                             <!-- Heroicon name: solid/chevron-up -->
-                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd"
                                                     d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z"
@@ -84,10 +79,10 @@
                                             </svg>
                                         </a>
                                         <a href="#"
-                                            class="relative -ml-px inline-flex items-center rounded-r-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600">
+                                            class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-r-md hover:bg-gray-50 focus:z-10 focus:border-blue-600 focus:outline-none focus:ring-1 focus:ring-blue-600">
                                             <span class="sr-only">Previous</span>
                                             <!-- Heroicon name: solid/chevron-down -->
-                                            <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                 fill="currentColor" aria-hidden="true">
                                                 <path fill-rule="evenodd"
                                                     d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
@@ -101,86 +96,104 @@
                     </div>
                 </div>
 
-                <!-- Main content -->
-                <div class="min-h-0 flex-1 overflow-y-auto">
-                    <div class="bg-white pt-5 pb-6 shadow">
+                <!-- Document Details -->
+                <div class="flex-1 hidden min-h-0 overflow-y-auto lg:block">
+                    <div class="min-h-screen pt-5 pb-6 bg-white shadow">
                         <div class="px-4 sm:flex sm:items-baseline sm:justify-between sm:px-6 lg:px-8">
                             <!-- This example requires Tailwind CSS v2.0+ -->
-                            <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+                            <div class="w-full overflow-hidden bg-white shadow sm:rounded-lg">
                                 <div class="px-4 py-5 sm:px-6">
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">Document Title</h3>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Document Type</p>
+                                    <h3 class="text-3xl font-medium leading-6 text-gray-900">Document Title</h3>
+                                    <p class="max-w-2xl mt-1 text-xl text-gray-500">Document Type</p>
                                 </div>
-                                <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+                                <div class="px-4 py-5 text-lg border-t border-gray-200 sm:p-0">
                                     <dl class="sm:divide-y sm:divide-gray-200">
                                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">Tracking Number :</dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                                2022-215-5254-521</dd>
+                                            <dt class="font-medium text-gray-500">
+                                                Tracking Number :</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->tn }}</dd>
                                         </div>
                                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">Title :</dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Title of the
-                                                document</dd>
+                                            <dt class="font-medium text-gray-500">
+                                                Classification :</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->DocumentType }}</dd>
+                                        </div>
+
+                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="font-medium text-gray-500">
+                                                Title :</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->title }}</dd>
+                                        </div>
+
+                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="font-medium text-gray-500">
+                                                Origin :</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->origin }}</dd>
+                                        </div>
+
+                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="font-medium text-gray-500">
+                                                Nature :</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->nature }}</dd>
+                                        </div>
+
+                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="font-medium text-gray-500">
+                                                For :</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->ActionFor }}</dd>
                                         </div>
                                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">Type :</dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Type of
-                                                document</dd>
+                                            <dt class="font-medium text-gray-500">
+                                                Remarks</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
+                                                {{ $document->remarks }}</dd>
                                         </div>
                                         <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">For :</dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Your
-                                                Infprmation</dd>
-                                        </div>
-                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">Remarks</dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">Fugiat ipsum
-                                                ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa
-                                                consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit
-                                                nulla mollit nostrud in ea officia proident. Irure nostrud pariatur
-                                                mollit ad adipisicing reprehenderit deserunt qui eu.</dd>
-                                        </div>
-                                        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                            <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                            <dt class="font-medium text-gray-500">Attachments</dt>
+                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
                                                 <ul role="list"
-                                                    class="border border-gray-200 rounded-md divide-y divide-gray-200">
+                                                    class="border border-gray-200 divide-y divide-gray-200 rounded-md">
                                                     <li
-                                                        class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                                        <div class="w-0 flex-1 flex items-center">
+                                                        class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                                        <div class="flex items-center flex-1 w-0">
                                                             <!-- Heroicon name: solid/paper-clip -->
-                                                            <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
+                                                            <svg class="flex-shrink-0 w-5 h-5 text-gray-400"
                                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                                 fill="currentColor" aria-hidden="true">
                                                                 <path fill-rule="evenodd"
                                                                     d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
                                                                     clip-rule="evenodd" />
                                                             </svg>
-                                                            <span class="ml-2 flex-1 w-0 truncate">
+                                                            <span class="flex-1 w-0 ml-2 truncate">
                                                                 resume_back_end_developer.pdf </span>
                                                         </div>
-                                                        <div class="ml-4 flex-shrink-0">
+                                                        <div class="flex-shrink-0 ml-4">
                                                             <a href="#"
                                                                 class="font-medium text-indigo-600 hover:text-indigo-500">
                                                                 Download </a>
                                                         </div>
                                                     </li>
                                                     <li
-                                                        class="pl-3 pr-4 py-3 flex items-center justify-between text-sm">
-                                                        <div class="w-0 flex-1 flex items-center">
+                                                        class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                                        <div class="flex items-center flex-1 w-0">
                                                             <!-- Heroicon name: solid/paper-clip -->
-                                                            <svg class="flex-shrink-0 h-5 w-5 text-gray-400"
+                                                            <svg class="flex-shrink-0 w-5 h-5 text-gray-400"
                                                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                                                                 fill="currentColor" aria-hidden="true">
                                                                 <path fill-rule="evenodd"
                                                                     d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
                                                                     clip-rule="evenodd" />
                                                             </svg>
-                                                            <span class="ml-2 flex-1 w-0 truncate">
+                                                            <span class="flex-1 w-0 ml-2 truncate">
                                                                 coverletter_back_end_developer.pdf </span>
                                                         </div>
-                                                        <div class="ml-4 flex-shrink-0">
+                                                        <div class="flex-shrink-0 ml-4">
                                                             <a href="#"
                                                                 class="font-medium text-indigo-600 hover:text-indigo-500">
                                                                 Download </a>
@@ -193,98 +206,267 @@
                                 </div>
                             </div>
 
-
-                            <div
-                                class="mt-4 flex items-center justify-between sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start">
-                                <div x-data="{open:false}" class="relative ml-3 inline-block text-left">
-                                    <div>
-                                        <button x-on:click="open = !open" type="button"
-                                            class="-my-2 flex items-center rounded-full bg-white p-2 text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                                            <x-icon.dots-vertical class="h-5 w-5" />
-                                        </button>
-                                    </div>
-
-                                    <div x-show="open" x-transition.duration.500ms
-                                        class="absolute right-0 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                        <div class="py-1" role="none">
-                                            <button type="button"
-                                                class="flex w-full justify-between px-4 py-2 text-sm text-gray-700"
-                                                role="menuitem" tabindex="-1" id="menu-3-item-0">
-                                                <span>Option 1</span>
-                                            </button>
-                                            <a href="#" class="flex justify-between px-4 py-2 text-sm text-gray-700"
-                                                role="menuitem" tabindex="-1" id="menu-3-item-1">
-                                                <span>Option 2</span>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Audit Trails on mobile devices -->
+                <div class="lg:hidden">
+                    <!-- This example requires Tailwind CSS v2.0+ -->
+                    <div class="overflow-hidden bg-white shadow sm:rounded-md">
+                        <ul role="list" class="divide-y divide-gray-200">
+                            <li>
+                                <a href="#" class="block hover:bg-gray-50">
+                                    <div class="px-4 py-4 sm:px-6">
+                                        <div class="flex items-center justify-between">
+                                            <p class="text-sm font-medium text-indigo-600 truncate">
+                                                Tracking No.: {{ $document->tn }}
+                                            </p>
+                                            <div class="flex flex-shrink-0 ml-2">
+                                                <p
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-green-800  {{ $document->is_draft ? 'bg-gray-200' : 'bg-green-200' }} ">
+                                                    {{ $document->is_draft ? 'Draft' : 'Submited' }}</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Class :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->DocumentType }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Date :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->date }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Received By :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->received_by }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Title :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->title }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Origin :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->origin }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Nature :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->nature }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">For :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->ActionFor }}</dd>
+                                            </dl>
+                                        </div>
+
+                                        <div class="mt-2">
+                                            <dl class="grid grid-cols-1">
+                                                <dt class="font-serif text-xs italic text-gray-500">Remarks :</dt>
+                                                <dd
+                                                    class="p-1 text-sm font-medium text-gray-600 border border-gray-300 rounded-xl">
+                                                    {{ $document->remarks }}</dd>
+                                            </dl>
+                                        </div>
+
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#" class="block hover:bg-gray-50">
+                                    <div class="px-4 py-4 sm:px-6">
+                                        <div
+                                            class="flex px-6 py-2 text-sm font-medium text-gray-500 border-t border-b border-gray-200 bg-gray-50">
+                                            <x-icon.location class="w-5 h-5" />
+                                            <span class="pl-2">PAPER TRAIL</span>
+                                        </div>
+                                        <div class="mt-2 mb-2 sm:flex sm:justify-between">
+
+                                            <nav class="flex-1 min-h-0 overflow-y-auto">
+                                                <section aria-labelledby="timeline-title"
+                                                    class="lg:col-start-3 lg:col-span-1">
+                                                    <div class="min-h-screen px-4 py-5 sm:px-6">
+                                                        <!-- Activity Feed -->
+                                                        <div class="flow-root mt-6">
+                                                            <ul role="list" class="-mb-8">
+
+                                                                @forelse ($document->audit_trails as $item)
+                                                                <li>
+                                                                    <div class="relative pb-8">
+                                                                        <span
+                                                                            class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
+                                                                            aria-hidden="true"></span>
+                                                                        <div class="relative flex space-x-3">
+                                                                            <div>
+                                                                                <span
+                                                                                    class="flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full ring-8 ring-white">
+                                                                                    <x-icon.location
+                                                                                        class="w-5 h-5 text-white" />
+                                                                                </span>
+                                                                            </div>
+                                                                            <div
+                                                                                class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                                                                <div>
+                                                                                    <p class="text-sm">
+                                                                                        <span
+                                                                                            class="font-medium text-blue-500 text-md">{{
+                                                                                            Str::upper($item->trail)
+                                                                                            }}</span><br>
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">From:</span>
+                                                                                        {{ $item->OfficeName }} <br>
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">User:</span>
+                                                                                        {{ $item->UserName }}<br>
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">Date/Time:</span>
+                                                                                        {{ $item->date_time }}<br>
+
+                                                                                        @if ($item->trail == 'transit'
+                                                                                        || $item->trail == 'process')
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">Start:</span>
+                                                                                        {{ $item->start }}<br>
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">End:</span>
+                                                                                        {{ $item->end }}<br>
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">Elapse:</span>
+                                                                                        {{ $item->elapse }}<br>
+                                                                                        @endif
+
+                                                                                        <span
+                                                                                            class="text-xs italic text-gray-500">Status:</span>
+                                                                                        {{ $item->TrailStatus }}<br>
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="text-sm text-right text-gray-500 whitespace-nowrap">
+                                                                                    <span
+                                                                                        class="p-1 font-serif text-xs italic text-white bg-blue-500 rounded-xl">
+                                                                                        Origin</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                @empty
+
+                                                                @endforelse
+                                                                <li>
+                                                                    <div class="relative pb-8">
+                                                                        <span class="absolute top-4 left-4 -ml-px w-0.5"
+                                                                            aria-hidden="true"></span>
+                                                                        <div class="relative flex space-x-3">
+                                                                            <div>
+                                                                                <span
+                                                                                    class="flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full ring-8 ring-white">
+                                                                                    <x-icon.arrow-path-rounded
+                                                                                        class="w-5 h-5 text-white" />
+                                                                                </span>
+                                                                            </div>
+                                                                            <div
+                                                                                class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
+                                                                                <div>
+                                                                                    <p
+                                                                                        class="font-serif text-sm italic tracking-wider">
+                                                                                        {{
+                                                                                        count($document->audit_trails) ?
+                                                                                        'Processing...' : 'Document is
+                                                                                        in draft.' }}
+                                                                                    </p>
+                                                                                </div>
+                                                                                <div
+                                                                                    class="text-sm text-right text-gray-500 whitespace-nowrap">
+                                                                                    <span
+                                                                                        class="p-1 font-serif text-xs italic text-white bg-blue-500 rounded-xl">
+                                                                                        {{ date('Y-m-d') }}</span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+
+
+                                                            </ul>
+                                                        </div>
+                                                        {{-- <div class="flex flex-col mt-6 justify-stretch">
+                                                            <button type="button"
+                                                                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                                                Advance to offer</button>
+                                                        </div> --}}
+                                                    </div>
+                                                </section>
+                                            </nav>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
             </section>
 
-            <!-- Message list-->
+            <!-- Audit Trail List-->
             <aside class="xl:order-first xl:block xl:flex-shrink-0">
-                <div class="relative flex h-full w-96 flex-col border-r border-gray-200 bg-gray-100">
+                <div class="relative flex flex-col h-full bg-gray-100 border-r border-gray-200 w-96">
                     <div class="flex-shrink-0">
-                        <div class="flex h-16 flex-col justify-center bg-white px-6">
+                        <div class="flex flex-col justify-center h-16 px-6 bg-white">
                             <div class="flex items-baseline space-x-3">
                                 <h2 class="text-lg font-medium text-gray-900">Tracking Number:</h2>
-                                <p class="text-sm font-medium text-gray-500">2022-254-254-5524</p>
+                                <p class="text-sm font-medium text-gray-500">{{ $document->tn }}</p>
                             </div>
                         </div>
                         <div
-                            class="border-t border-b border-gray-200 bg-gray-50 px-6 py-2 text-sm font-medium text-gray-500 flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                                stroke="currentColor" class="h-5 w-5">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                            </svg>
+                            class="flex px-6 py-2 text-sm font-medium text-gray-500 border-t border-b border-gray-200 bg-gray-50">
+                            <x-icon.location class="w-5 h-5" />
                             <span class="pl-2">PAPER TRAIL</span>
                         </div>
                     </div>
-                    <nav class="min-h-0 flex-1 overflow-y-auto">
+                    <nav class="flex-1 min-h-0 overflow-y-auto">
                         <section aria-labelledby="timeline-title" class="lg:col-start-3 lg:col-span-1">
                             <div class="px-4 py-5 sm:px-6">
                                 <!-- Activity Feed -->
-                                <div class="mt-6 flow-root">
+                                <div class="flow-root mt-6">
                                     <ul role="list" class="-mb-8">
-                                        <li>
-                                            <div class="relative pb-8">
-                                                <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
-                                                    aria-hidden="true"></span>
-                                                <div class="relative flex space-x-3">
-                                                    <div>
-                                                        <span
-                                                            class="h-8 w-8 rounded-full bg-gray-400 flex items-center justify-center ring-8 ring-white">
-                                                            <!-- Heroicon name: solid/user -->
-                                                            <svg class="w-5 h-5 text-white"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                                                    clip-rule="evenodd" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                                                        <div>
-                                                            <p class="text-sm text-gray-500">Applied to <a href="#"
-                                                                    class="font-medium text-gray-900">Front End
-                                                                    Developer</a></p>
-                                                        </div>
-                                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                                            <time datetime="2020-09-20">Sep 20</time>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
 
+                                        @forelse ($document->audit_trails as $item)
                                         <li>
                                             <div class="relative pb-8">
                                                 <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
@@ -292,135 +474,112 @@
                                                 <div class="relative flex space-x-3">
                                                     <div>
                                                         <span
-                                                            class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
-                                                            <!-- Heroicon name: solid/thumb-up -->
-                                                            <svg class="w-5 h-5 text-white"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path
-                                                                    d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                                            </svg>
+                                                            class="flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full ring-8 ring-white">
+                                                            <x-icon.location class="w-5 h-5 text-white" />
                                                         </span>
                                                     </div>
                                                     <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                                         <div>
-                                                            <p class="text-sm text-gray-500">Advanced to phone screening
-                                                                by <a href="#" class="font-medium text-gray-900">Bethany
-                                                                    Blake</a></p>
-                                                        </div>
-                                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                                            <time datetime="2020-09-22">Sep 22</time>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+                                                            <p class="text-sm">
+                                                                <span class="font-medium text-blue-500 text-md">{{
+                                                                    Str::upper($item->trail) }}</span><br>
+                                                                @if ($item->trail == 'transit' || $item->trail == 'process')
+                                                                    <span class="text-xs italic text-gray-500">Start:</span>
+                                                                    {{ $item->start }}<br>
+                                                                    <span class="text-xs italic text-gray-500">End:</span>
+                                                                    {{ $item->end }}<br>
+                                                                    <span class="text-xs italic text-gray-500">Elapse:</span>
+                                                                    {{ $item->elapse }}<br>
+                                                                @else
+                                                                    <span class="text-xs italic text-gray-500">From:</span>
+                                                                    {{ $item->OfficeName }} <br>
+                                                                    <span class="text-xs italic text-gray-500">User:</span>
+                                                                    {{ $item->UserName }}<br>
+                                                                    <span class="text-xs italic text-gray-500">Time:</span>
+                                                                    {{ $item->TrailTime }}<br>
+                                                                @endif
 
-                                        <li>
-                                            <div class="relative pb-8">
-                                                <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
-                                                    aria-hidden="true"></span>
-                                                <div class="relative flex space-x-3">
-                                                    <div>
-                                                        <span
-                                                            class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
-                                                            <!-- Heroicon name: solid/check -->
-                                                            <svg class="w-5 h-5 text-white"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                                    clip-rule="evenodd" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                                                        <div>
-                                                            <p class="text-sm text-gray-500">Completed phone screening
-                                                                with <a href="#"
-                                                                    class="font-medium text-gray-900">Martha Gardner</a>
+                                                                <span
+                                                                    class="text-xs italic text-gray-500">Status:</span>
+                                                                <span class="px-1 text-xs bg-green-200 rounded-xl">{{ $item->TrailStatus }}</span><br>
                                                             </p>
                                                         </div>
-                                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                                            <time datetime="2020-09-28">Sep 28</time>
+                                                        <div class="text-sm text-right text-gray-500 whitespace-nowrap">
+                                                            <span
+                                                                class="p-1 font-serif text-xs italic text-white bg-blue-500 rounded-xl">
+                                                                {{ $item->TrailDate }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
+                                        @empty
 
+                                        @endforelse
                                         <li>
                                             <div class="relative pb-8">
-                                                <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200"
+                                                <span class="absolute top-4 left-4 -ml-px w-0.5"
                                                     aria-hidden="true"></span>
                                                 <div class="relative flex space-x-3">
                                                     <div>
                                                         <span
-                                                            class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center ring-8 ring-white">
-                                                            <!-- Heroicon name: solid/thumb-up -->
-                                                            <svg class="w-5 h-5 text-white"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path
-                                                                    d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                                            </svg>
+                                                            class="flex items-center justify-center w-8 h-8 bg-gray-400 rounded-full ring-8 ring-white">
+                                                            <x-icon.arrow-path-rounded class="w-5 h-5 text-white" />
                                                         </span>
                                                     </div>
                                                     <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
                                                         <div>
-                                                            <p class="text-sm text-gray-500">Advanced to interview by <a
-                                                                    href="#" class="font-medium text-gray-900">Bethany
-                                                                    Blake</a></p>
+                                                            <p class="font-serif text-sm italic tracking-wider">
+                                                                {{ count($document->audit_trails) ? 'Processing...' :
+                                                                'Document is in draft.' }}
+                                                            </p>
                                                         </div>
-                                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                                            <time datetime="2020-09-30">Sep 30</time>
+                                                        <div class="text-sm text-right text-gray-500 whitespace-nowrap">
+                                                            <span
+                                                                class="p-1 font-serif text-xs italic text-white bg-blue-500 rounded-xl">
+                                                                {{ date('Y-m-d') }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
 
-                                        <li>
-                                            <div class="relative pb-8">
-                                                <div class="relative flex space-x-3">
-                                                    <div>
-                                                        <span
-                                                            class="h-8 w-8 rounded-full bg-green-500 flex items-center justify-center ring-8 ring-white">
-                                                            <!-- Heroicon name: solid/check -->
-                                                            <svg class="w-5 h-5 text-white"
-                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                                fill="currentColor" aria-hidden="true">
-                                                                <path fill-rule="evenodd"
-                                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                                    clip-rule="evenodd" />
-                                                            </svg>
-                                                        </span>
-                                                    </div>
-                                                    <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
-                                                        <div>
-                                                            <p class="text-sm text-gray-500">Completed interview with <a
-                                                                    href="#" class="font-medium text-gray-900">Katherine
-                                                                    Snyder</a></p>
-                                                        </div>
-                                                        <div class="text-right text-sm whitespace-nowrap text-gray-500">
-                                                            <time datetime="2020-10-04">Oct 4</time>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
+
                                     </ul>
                                 </div>
-                                <div class="mt-6 flex flex-col justify-stretch">
+                                {{-- <div class="flex flex-col mt-6 justify-stretch">
                                     <button type="button"
-                                        class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Advance
-                                        to offer</button>
-                                </div>
+                                        class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        Add action taken
+                                    </button>
+                                </div> --}}
                             </div>
                         </section>
                     </nav>
                 </div>
             </aside>
         </main>
+
+        <!-- Delete Single Record Modal -->
+        <div>
+            <form wire:submit.prevent="deleteSingleRecord">
+                <x-modal.confirmation wire:model.defer="showDeleteSelectedRecordModal">
+                    <x-slot name="title">Delete Selected Record</x-slot>
+
+                    <x-slot name="content">
+                        <div class="py-8 text-gray-700">Are you sure you? This action is irreversible.</div>
+                    </x-slot>
+
+                    <x-slot name="footer">
+                        <x-button type="button" wire:click.prevent="$set('showDeleteSelectedRecordModal', false)">Cancel
+                        </x-button>
+
+                        <x-button type="submit">Delete</x-button>
+                    </x-slot>
+                </x-modal.confirmation>
+            </form>
+        </div>
+
     </div>
+</div>
 </div>
