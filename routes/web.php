@@ -56,7 +56,7 @@ Route::get('/register', Register::class)->name('register');
 // For grouping prefix and middleware
 Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
 {
-    Route::get('{user_id}/dashboard', UserDashboard::class)->name('user-dashboard');
+    Route::get('{user_id}/dashboard', UserDashboard::class)->name('Dashboard');
     // Route::ge{user_id}/t('tracking-numbers', TrackingNumbers::class)->name('Tracking Numbers');
     Route::get('{user_id}/document/{id}', DocumentOverview::class)->name('Document Overview');
     Route::get('{user_id}/document/{tn}/create', DocumentCreate::class)->name('Create Document');

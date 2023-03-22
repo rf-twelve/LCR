@@ -10,7 +10,7 @@
               <ol role="list" class="flex items-center space-x-4">
                 <li>
                   <div>
-                    <a href="{{ route('user-dashboard',['user_id'=>Auth::user()->id]) }}" class="text-gray-400 hover:text-gray-500">
+                    <a href="{{ route('Dashboard',['user_id'=>Auth::user()->id]) }}" class="text-gray-400 hover:text-gray-500">
                       <!-- Heroicon name: solid/home -->
                       <x-icon.home class="flex-shrink-0 w-5 h-5"/>
                       <span class="sr-only">Home</span>
@@ -50,54 +50,54 @@
               <form wire:submit.prevent="save" enctype="multipart/form-data" class="grid grid-cols-1 font-medium gap-y-6 sm:grid-cols-2 sm:gap-x-8">
                 <div class="space-y-1 sm:col-span-2">
                     <label for="tn" class="text-sm">Tracking Number :</label>
-                    <x-input wire:model.lazy="editing.tn" id="tn" type="text" disabled/>
+                    <x-input wire:model.lazy="tn" id="tn" type="text" disabled/>
                     <x-comment> *Please print and attach tracking number to document correctly.</x-comment>
                 </div>
                 <div class="space-y-1 sm:col-span-2">
                     <label for="class" class="text-sm">Classification :</label><br>
-                    <x-select wire:model.lazy="editing.class" id="class" class="w-full border">
+                    <x-select wire:model.lazy="class" id="class" class="w-full border">
                         <option value="">-Select document type-</option>
                         @foreach (App\Models\Doc::CLASS_OF_DOC as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-select>
-                    @error('editing.class')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                    @error('class')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
                 <div class="space-y-1 sm:col-span-2">
                     <label for="date" class="text-sm">Date :</label>
-                    <x-input wire:model.lazy="editing.date" id="date" type="date" />
-                    @error('editing.date')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                    <x-input wire:model.lazy="date" id="date" type="date" />
+                    @error('date')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
-                @error('editing.title')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                @error('title')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
 
                 {{-- Show this field if classification of document is a letter --}}
-                @if ($editing['class'] == 'l')
+                @if ($class == 'l')
                     <div class="space-y-1 sm:col-span-2">
                         <label for="received_by" class="text-sm">Received by :</label>
-                        <x-input wire:model.lazy="editing.received_by" id="received_by" type="text" placeholder="Enter complete name"/>
-                        @error('editing.received_by')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                        <x-input wire:model.lazy="received_by" id="received_by" type="text" placeholder="Enter complete name"/>
+                        @error('received_by')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                     </div>
                     <div class="space-y-1 sm:col-span-2">
                         <label for="origin" class="text-sm">Origin :</label>
-                        <x-input wire:model.lazy="editing.origin" id="origin" type="text" placeholder="Enter origin"/>
+                        <x-input wire:model.lazy="origin" id="origin" type="text" placeholder="Enter origin"/>
                         <x-comment> *Any sensitive information(amounts, names, etc.) are optional or not necessary.</x-comment>
-                        @error('editing.origin')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                        @error('origin')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                     </div>
 
                     <div class="space-y-1 sm:col-span-2">
                         <label for="nature" class="text-sm">Nature :</label>
-                        <x-input wire:model.lazy="editing.nature" id="nature" type="text" placeholder="Enter nature"/>
+                        <x-input wire:model.lazy="nature" id="nature" type="text" placeholder="Enter nature"/>
                         <x-comment> *Any sensitive information(amounts, names, etc.) are optional or not necessary.</x-comment>
-                        @error('editing.nature')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                        @error('nature')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                     </div>
 
                 @else
                     <div class="space-y-1 sm:col-span-2">
                         <label for="title" class="text-sm">Title :</label>
-                        <x-input wire:model.lazy="editing.title" id="title" type="text" placeholder="Enter title"/>
+                        <x-input wire:model.lazy="title" id="title" type="text" placeholder="Enter title"/>
                         <x-comment> *Any sensitive information(amounts, names, etc.) are optional or not necessary.</x-comment>
                     </div>
-                    @error('editing.title')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                    @error('title')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 @endif
 
 
@@ -105,21 +105,21 @@
                     <label class="text-sm">For :</label>
                     @foreach (App\Models\Doc::FOR as $value => $label)
                     <div class="flex items-center h-5">
-                        <input wire:model='editing.for' value="{{ $value }}"  id="{{ $value }}" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                        <input wire:model='for' value="{{ $value }}"  id="{{ $value }}" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                         <label for="{{ $value }}" class="ml-3 text-sm font-medium text-gray-700">
                             {{ $label }}
                         </label>
                     </div>
                     @endforeach
-                    @error('editing.for')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                    @error('for')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
 
                 <div class="space-y-1 sm:col-span-2">
                     <label for="remarks" class="text-sm">Remarks :</label>
                     <div class="mt-1">
-                        <textarea wire:model.lazy="editing.remarks" rows="4" id="remarks" class="block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                        <textarea wire:model.lazy="remarks" rows="4" id="remarks" class="block w-full border p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                     </div>
-                    @error('editing.remarks')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                    @error('remarks')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
 
                 @if ($file_images)
@@ -160,6 +160,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- Toggle save and finalize button --}}
                 <div class="sm:col-span-2">
                   <div class="flex items-start">
                     <div class="flex-shrink-0">
@@ -178,7 +179,7 @@
                     </div>
                   </div>
                 </div>
-
+                {{-- Buttons for  --}}
                 <div x-show="finalize" x-transition class="p-4 bg-gray-100 rounded-lg sm:col-span-2">
                     <div class="space-y-1 sm:col-span-2">
                         <label for="class" class="text-sm">Recipient Office :</label><br>
@@ -205,9 +206,10 @@
                         </x-button>
                     </div>
                 </div>
+                {{-- Save as draft and Finalize buttons --}}
                 <div class="sm:col-span-2">
                     <div class="flex justify-end">
-                        <x-button wire:click="$set('is_draft', true)" type="submit" x-bind:disabled="disabled" ::class="disabled ? '' : 'hover:bg-gray-200'">
+                        <x-button wire:click="saveAsDraft()" x-bind:disabled="disabled" ::class="disabled ? '' : 'hover:bg-gray-200'">
                             <span :class="disabled ? 'text-gray-200' : 'hover:bg-gray-200'">Save as Draft</span>
                         </x-button>
                         <x-button x-on:click="finalize = !finalize" type="button" x-bind:disabled="disabled" ::class="disabled ? '' : 'bg-indigo-600 hover:bg-indigo-400'" class="ml-3">

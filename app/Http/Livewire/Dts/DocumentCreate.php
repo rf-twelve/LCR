@@ -11,6 +11,20 @@ use Livewire\WithFileUploads;
 class DocumentCreate extends Component
 {
     use WithFileUploads;
+    public $tn;
+    public $date;
+    public $received_by;
+    public $title;
+    public $origin;
+    public $nature;
+    public $class;
+    public $for;
+    public $status;
+    public $remarks;
+    public $office_id;
+    public $created_by;
+    public $updated_by;
+
     public Doc $editing;
     public $recipient_office;
     public $recipient_person;
@@ -31,23 +45,54 @@ class DocumentCreate extends Component
 
     public function rules() { return [
         // 'editing.type' => 'required|in:'.collect(VmsPar::TYPES)->keys()->implode(','),
-        'editing.tn' => 'required',
-        'editing.date' => 'required',
-        'editing.received_by' => 'required',
-        'editing.title' => 'nullable',
-        'editing.origin' => 'nullable',
-        'editing.nature' => 'nullable',
-        'editing.class' => 'required',
-        'editing.for' => 'required',
-        'editing.status' => 'nullable',
-        'editing.remarks' => 'nullable',
-        'editing.office_id' => 'nullable',
-        'editing.created_by' => 'nullable',
-        'editing.updated_by' => 'nullable',
+        'tn' => 'required',
+        'date' => 'required',
+        'received_by' => 'required',
+        'title' => 'nullable',
+        'origin' => 'nullable',
+        'nature' => 'nullable',
+        'class' => 'required',
+        'for' => 'required',
+        'status' => 'nullable',
+        'remarks' => 'nullable',
+        'office_id' => 'nullable',
+        'created_by' => 'nullable',
+        'updated_by' => 'nullable'
     ]; }
 
+    public function setFields()
+    {
+        $this->date = '';
+        $this->received_by = '';
+        $this->title = '';
+        $this->origin = '';
+        $this->nature = '';
+        $this->class = '';
+        $this->for = '';
+        $this->status = '';
+        $this->remarks = '';
+        $this->office_id = '';
+        $this->created_by = '';
+        $this->updated_by = '';
+    }
+    public function resetFields()
+    {
+        $this->date = '';
+        $this->received_by = '';
+        $this->title = '';
+        $this->origin = '';
+        $this->nature = '';
+        $this->class = '';
+        $this->for = '';
+        $this->status = '';
+        $this->remarks = '';
+        $this->office_id = '';
+        $this->created_by = '';
+        $this->updated_by = '';
+    }
+
     public function mount($user_id, $tn) {
-         $this->editing = $this->makeTemporaryFormData($user_id, $tn);
+        $this->tn = $tn;
         }
 
     public function makeTemporaryFormData($user_id, $tn)
@@ -57,6 +102,11 @@ class DocumentCreate extends Component
             'date' => date('Y-m-d'),
             'created_by' => Auth::user()->id,
         ]);
+    }
+
+    public function saveAsDraft()
+    {
+        dd('draft');
     }
 
     public function save()

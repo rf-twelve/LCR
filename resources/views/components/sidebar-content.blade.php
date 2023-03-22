@@ -63,57 +63,11 @@
     <nav class="flex-1 px-2 space-y-1" aria-label="Sidebar">
         <div>
             <!-- Current: "bg-gray-100 text-gray-900", Default: "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-            <a href="#"
+            <a href="{{ route('Dashboard',['user_id'=>Auth::user()->id]) }}"
                 class="flex items-center w-full py-2 pl-2 text-sm font-medium text-gray-900 bg-gray-100 rounded-md group">
                 <x-icon.home class="flex-shrink-0 w-6 h-6 mr-3" />
                 Dashboard
             </a>
-        </div>
-
-        {{-- MUNICIPAL ASSESSOR OFFICE --}}
-        <div class="space-y-1">
-            <!-- Current: "bg-gray-100 text-gray-900", Default: "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-            <button type="button"
-                class="flex items-center w-full py-2 pl-2 pr-1 text-sm font-medium text-left text-gray-600 bg-white rounded-md hover:bg-gray-50 hover:text-gray-900 group focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                aria-controls="sub-menu-4" aria-expanded="false">
-                <x-icon.document class="flex-shrink-0 w-6 h-6 mr-3" />
-                <span class="flex-1"> ASSESSOR </span>
-                <!-- Expanded: "text-gray-400 rotate-90", Collapsed: "text-gray-300" -->
-                <x-icon.arrow-head class="flex-shrink-0 w-5 h-5 ml-3 text-gray-300 transition-colors duration-150 ease-in-out transform rotate-90 group-hover:text-gray-400"/>
-            </button>
-            <!-- Expandable link section, show/hide based on state. -->
-            <div class="space-y-1" id="sub-menu-4">
-                <a href="{{ route('assessment-roll',['user_id'=>Auth::user()->id]) }}"
-                    class="flex items-center w-full py-2 pr-2 text-sm font-medium text-gray-600 rounded-md group pl-11 hover:text-gray-900 hover:bg-gray-50">
-                    <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
-                <span class="flex-1"> Assessment Roll </span></a>
-            </div>
-        </div>
-
-        {{-- MUNICIPAL TREASURER OFFICE --}}
-        <div class="space-y-1">
-            <!-- Current: "bg-gray-100 text-gray-900", Default: "bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
-            <button type="button"
-                class="flex items-center w-full py-2 pl-2 pr-1 text-sm font-medium text-left text-gray-600 bg-white rounded-md hover:bg-gray-50 hover:text-gray-900 group focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                aria-controls="sub-menu-4" aria-expanded="false">
-                <x-icon.document class="flex-shrink-0 w-6 h-6 mr-3" />
-                <span class="flex-1"> TREASURER </span>
-                <!-- Expanded: "text-gray-400 rotate-90", Collapsed: "text-gray-300" -->
-                <x-icon.arrow-head class="flex-shrink-0 w-5 h-5 ml-3 text-gray-300 transition-colors duration-150 ease-in-out transform rotate-90 group-hover:text-gray-400"/>
-            </button>
-            <!-- Expandable link section, show/hide based on state. -->
-            <div class="space-y-1" id="sub-menu-4">
-                <a href="{{ route('account-list',['user_id'=>Auth::user()->id]) }}"
-                    class="flex items-center w-full py-2 pr-2 text-sm font-medium text-gray-600 rounded-md group pl-11 hover:text-gray-900 hover:bg-gray-50">
-                    <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
-                <span class="flex-1"> Account Lists </span></a>
-            </div>
-            <div class="space-y-1" id="sub-menu-4">
-                <a href="{{ route('collections',['user_id'=>Auth::user()->id]) }}"
-                    class="flex items-center w-full py-2 pr-2 text-sm font-medium text-gray-600 rounded-md group pl-11 hover:text-gray-900 hover:bg-gray-50">
-                    <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
-                <span class="flex-1"> Collections </span></a>
-            </div>
         </div>
 
         <div class="space-y-1">
@@ -177,7 +131,7 @@
             </div>
         </div>
 
-        <div class="mt-8">
+        {{-- <div class="mt-8">
             <!-- Secondary navigation -->
             <h3 class="px-3 text-xs font-semibold tracking-wider text-gray-500 uppercase"
                 id="desktop-teams-headline">CONNECTION STATUS</h3>
@@ -200,6 +154,6 @@
                     <span class="truncate"> Customer Success </span>
                 </a>
             </div>
-        </div>
+        </div> --}}
     </nav>
 </div>
