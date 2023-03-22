@@ -13,9 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mto_rpt_issued_receipt_data', function (Blueprint $table) {
+        Schema::create('doc_images', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
             $table->timestamps();
+            $table->unsignedBigInteger('doc_id')->index();
+            $table->foreign('doc_id')
+                ->references('id')
+                ->on('docs')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -26,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mto_rpt_issued_receipt_data');
+        Schema::dropIfExists('doc_images');
     }
 };

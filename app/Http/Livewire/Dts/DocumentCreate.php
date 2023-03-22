@@ -24,12 +24,13 @@ class DocumentCreate extends Component
     public $office_id;
     public $created_by;
     public $updated_by;
+    public $file_images = [];
+    public $temp_images;
+    public $display_temp_images = [];
 
     public Doc $editing;
     public $recipient_office;
     public $recipient_person;
-    public $file_images = [];
-    public $temp_images = [];
     public $is_draft = true;
     // office_origin
     // office_recipient
@@ -89,11 +90,16 @@ class DocumentCreate extends Component
         $this->office_id = '';
         $this->created_by = '';
         $this->updated_by = '';
+        $this->file_images = [];
     }
 
-    public function mount($user_id, $tn) {
+    public function mount($user_id, $tn)
+    {
         $this->tn = $tn;
-        }
+        $this->date = date('Y-m-d');
+        $this->created_by = auth()->user()->id;
+        $this->file_images = [];
+    }
 
     public function makeTemporaryFormData($user_id, $tn)
     {
@@ -104,14 +110,27 @@ class DocumentCreate extends Component
         ]);
     }
 
+    public function updatedTempImages(){
+        // $this->validate(['temp_images' => 'image|mimes:jpg,png,jpeg']);
+        $this->display_temp_images = $this->temp_images;
+    }
+
     public function saveAsDraft()
     {
-        dd('draft');
+        $data = $this->validate();
+        dd($data);
+        if(count($this->temp_images)){
+            foreach($this->temp_images as $item){
+                $filename = $item->store('/','images');
+            }
+        }
+        dd($data);
+
     }
 
     public function save()
     {
-        $this->validate(11);
+        $this->validate();
         dd($this->validate());
         if($this->is_draft){
             if(empty($this->editing['title'])){$this->editing['title'] = '(Empty Field)';}
@@ -136,6 +155,11 @@ class DocumentCreate extends Component
         dump('Saved');
         // dump($all);
         // dd($v);
+    }
+
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
     }
 
     public function render()
