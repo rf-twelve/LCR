@@ -156,18 +156,15 @@
                                     <div class="flex justify-center space-x-2">
 
 
-                                        {{-- VERIFICATION --}}
-                                        @if ($item->is_verified != 1)
-                                            <a href="#" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
-                                                <x-icon.verified class="w-5 h-5" />
-                                            </a>
+                                        {{-- Edit --}}
+                                        <a href="#" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
+                                            <x-icon.edit class="w-5 h-5" />
+                                        </a>
 
-                                        {{-- LEDGER ENTRY --}}
-                                        @else
-                                            <a href="#" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
-                                                <x-icon.view class="w-5 h-5" />
-                                            </a>
-                                        @endif
+                                        {{-- View --}}
+                                        <a href="#" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
+                                            <x-icon.view class="w-5 h-5" />
+                                        </a>
 
                                         {{-- DELETE --}}
                                         <x-button class="px-2 rounded-xl hover:text-white hover:bg-red-500" wire:click="toggleDeleteSingleRecordModal({{ $item->id }})">

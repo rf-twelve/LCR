@@ -53,7 +53,7 @@ class MyDocuments extends Component
     protected $queryString = ['sortField','sortDirection'];
 
 
-    public function mount() { $this->editing = $this->makeTemporaryFormData(); }
+    // public function mount() { $this->editing = $this->makeTemporaryFormData(); }
 
     public function updatedFilters() { $this->resetPage(); }
 
@@ -74,13 +74,6 @@ class MyDocuments extends Component
             $this->sortDirection = 'asc';
         }
         $this->sortField = $field;
-    }
-
-    public function makeTemporaryFormData()
-    {
-        return Doc::make([
-            'created_by' => Auth::user()->id,
-        ]);
     }
 
     public function create()
@@ -236,6 +229,8 @@ class MyDocuments extends Component
 
         return Doc::query()
             ->with('action_takens', 'audit_trails')
+            ->where('created_by',auth()->user()->id)
+            ->where('type','draft')
             ->when($this->filters['search'], fn($query, $search) => $query->where($this->sortField, 'like','%'.$search.'%'))
             // ->where('for', 'act')
             ->orderBy($this->sortField, $this->sortDirection);

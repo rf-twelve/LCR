@@ -21,14 +21,12 @@ class DocumentCreate extends Component
     public $for;
     public $status;
     public $remarks;
-    public $office_id;
     public $created_by;
     public $updated_by;
     public $file_images = [];
     public $temp_images;
     public $display_temp_images = [];
 
-    public Doc $editing;
     public $recipient_office;
     public $recipient_person;
     public $is_draft = true;
@@ -56,7 +54,6 @@ class DocumentCreate extends Component
         'for' => 'required',
         'status' => 'nullable',
         'remarks' => 'nullable',
-        'office_id' => 'nullable',
         'created_by' => 'nullable',
         'updated_by' => 'nullable'
     ]; }
@@ -72,7 +69,6 @@ class DocumentCreate extends Component
         $this->for = '';
         $this->status = '';
         $this->remarks = '';
-        $this->office_id = '';
         $this->created_by = '';
         $this->updated_by = '';
     }
@@ -87,7 +83,6 @@ class DocumentCreate extends Component
         $this->for = '';
         $this->status = '';
         $this->remarks = '';
-        $this->office_id = '';
         $this->created_by = '';
         $this->updated_by = '';
         $this->file_images = [];
@@ -118,13 +113,17 @@ class DocumentCreate extends Component
     public function saveAsDraft()
     {
         $data = $this->validate();
-        dd($data);
+        $data['type'] = 'draft';
+        // dd($data);
+        $doc = Doc::create($data);
         if(count($this->temp_images)){
             foreach($this->temp_images as $item){
                 $filename = $item->store('/','images');
+                $doc->images->create(['name'=>$filename]);
             }
         }
-        dd($data);
+        return redirect()->route('my-documents');
+        // dd($data);
 
     }
 

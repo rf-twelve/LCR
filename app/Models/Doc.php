@@ -111,6 +111,10 @@ class Doc extends Model
     {
         return $this->hasMany(AuditTrail::class);
     }
+    public function offices()
+    {
+        return $this->hasMany(Office::class);
+    }
 
     public function images()
     {
