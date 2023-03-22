@@ -112,6 +112,11 @@ class Doc extends Model
         return $this->hasMany(AuditTrail::class);
     }
 
+    public function images()
+    {
+        return $this->hasMany(DocImage::class);
+    }
+
 }
 
 
