@@ -11,9 +11,67 @@ use Livewire\Component;
 class DocumentOverview extends Component
 {
     public $doc_id;
+    public $tn;
+    public $date;
+    public $received_by;
+    public $title;
+    public $origin;
+    public $nature;
+    public $class;
+    public $for;
+    public $status;
+    public $remarks;
+    public $created_by;
+    public $updated_by;
+
+    public $action_takens;
+    public $audit_trails;
+    public $images;
+    public $offices;
     public $showDeleteSelectedRecordModal = false;
 
-    public function mount($id){ $this->doc_id = $id; }
+    public function mount($id)
+    {
+        $this->doc_id = $id;
+        $this->setFields($id);
+    }
+
+    public function setFields($id)
+    {
+        $data = Doc::query()
+            ->with('action_takens', 'audit_trails','images','offices')
+            ->find($id);
+        $this->action_takens = $data->action_takens;
+        $this->audit_trails = $data->audit_trails;
+        $this->images = $data->images;
+        $this->offices = $data->offices;
+        $this->tn = $data['tn'];
+        $this->date = $data['date'];
+        $this->received_by = $data['received_by'];
+        $this->title = $data['title'];
+        $this->origin = $data['origin'];
+        $this->nature = $data['nature'];
+        $this->class = $data['class'];
+        $this->for = $data['for'];
+        $this->status = $data['status'];
+        $this->remarks = $data['remarks'];
+        $this->created_by = $data['created_by'];
+        $this->updated_by = $data['updated_by'];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function deleteSingleRecord()
     {

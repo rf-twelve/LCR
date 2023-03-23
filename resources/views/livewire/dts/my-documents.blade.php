@@ -89,20 +89,32 @@
                     <x-table>
                         <x-slot name="head">
                             <x-table.head class="px-2 py-1">
-                                <x-checkbox wire:model="selectPage" />
-                            </x-table.head>
+                                <x-checkbox wire:model="selectPage" /></x-table.head>
+
                             <x-table.head class="px-2 py-1" sortable wire:click="sortBy('date')"
-                                :direction="$sortField === 'date' ? $sortDirection : null">Date
-                            </x-table.head>
+                                :direction="$sortField === 'date' ? $sortDirection : null">Date</x-table.head>
+
                             <x-table.head class="px-2 py-1" sortable wire:click="sortBy('tn')"
-                                :direction="$sortField === 'tn' ? $sortDirection : null">Track Number
-                            </x-table.head>
-                            <x-table.head class="w-10 px-2 py-1">Title</x-table.head>
-                            <x-table.head class="px-2 py-1">Origin</x-table.head>
-                            <x-table.head class="px-2 py-1">Nature</x-table.head>
-                            <x-table.head class="px-2 py-1">Class</x-table.head>
-                            <x-table.head class="px-2 py-1">Type</x-table.head>
-                            <x-table.head class="px-2 py-1">Status</x-table.head>
+                                :direction="$sortField === 'tn' ? $sortDirection : null">Track Number</x-table.head>
+
+                            <x-table.head class="w-10 px-2 py-1" sortable wire:click="sortBy('title')"
+                                :direction="$sortField === 'title' ? $sortDirection : null">Title</x-table.head>
+
+                            <x-table.head class="px-2 py-1" sortable wire:click="sortBy('origin')"
+                                :direction="$sortField === 'origin' ? $sortDirection : null">Origin</x-table.head>
+
+                            <x-table.head class="px-2 py-1" sortable wire:click="sortBy('nature')"
+                                :direction="$sortField === 'nature' ? $sortDirection : null">Nature</x-table.head>
+
+                            <x-table.head class="px-2 py-1" sortable wire:click="sortBy('class')"
+                                :direction="$sortField === 'class' ? $sortDirection : null">Class</x-table.head>
+
+                            <x-table.head class="px-2 py-1" sortable wire:click="sortBy('type')"
+                                :direction="$sortField === 'type' ? $sortDirection : null">Type</x-table.head>
+
+                            <x-table.head class="px-2 py-1" sortable wire:click="sortBy('status')"
+                                :direction="$sortField === 'status' ? $sortDirection : null">Status</x-table.head>
+
                             <x-table.head class="w-10 px-6 py-1"><span class="sr-only">Edit</span></x-table.head>
                         </x-slot>
 
@@ -144,7 +156,7 @@
                                     <span>{{ $item->nature }}</span>
                                 </x-table.cell>
                                 <x-table.cell>
-                                    <span>{{ $item->class }}</span>
+                                    <span>{{ $item->DocumentClass }}</span>
                                 </x-table.cell>
                                 <x-table.cell>
                                     <span>{{ $item->type }}</span>
@@ -154,22 +166,15 @@
                                 </x-table.cell>
                                 <x-table.cell class="max-w-2xl">
                                     <div class="flex justify-center space-x-2">
-
-
                                         {{-- Edit --}}
-                                        <a href="#" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
-                                            <x-icon.edit class="w-5 h-5" />
-                                        </a>
-
+                                        <a href="{{ route('document-overview',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
+                                            <x-icon.view class="w-5 h-5" /></a>
                                         {{-- View --}}
                                         <a href="#" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
-                                            <x-icon.view class="w-5 h-5" />
-                                        </a>
-
+                                            <x-icon.edit class="w-5 h-5" /></a>
                                         {{-- DELETE --}}
                                         <x-button class="px-2 rounded-xl hover:text-white hover:bg-red-500" wire:click="toggleDeleteSingleRecordModal({{ $item->id }})">
-                                            <x-icon.trash class="w-5 h-5" />
-                                        </x-button>
+                                            <x-icon.trash class="w-5 h-5" /></x-button>
                                     </div>
                                 </x-table.cell>
                             </x-table.row>

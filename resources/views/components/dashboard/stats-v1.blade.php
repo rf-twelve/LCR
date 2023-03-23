@@ -1,12 +1,12 @@
 <div class="px-4 mt-2 sm:px-6 lg:px-8">
-    <h2 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Account Status</h2>
+    <h2 class="text-xs font-medium tracking-wide text-gray-500 uppercase">Document Status</h2>
     <ul role="list" class="grid grid-cols-1 gap-4 mt-3 sm:gap-6 sm:grid-cols-2 xl:grid-cols-4"
         x-max="1">
 
         <li class="relative flex col-span-1 rounded-md shadow-sm">
             <div
                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-indigo-600 rounded-l-md">
-                <x-icon.folder-open class="flex-shrink-0 h-6 w-6 text-white" />
+                <x-icon.folder-open class="flex-shrink-0 w-6 h-6 text-white" />
             </div>
             <div
                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
@@ -42,7 +42,7 @@
         <li class="relative flex col-span-1 rounded-md shadow-sm">
             <div
                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-yellow-500 rounded-l-md">
-                <x-icon.users class="flex-shrink-0 h-6 w-6 text-white" />
+                <x-icon.users class="flex-shrink-0 w-6 h-6 text-white" />
             </div>
             <div
                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
@@ -78,7 +78,7 @@
         <li class="relative flex col-span-1 rounded-md shadow-sm">
             <div
                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-green-500 rounded-l-md">
-                <x-icon.bell class="flex-shrink-0 h-6 w-6 text-white" />
+                <x-icon.bell class="flex-shrink-0 w-6 h-6 text-white" />
             </div>
             <div
                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">
@@ -114,7 +114,7 @@
         <li class="relative flex col-span-1 rounded-md shadow-sm">
             <div
                 class="flex items-center justify-center flex-shrink-0 w-16 text-sm font-medium text-white bg-teal-500 rounded-l-md">
-                <x-icon.envelop class="flex-shrink-0 h-6 w-6 text-white" />
+                <x-icon.envelop class="flex-shrink-0 w-6 h-6 text-white" />
             </div>
             <div
                 class="flex items-center justify-between flex-1 truncate bg-white border-t border-b border-r border-gray-200 rounded-r-md">

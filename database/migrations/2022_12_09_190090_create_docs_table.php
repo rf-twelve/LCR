@@ -25,9 +25,8 @@ return new class extends Migration
             $table->string('for');
             $table->string('status')->nullable();
             $table->text('remarks')->nullable();
-            $table->tinyInteger('is_draft');
-            $table->unsignedInteger('office_id');
-            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('author_id');
+            $table->unsignedInteger('author_office');
             $table->unsignedInteger('updated_by')->nullable();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
             $table->timestamps();

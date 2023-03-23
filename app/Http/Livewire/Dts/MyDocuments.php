@@ -9,11 +9,9 @@ use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Models\AuditTrail;
 use App\Models\Doc;
-use App\Models\MtoRptAccount;
 use App\Models\Office;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Spatie\SimpleExcel\SimpleExcelReader;
 
 class MyDocuments extends Component
 {
@@ -189,47 +187,12 @@ class MyDocuments extends Component
         dd('export');
     }
 
-    public function importFile()
-    {
-
-        // $valid = $this->validate([
-        //     'imports.file' => 'file|mimes:xlsx', // 1MB Max
-        // ]);
-
-        // $getPath = $valid ? $this->imports['file'] : collect();
-
-        // $file_stored = SimpleExcelReader::create($getPath->path())
-        //     ->getRows()
-        //     ->each(function(array $data) {
-        //         DtsDoc::create([
-        //             'doc_no' => $data['DOCUMENT_NO'],
-        //             'date_received' => $data['DATE_RECEIVED'],
-        //             'received_by' => $data['RECEIVED_BY'],
-        //             'doc_origin' => $data['ORIGIN'],
-        //             'doc_nature' => $data['NATURE'],
-        //             'refer_to' => $data['NATURE'],
-        //             'for' => $data['FOR'],
-        //             'types' => $data['TYPE'],
-        //             'remarks' => $data['REMARKS'],
-        //             'encoder' => auth()->user()->fullname,
-        //             'editor' => auth()->user()->fullname,
-        //         ]);
-        //         $this->imports['count']++;
-        // });
-
-        // $this->showImportModal = false;
-
-        // $this->notify('You\'ve imported '.$this->imports['count'].' Records');
-
-        // $this->reset('imports');
-    }
-
     public function getRowsQueryProperty()
     {
 
         return Doc::query()
             ->with('action_takens', 'audit_trails')
-            ->where('created_by',auth()->user()->id)
+            ->where('author_id',auth()->user()->id)
             ->where('type','draft')
             ->when($this->filters['search'], fn($query, $search) => $query->where($this->sortField, 'like','%'.$search.'%'))
             // ->where('for', 'act')

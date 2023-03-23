@@ -1,4 +1,4 @@
-<nav class="bg-gray-200 border-2 border-gray-300" x-data="{userDropdown:false, openMenuMobile:false}">
+<nav class="bg-blue-600 border-2 text-white border-gray-300" x-data="{userDropdown:false, openMenuMobile:false}">
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
         <div class="flex items-center">
@@ -31,7 +31,7 @@
               <div>
                 <button x-on:click="userDropdown = !userDropdown" type="button" class="flex items-center max-w-xs text-sm text-white bg-gray-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-indigo-500 focus:ring-blue-500" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                   <span class="sr-only">Open user menu</span>
-                  <img class="w-8 h-8 rounded-full" src="{{ asset('img/users/avatar.png') }}" alt="User Profile">
+                  <img class="w-8 h-8 rounded-full" src="{{ auth()->user()->imageUrl() }}" alt="User Profile">
                 </button>
               </div>
 

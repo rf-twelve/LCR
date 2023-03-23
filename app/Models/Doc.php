@@ -11,13 +11,32 @@ class Doc extends Model
     protected $guarded = [];
     protected $casts = ['id' => 'integer'];
 
-    const TYPE_OF_DOC = [
-        'd' => 'Draft',
-        'o' => 'Office',
-        'p' => 'public'
+    const Document_Type = [
+        'draft' => 'Draft',
+        'office' => 'Office',
+        'public' => 'Public'
     ];
 
-    const FOR = [
+    const Document_Classification = [
+        'cos' => 'Certificate of Service',
+        'dv' => 'Disbursement Voucher',
+        'iir' => 'Inventory and Inspection Report',
+        'l' => 'Letter',
+        'lr' => 'Liquidation Report',
+        'memo' => 'Memorandum',
+        'moa' => 'Memorandum of Agreement',
+        'mr' => 'Memorandum Receipt',
+        'ocd' => 'Official Cash Book',
+        'pds' => 'Personal Data Sheet',
+        'po' => 'Purchase Order',
+        'pr' => 'Purchase Request',
+        'rs' => 'Referral Slip',
+        'roa' => 'Request for Obligation of Allotments',
+        'riv' => 'Requisition and Issue Voucher',
+        'u' => 'Unclassified',
+        ];
+
+    const Document_For = [
         'sign' => 'Signature',
         'act' => 'Appropriate Action',
         'endorse' => 'Endorsement/Recomendation',
@@ -26,71 +45,28 @@ class Doc extends Model
         'draft' => 'Draft',
     ];
 
-    const STATUS = [
+    const Document_Status = [
         'origin' => 'Originated',
         'received' => 'Received',
         'released' => 'Released',
         'terminal' => 'Terminal',
     ];
 
-    const CLASS_OF_DOC = [
-    'cos' => 'Certificate of Service',
-    'dv' => 'Disbursement Voucher',
-    'iir' => 'Inventory and Inspection Report',
-    'l' => 'Letter',
-    'lr' => 'Liquidation Report',
-    'memo' => 'Memorandum',
-    'moa' => 'Memorandum of Agreement',
-    'mr' => 'Memorandum Receipt',
-    'ocd' => 'Official Cash Book',
-    'pds' => 'Personal Data Sheet',
-    'po' => 'Purchase Order',
-    'pr' => 'Purchase Request',
-    'rs' => 'Referral Slip',
-    'roa' => 'Request for Obligation of Allotments',
-    'riv' => 'Requisition and Issue Voucher',
-    'u' => 'Unclassified',
-    ];
 
-    public function getActionForAttribute(){
-        return [
-            'sign' => 'Signature',
-            'act' => 'Appropriate Action',
-            'endorse' => 'Endorsement/Recomendation',
-            'file' => 'Filing/Keep',
-            'return' => 'Return',
-            'draft' => 'Draft',
-        ][$this->for] ?? '(Unknown)';
+    public function getDocumentTypeAttribute(){
+        return Doc::Document_Type[$this->for] ?? '(Unknown)';
+    }
+
+    public function getDocumentForAttribute(){
+        return Doc::Document_For[$this->for] ?? '(Unknown)';
     }
 
     public function getDocumentStatusAttribute(){
-        return [
-            'origin' => 'Originated',
-            'received' => 'Received',
-            'released' => 'Released',
-            'terminal' => 'Terminal',
-        ][$this->status] ?? '(Unknown)';
+        return Doc::Document_Status[$this->status] ?? '(Unknown)';
     }
 
-    public function getDocumentTypeAttribute(){
-        return [
-            'cos' => 'Certificate of Service',
-            'dv' => 'Disbursement Voucher',
-            'iir' => 'Inventory and Inspection Report',
-            'l' => 'Letter',
-            'lr' => 'Liquidation Report',
-            'memo' => 'Memorandum',
-            'moa' => 'Memorandum of Agreement',
-            'mr' => 'Memorandum Receipt',
-            'ocd' => 'Official Cash Book',
-            'pds' => 'Personal Data Sheet',
-            'po' => 'Purchase Order',
-            'pr' => 'Purchase Request',
-            'rs' => 'Referral Slip',
-            'roa' => 'Request for Obligation of Allotments',
-            'riv' => 'Requisition and Issue Voucher',
-            'u' => 'Unclassified',
-        ][$this->class] ?? '(Unknown)';
+    public function getDocumentClassAttribute(){
+        return Doc::Document_Classification[$this->class] ?? '(Unknown)';
     }
 
 
@@ -120,6 +96,9 @@ class Doc extends Model
     {
         return $this->hasMany(DocImage::class);
     }
+
+    // Private variables
+
 
 }
 

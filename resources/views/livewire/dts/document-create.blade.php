@@ -7,8 +7,8 @@
                     <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none" fill="currentColor" xmlns="http://www.w3.org/2000/svg"aria-hidden="true">
                         <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                     </svg>
-                    <a href="{{ route('dashboard',['user_id'=> auth()->user()->id]) }}" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
-                        Dashboard
+                    <a href="{{ url()->previous() }}" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
+                        Documents
                     </a>
                 </div>
             </li>
@@ -46,7 +46,7 @@
                     <label for="class" class="text-sm">Classification :</label><br>
                     <x-select wire:model.lazy="class" id="class" class="w-full border">
                         <option value="">-Select document type-</option>
-                        @foreach (App\Models\Doc::CLASS_OF_DOC as $value => $label)
+                        @foreach (App\Models\Doc::Document_Classification as $value => $label)
                             <option value="{{ $value }}">{{ $label }}</option>
                         @endforeach
                     </x-select>
@@ -91,7 +91,7 @@
 
                 <div class="space-y-1 sm:col-span-2">
                     <label class="text-sm">For :</label>
-                    @foreach (App\Models\Doc::FOR as $value => $label)
+                    @foreach (App\Models\Doc::Document_For as $value => $label)
                     <div class="flex items-center h-5">
                         <input wire:model='for' value="{{ $value }}"  id="{{ $value }}" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                         <label for="{{ $value }}" class="ml-3 text-sm font-medium text-gray-700">
@@ -105,7 +105,7 @@
                 <div class="space-y-1 sm:col-span-2">
                     <label for="remarks" class="text-sm">Remarks :</label>
                     <div class="mt-1">
-                        <textarea wire:model.lazy="remarks" rows="4" id="remarks" class="block w-full border p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+                        <textarea wire:model.lazy="remarks" rows="4" id="remarks" class="block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                     </div>
                     @error('remarks')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
@@ -171,44 +171,60 @@
                     </div>
                   </div>
                 </div>
+                <div x-show="!disabled" class="space-y-1 sm:col-span-2 ">
+                    <label class="text-sm">Save as :</label>
+                    <div class="flex">
+                        @foreach (App\Models\Doc::Document_Type as $value => $label)
+                        <div class="flex items-center mr-4 space-x-2">
+                            <input wire:model='type' value="{{ $value }}" id="{{ $value }}" type="radio" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+                            <label for="{{ $value }}" class="mr-3 text-sm font-medium text-gray-700">
+                                {{ $label }}
+                            </label>
+                        </div>
+                        @endforeach
+                    </div>
+                    @error('for')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                </div>
                 {{-- Buttons for  --}}
-                <div x-show="finalize" x-transition class="p-4 bg-gray-100 rounded-lg sm:col-span-2">
-                    <div class="space-y-1 sm:col-span-2">
-                        <label for="class" class="text-sm">Recipient Office :</label><br>
-                        <x-select wire:model.lazy="recipient_office" id="class" class="w-full">
-                            <option value="">-Select Registered Offices-</option>
-                            {{-- @foreach (App\Models\Office::LIST as $value => $label)
-                                <option value="{{ $value }}">{{ $label }}</option>
-                            @endforeach --}}
-                        </x-select>
-                        @error('recipient_office')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
-                    </div>
+                @if ($type == 'public')
+                    <div x-transition class="p-4 bg-gray-100 rounded-lg sm:col-span-2">
+                        <div class="space-y-1 sm:col-span-2">
+                            <label for="class" class="text-sm">Recipient Office :</label><br>
+                            <x-select wire:model.lazy="recipient_office" id="class" class="w-full">
+                                <option value="">-Select Registered Offices-</option>
+                                {{-- @foreach (App\Models\Office::LIST as $value => $label)
+                                    <option value="{{ $value }}">{{ $label }}</option>
+                                @endforeach --}}
+                            </x-select>
+                            @error('recipient_office')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                        </div>
 
-                    <div class="space-y-1 sm:col-span-2">
-                        <label for="recipient_person" class="text-sm">Recipient Person :</label>
-                        <x-input wire:model.lazy="recipient_person" id="recipient_person" type="text" placeholder="Enter title"/>
-                        @error('recipient_person')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                        <div class="space-y-1 sm:col-span-2">
+                            <label for="recipient_person" class="text-sm">Recipient Person :</label>
+                            <x-input wire:model.lazy="recipient_person" id="recipient_person" type="text" placeholder="Enter title"/>
+                            @error('recipient_person')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                        </div>
+                        <div class="flex justify-end mt-4">
+                            {{-- <x-button type="submit" x-bind:disabled="disabled" ::class="disabled ? '' : 'hover:bg-gray-200 bg-red-500'">
+                                <span :class="disabled ? 'text-gray-200' : 'hover:bg-gray-200 text-white'">Close</span>
+                            </x-button> --}}
+                            <x-button wire:click="$set('is_draft', false)" type="submit" x-bind:disabled="disabled" ::class="disabled ? '' : 'bg-indigo-600 hover:bg-indigo-400'" class="ml-3">
+                            <span :class="disabled ? 'text-gray-200' : 'text-white'">Submit</span>
+                            </x-button>
+                        </div>
                     </div>
-                    <div class="flex justify-end mt-4">
-                        {{-- <x-button type="submit" x-bind:disabled="disabled" ::class="disabled ? '' : 'hover:bg-gray-200 bg-red-500'">
-                            <span :class="disabled ? 'text-gray-200' : 'hover:bg-gray-200 text-white'">Close</span>
-                        </x-button> --}}
-                        <x-button wire:click="$set('is_draft', false)" type="submit" x-bind:disabled="disabled" ::class="disabled ? '' : 'bg-indigo-600 hover:bg-indigo-400'" class="ml-3">
-                        <span :class="disabled ? 'text-gray-200' : 'text-white'">Submit</span>
-                        </x-button>
-                    </div>
-                </div>
+                @endif
+
                 {{-- Save as draft and Finalize buttons --}}
+                @if (!is_null($type) || !empty($type))
                 <div class="sm:col-span-2">
-                    <div class="flex justify-end">
-                        <x-button wire:click="saveAsDraft()" x-bind:disabled="disabled" ::class="disabled ? '' : 'hover:bg-gray-200'">
-                            <span :class="disabled ? 'text-gray-200' : 'hover:bg-gray-200'">Save as Draft</span>
-                        </x-button>
-                        <x-button x-on:click="finalize = !finalize" type="button" x-bind:disabled="disabled" ::class="disabled ? '' : 'bg-indigo-600 hover:bg-indigo-400'" class="ml-3">
-                        <span x-text="finalize ? 'Unfinalize' : 'Finalize'" :class="disabled ? 'text-gray-200' : 'text-white'"></span>
+                    <div class="flex justify-end space-x-3">
+                        <x-button type="submit" class="text-white bg-indigo-600 hover:bg-indigo-400">
+                            Save
                         </x-button>
                     </div>
                 </div>
+                @endif
               </form>
             </div>
           </div>
