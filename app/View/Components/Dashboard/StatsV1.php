@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Dashboard;
 
+use App\Models\Doc;
 use Illuminate\View\Component;
 
 class StatsV1 extends Component
@@ -23,6 +24,10 @@ class StatsV1 extends Component
      */
     public function render()
     {
-        return view('components.dashboard.stats-v1');
+        $docs = Doc::get();
+        return view('components.dashboard.stats-v1',[
+            'my_docs_count' => $docs->where('author_id', auth()->user()->id)->where('type','draft')->count(),
+            'office_docs_count' => $docs->where('type','office')->count(),
+        ]);
     }
 }
