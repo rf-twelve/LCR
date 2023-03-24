@@ -7,15 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Office extends Model
 {
-    // office_id
-    // user_sent
-    // date_sent
-    // user_received
-    // date_received
-    // doc_id
-    // status
     use HasFactory;
     protected $guarded = [];
     protected $casts = ['id' => 'integer'];
+
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function documents()
+    {
+        return $this->hasMany(Doc::class);
+    }
 
 }

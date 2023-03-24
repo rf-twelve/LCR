@@ -27,7 +27,7 @@
                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                         style="display: none;">
                         <div class="py-1" role="none">
-                            <a href="{{ route('my-documents',[ route('my-documents',['user_id'=>Auth::user()->id])]) }}" class="block px-4 py-2 text-sm text-gray-700">View</a>
+                            <a href="{{ route('my-documents',['user_id'=>Auth::user()->id]) }}" class="block px-4 py-2 text-sm text-gray-700">View</a>
                         </div>
                     </div>
 
@@ -59,7 +59,7 @@
                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                         style="display: none;">
                         <div class="py-1" role="none">
-                            <a href="{{ route('my-documents',[ route('office-documents',['user_id'=>Auth::user()->id])]) }}" class="block px-4 py-2 text-sm text-gray-700">View</a>
+                            <a href="{{ route('office-documents',['user_id'=>Auth::user()->id]) }}" class="block px-4 py-2 text-sm text-gray-700">View</a>
                         </div>
                     </div>
 
@@ -78,7 +78,7 @@
                     <a href="#" class="font-medium text-gray-900 hover:text-gray-600">
                         Shared Documents
                     </a>
-                    <p class="text-gray-500">12 Records</p>
+                    <p class="text-gray-500">{{ $shared_docs_count }} Records</p>
                 </div>
                 <div x-data="{openOptions:false}" @click.away="openOptions = false"
                     class="flex-shrink-0 pr-2">
@@ -91,7 +91,7 @@
                         class="absolute z-10 w-48 mx-3 mt-1 origin-top-right bg-white divide-y divide-gray-200 rounded-md shadow-lg right-10 top-3 ring-1 ring-black ring-opacity-5 focus:outline-none"
                         style="display: none;">
                         <div class="py-1" role="none">
-                            <a href="#" class="block px-4 py-2 text-sm text-gray-700">View</a>
+                            <a href="{{ route('office-documents',['user_id'=>Auth::user()->id]) }}" class="block px-4 py-2 text-sm text-gray-700">View</a>
                         </div>
                     </div>
 

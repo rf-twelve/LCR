@@ -23,14 +23,22 @@ class User extends Authenticatable
     protected $fillable = [
         'fullname',
         'username',
+        'office_id',
+        'avatar',
         'email',
         'password',
+        'is_active',
     ];
 
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
+    }
 
     public function imageUrl()
     {

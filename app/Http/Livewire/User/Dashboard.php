@@ -17,7 +17,7 @@ class Dashboard extends Component
 
     public function create()
     {
-        return redirect(route('Create Document',[
+        return redirect(route('create-document',[
             'user_id'=>Auth()->user()->id,
             'tn'=>date('Y-md-hms').'-'.rand(1000,date('Y'))
             ]));

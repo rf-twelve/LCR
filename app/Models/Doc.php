@@ -87,14 +87,20 @@ class Doc extends Model
     {
         return $this->hasMany(AuditTrail::class);
     }
-    public function offices()
-    {
-        return $this->hasMany(Office::class);
-    }
 
     public function images()
     {
         return $this->hasMany(DocImage::class);
+    }
+
+    public function offices()
+    {
+        return $this->belongsToMany(Office::class)->withPivot('shared');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class)->through('office_list');
     }
 
     // Private variables

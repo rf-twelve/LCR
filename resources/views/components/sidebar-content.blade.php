@@ -93,6 +93,11 @@
                     <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
                 <span class="flex-1"> Office Documents </span></a>
 
+                <a href="{{ route('shared-documents',['user_id'=>Auth::user()->id]) }}"
+                    class="flex items-center w-full py-2 pr-2 text-sm font-medium text-blue-100 rounded-md group pl-11 hover:text-gray-900 hover:bg-gray-50">
+                    <x-icon.folder-open class="flex-shrink-0 w-5 h-5 mr-1"/>
+                <span class="flex-1"> Shared Documents </span></a>
+
                 <a href="#"
                     class="flex items-center w-full py-2 pr-2 text-sm font-medium text-blue-100 rounded-md group pl-11 hover:text-gray-900 hover:bg-gray-50">
                     <x-icon.clock class="flex-shrink-0 w-5 h-5 mr-1"/>

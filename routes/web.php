@@ -9,6 +9,7 @@ use App\Http\Livewire\Dts\DocumentOverview;
 use App\Http\Livewire\Dts\MyDocuments;
 use App\Http\Livewire\Dts\OfficeDocuments;
 use App\Http\Livewire\Dts\PrivacyPolicy;
+use App\Http\Livewire\Dts\SharedDocuments;
 use App\Http\Livewire\Mao\AssessmentRoll;
 use App\Http\Livewire\Mao\AssessmentRollCreate;
 use App\Http\Livewire\Mao\AssessmentRollUpdate;
@@ -63,6 +64,7 @@ Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
     // Route::ge{user_id}/t('tracking-numbers', TrackingNumbers::class)->name('Tracking Numbers');
     Route::get('{user_id}/my-documents', MyDocuments::class)->name('my-documents');
     Route::get('{user_id}/office-documents', OfficeDocuments::class)->name('office-documents');
+    Route::get('{user_id}/shared-documents', SharedDocuments::class)->name('shared-documents');
     Route::get('{user_id}/document/{id}', DocumentOverview::class)->name('document-overview');
     Route::get('{user_id}/document/{tn}/create', DocumentCreate::class)->name('create-document');
     Route::get('{user_id}/document/{id}/edit', DocumentEdit::class)->name('edit-document');
