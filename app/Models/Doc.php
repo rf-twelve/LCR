@@ -74,7 +74,7 @@ class Doc extends Model
 
 
     public function getUserFullnameAttribute(){
-        return User::find($this->created_by) ? (User::find($this->created_by))->fullname : '(Unknown)';
+        return User::find($this->author_id) ? (User::find($this->author_id))->fullname : '(Unknown)';
     }
 
     public function getOfficeNameAttribute(){

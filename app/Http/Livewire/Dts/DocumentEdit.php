@@ -108,25 +108,35 @@ class DocumentEdit extends Component
 
     public function save()
     {
-        $validated = $this->validate();
         $date_time_current = date('Y-m-d H:i:s', $this->time);
-        $data = $this->validate();
-        $data['updated_by'] = auth()->user()->id;
+        if (count($this->tracks) > 0) {
+            $first = $this->tracks->first();
+            $diff = Carbon::parse($first->created_at)->diffForHumans(Carbon::parse($date_time_current), [
+                'parts' => 6,
+                'short' => true,
+                'syntax' => Carbon::DIFF_ABSOLUTE,
+            ]);
+        }else{
+            $diff = "N/A";
+        }
+
+        $validated = $this->validate();
+        $validated['updated_by'] = auth()->user()->id;
         if(isset($this->doc_id)){
             $doc = Doc::find($this->doc_id);
             $doc->update($validated);
+            // Storing Images
+            if(count($this->temp_images)){
+                foreach($this->temp_images as $item){
+                    $filename = $item->store('/','images');
+                    $doc->images()->create(['name'=>$filename]);
+                }
+            }
 
-        // Action: Received, Created, Sent, Released, Approved
-        // Status: pending", "in progress", or "completed"
-        switch ($this->type) {
-            case 'draft':
-                if (count($this->tracks) > 0) {
-                    $first = $this->tracks->first();
-                    $diff = Carbon::parse($first->created_at)->diffForHumans(Carbon::parse($date_time_current), [
-                        'parts' => 6,
-                        'short' => true,
-                        'syntax' => Carbon::DIFF_ABSOLUTE,
-                    ]);
+            // Action: Received, Created, Sent, Released, Approved
+            // Status: pending", "in progress", or "completed"
+            switch ($this->type) {
+                case 'draft':
                     $doc->tracks()->create([
                         'action' => 'Updated',
                         'remarks' => 'Document has been modified.',
@@ -140,30 +150,51 @@ class DocumentEdit extends Component
                         'office_id' => auth()->user()->office_id,
                         'user_id' => auth()->user()->id,
                     ]);
-                $this->notify('Document has been modified, Successfully!');
+                    $this->notify('Document has been modified, Successfully!');
+                    return redirect()->route('my-documents',['user_id'=>auth()->user()->id]);
+                    break;
+                case 'office':
+                    $doc->tracks()->create([
+                        'action' => 'Updated',
+                        'remarks' => 'Document has been modified.',
+                        'on_transit' => false,
+                        'status' => 'edited',
+                        'assigned_to' => 'N/A',
+                        'deadline' => 'N/A',
+                        'time_elapse' => $diff,
+                        'created_at' => $date_time_current,
+                        'updated_at' => $date_time_current,
+                        'office_id' => auth()->user()->office_id,
+                        'user_id' => auth()->user()->id,
+                    ]);
+                    $this->notify('Document has been modified, Successfully!');
+                    return redirect()->route('office-documents',['user_id'=>auth()->user()->id]);
+                    break;
+                case 'public':
+                    $doc->tracks()->create([
+                        'action' => 'Updated',
+                        'remarks' => 'Document has been modified.',
+                        'on_transit' => false,
+                        'status' => 'edited',
+                        'assigned_to' => 'N/A',
+                        'deadline' => 'N/A',
+                        'time_elapse' => $diff,
+                        'created_at' => $date_time_current,
+                        'updated_at' => $date_time_current,
+                        'office_id' => auth()->user()->office_id,
+                        'user_id' => auth()->user()->id,
+                    ]);
+                    $this->notify('Document has been modified, Successfully!');
+                    return redirect()->route('public-documents',['user_id'=>auth()->user()->id]);
+                    break;
 
-                }
-                break;
-            case 'office':
-                # code...
-                break;
-            case 'public':
-                # code...
-                break;
-
-            default:
-                # code...
-                break;
-        }
-
-        if(count($this->temp_images)){
-            foreach($this->temp_images as $item){
-                $filename = $item->store('/','images');
-                $doc->images()->create(['name'=>$filename]);
+                default:
+                    # code...
+                    break;
             }
-        }
-        $this->notify('Record updated successfully.');
-        return redirect()->route('my-documents',['user_id'=>auth()->user()->id]);
+
+
+
 
         }
 

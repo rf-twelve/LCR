@@ -112,7 +112,7 @@
                                             <dt class="font-medium text-gray-500">
                                                 FOR :</dt>
                                             <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $for }}
+                                                {{ $for_name }}
                                             </dd>
                                         </div>
                                         <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
@@ -129,13 +129,13 @@
                                                 {{ $author_fullname }}
                                             </dd>
                                         </div>
-                                        <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
+                                        {{-- <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
                                             <dt class="font-medium text-gray-500">
                                                 UPDATED BY :</dt>
                                             <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
                                                 {{ $updated_by }}
                                             </dd>
-                                        </div>
+                                        </div> --}}
                                     </dl>
                                 </div>
                             </section>
@@ -151,55 +151,8 @@
                             <div class="sm:items-baseline sm:justify-between">
 
                                 {{-- PAPER TRAIL TABLE --}}
-
-
-                                {{--Audit Trail--}}
-                                <div class="flex justify-between px-6 py-2 text-sm font-medium text-gray-700 bg-blue-300 border-t border-b border-gray-200">
-                                    <div class="flex">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                        </svg>
-                                        <span class="pl-2">PAPER TRAIL</span>
-                                    </div>
-                                </div>
-
-                                <div class="flex flex-col">
-                                    <div class="min-w-full overflow-hidden overflow-x-scroll align-middle shadow">
-                                        <x-table>
-                                            <x-slot name="head">
-                                                <thead class="px-3 text-sm text-center text-gray-900 bg-gray-300 border border-gray-50">
-                                                    <tr class="font-semibold">
-                                                        <th class="text-center border">DATE/TIME</th>
-                                                        <th class="text-center border">ACTION</th>
-                                                        <th class="text-center border">REMARKS</th>
-                                                        <th class="text-center border">OFFICE</th>
-                                                        <th class="text-center border">IN-CHARGE</th>
-                                                        <th class="text-center border">TIME ELAPSE</th>
-                                                        <th class="text-center border">STATUS</th>
-                                                    </tr>
-                                                </thead>
-                                            </x-slot>
-
-                                            <x-slot name="body">
-                                                @forelse ($tracks as $key => $track)
-                                                    <tr class="px-3 py-2 text-gray-500 border whitespace-nowrap">
-                                                        <td class="px-3 py-2 border">{{ $track['created_at'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $track['action'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $track['remarks'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $track['office_id'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $track['user_id'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $track['time_elapse'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $track['status'] }}</td>
-                                                    </tr>
-                                                @empty
-                                                @endforelse
-                                            </x-slot>
-                                        </x-table>
-                                    </div>
-                                </div>
-
                                 {{--ACTION TAKEN--}}
-                                <div class="flex justify-between px-6 py-2 mt-6 text-sm font-medium text-gray-700 bg-blue-300 border-t border-b border-gray-200">
+                                <div class="flex justify-between px-6 py-2 text-sm font-medium text-gray-700 bg-blue-300 border-t border-b border-gray-200">
                                     <div class="flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
@@ -238,6 +191,53 @@
                                         </x-table>
                                     </div>
                                 </div>
+
+                                {{--Audit Trail--}}
+                                <div class="flex justify-between px-6 py-2 text-sm font-medium text-gray-700 bg-blue-300 border-t border-b border-gray-200">
+                                    <div class="flex">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                        </svg>
+                                        <span class="pl-2">PAPER TRAIL</span>
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col">
+                                    <div class="min-w-full overflow-hidden overflow-x-scroll align-middle shadow">
+                                        <x-table>
+                                            <x-slot name="head">
+                                                <thead class="px-3 text-sm text-center text-gray-900 bg-gray-300 border border-gray-50">
+                                                    <tr class="font-semibold">
+                                                        <th class="text-center border">DATE/TIME</th>
+                                                        <th class="text-center border">ACTION</th>
+                                                        <th class="text-center border">REMARKS</th>
+                                                        <th class="text-center border">OFFICE</th>
+                                                        <th class="text-center border">IN-CHARGE</th>
+                                                        <th class="text-center border">TIME ELAPSE</th>
+                                                        <th class="text-center border">STATUS</th>
+                                                    </tr>
+                                                </thead>
+                                            </x-slot>
+
+                                            <x-slot name="body">
+                                                @forelse ($tracks as $key => $track)
+                                                    <tr class="px-3 py-2 text-gray-500 border whitespace-nowrap">
+                                                        <td class="px-3 py-2 border">{{ $track['created_at'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['action'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['remarks'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track->OfficeName }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track->UserFullname }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['time_elapse'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['status'] }}</td>
+                                                    </tr>
+                                                @empty
+                                                @endforelse
+                                            </x-slot>
+                                        </x-table>
+                                    </div>
+                                </div>
+
+
                                 {{--ATTACHED FILES--}}
                                 <div class="flex justify-between px-6 py-2 mt-6 text-sm font-medium text-gray-700 bg-blue-300 border-t border-b border-gray-200">
                                     <div class="flex">

@@ -20,6 +20,7 @@ class DocumentOverview extends Component
     public $class;
     public $class_name;
     public $for;
+    public $for_name;
     public $status;
     public $remarks;
     public $author_fullname;
@@ -57,6 +58,7 @@ class DocumentOverview extends Component
         $this->class = $this->docs['class'];
         $this->class_name = $this->docs->DocumentClass;
         $this->for = $this->docs['for'];
+        $this->for_name = $this->docs->DocumentFor;
         $this->status = $this->docs['status'];
         $this->remarks = $this->docs['remarks'];
         $this->author_id = $this->docs->author_id;

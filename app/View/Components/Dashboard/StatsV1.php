@@ -34,7 +34,7 @@ class StatsV1 extends Component
         return view('components.dashboard.stats-v1',[
             'my_docs_count' => $docs->where('author_id', auth()->user()->id)->where('type','draft')->count(),
             'office_docs_count' => $docs->where('author_office', $user_office_id)->where('type','office')->count(),
-            'shared_docs_count' => $shared_docs_results,
+            'shared_docs_count' => $docs->where('type','public')->count(),
         ]);
     }
 }

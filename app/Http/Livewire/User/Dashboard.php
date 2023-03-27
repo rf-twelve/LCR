@@ -62,7 +62,6 @@ class Dashboard extends Component
 
     public function receivedDocument()
     {
-        dd('received');
         $doc = Doc::with('audit_trails')->where('tn',$this->tn_released)->first();
         $audit_data = $doc->audit_trails;
         if (count($audit_data) > 0) {

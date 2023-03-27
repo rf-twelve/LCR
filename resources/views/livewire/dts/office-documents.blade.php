@@ -21,7 +21,7 @@
                             <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                         </svg>
                         <a href="#" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
-                            My Documents
+                            Office Documents
                         </a>
                     </div>
                 </li>
@@ -170,8 +170,11 @@
                                         <a href="{{ route('document-overview',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
                                             <x-icon.view class="w-5 h-5" /></a>
                                         {{-- Edit --}}
-                                        <a href="#" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
+                                        @if ($item->author_id == auth()->user()->id)
+                                        <a href="{{ route('edit-document',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
                                             <x-icon.edit class="w-5 h-5" /></a>
+                                        @endif
+
                                         {{-- DELETE --}}
                                         <x-button class="px-2 rounded-xl hover:text-white hover:bg-red-500" wire:click="toggleDeleteSingleRecordModal({{ $item->id }})">
                                             <x-icon.trash class="w-5 h-5" /></x-button>
