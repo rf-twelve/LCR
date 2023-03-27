@@ -40,6 +40,11 @@ class User extends Authenticatable
         return $this->belongsTo(Office::class);
     }
 
+    public function docs()
+    {
+        return $this->hasMany(Office::class, 'author_id');
+    }
+
     public function imageUrl()
     {
         return $this->avatar

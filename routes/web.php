@@ -10,14 +10,6 @@ use App\Http\Livewire\Dts\MyDocuments;
 use App\Http\Livewire\Dts\OfficeDocuments;
 use App\Http\Livewire\Dts\PrivacyPolicy;
 use App\Http\Livewire\Dts\SharedDocuments;
-use App\Http\Livewire\Mao\AssessmentRoll;
-use App\Http\Livewire\Mao\AssessmentRollCreate;
-use App\Http\Livewire\Mao\AssessmentRollUpdate;
-use App\Http\Livewire\Mto\AccountComputation;
-use App\Http\Livewire\Mto\AccountList;
-use App\Http\Livewire\Mto\AccountVerification;
-use App\Http\Livewire\Mto\Collections;
-use App\Http\Livewire\Mto\LedgerEntry;
 use App\Http\Livewire\Settings\CompanyProfile;
 use App\Http\Livewire\User\Dashboard as UserDashboard;
 use Illuminate\Support\Facades\Route;
@@ -77,7 +69,7 @@ Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
     Route::get('{user_id}/user-management', UsersManagement::class)->name('user-management');
 });
 
-Route::get('/home', Register::class)->name('Register');
+// Route::get('/home', Register::class)->name('Register');
 // For grouping prefix and middleware
 
 Route::group(['prefix' => 'admin',  'middleware' => 'admin'], function()

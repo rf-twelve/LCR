@@ -183,7 +183,7 @@
                         </div>
                         @endforeach
                     </div>
-                    @error('for')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                    @error('type')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
                 {{-- Buttons for  --}}
                 @if ($type == 'public')

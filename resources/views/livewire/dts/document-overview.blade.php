@@ -40,16 +40,18 @@
                 <div class="order-first xl:block xl:flex-shrink-0">
                     <div class="relative flex flex-col h-full bg-gray-100 border-r border-gray-200 w-96">
                         <div class="flex-shrink-0">
-                            <div
-                                class="flex px-6 py-2 text-sm text-gray-700 bg-blue-300 border-b border-gray-200 font-mediumborder-t">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
-                                </svg>
-                                <span class="pl-2">DOCUMENT INFO</span>
-                                {{-- <a href="#" class="flex ml-3 text-indigo-600 hover:text-indigo-900">
-                                    <x-icon.edit class="w-4 h-4" /><span class="text-xs">Edit</span>
-                                </a> --}}
-
+                            <div class="flex justify-between px-6 py-2 text-sm font-medium text-gray-700 bg-blue-300 border-t border-b border-gray-200">
+                                <div class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                                    </svg>
+                                    <span class="pl-2">DOCUMENT INFO</span>
+                                    @if ($author_id == auth()->user()->id)
+                                        <a href="{{ route('edit-document',['user_id'=>auth()->user()->id, 'id'=> $doc_id]) }}" class="flex ml-3 text-indigo-600 hover:text-indigo-900">
+                                            <x-icon.edit class="w-4 h-4" /><span class="text-xs">Edit</span>
+                                        </a>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                         <nav class="flex-1 min-h-0 overflow-y-auto">
@@ -103,7 +105,7 @@
                                             <dt class="font-medium text-gray-500">
                                                 CLASS :</dt>
                                             <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $class }}
+                                                {{ $class_name }}
                                             </dd>
                                         </div>
                                         <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
@@ -115,13 +117,6 @@
                                         </div>
                                         <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
                                             <dt class="font-medium text-gray-500">
-                                                STATUS :</dt>
-                                            <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $status }}
-                                            </dd>
-                                        </div>
-                                        <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
-                                            <dt class="font-medium text-gray-500">
                                                 REMARKS :</dt>
                                             <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
                                                 {{ $remarks }}
@@ -129,9 +124,9 @@
                                         </div>
                                         <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
                                             <dt class="font-medium text-gray-500">
-                                                CREATED BY :</dt>
+                                                AUTHOR :</dt>
                                             <dd class="mt-1 text-gray-900 sm:mt-0 sm:col-span-2">
-                                                {{ $created_by }}
+                                                {{ $author_fullname }}
                                             </dd>
                                         </div>
                                         <div class="py-2 sm:py-1 sm:grid sm:grid-cols-3 sm:gap-2 sm:px-6">
@@ -174,32 +169,27 @@
                                             <x-slot name="head">
                                                 <thead class="px-3 text-sm text-center text-gray-900 bg-gray-300 border border-gray-50">
                                                     <tr class="font-semibold">
-                                                        <th rowspan="2" class="text-center border sr-only">
-                                                            <x-checkbox wire:model="selectedAll" value="" />
-                                                        </th>
                                                         <th class="text-center border">DATE/TIME</th>
-                                                        <th class="text-center border">TRAIL</th>
+                                                        <th class="text-center border">ACTION</th>
+                                                        <th class="text-center border">REMARKS</th>
                                                         <th class="text-center border">OFFICE</th>
                                                         <th class="text-center border">IN-CHARGE</th>
-                                                        <th class="text-center border">START</th>
-                                                        <th class="text-center border">END</th>
-                                                        <th class="text-center border">ELAPSE</th>
+                                                        <th class="text-center border">TIME ELAPSE</th>
                                                         <th class="text-center border">STATUS</th>
                                                     </tr>
                                                 </thead>
                                             </x-slot>
 
                                             <x-slot name="body">
-                                                @forelse ($audit_trails as $key => $audit)
+                                                @forelse ($tracks as $key => $track)
                                                     <tr class="px-3 py-2 text-gray-500 border whitespace-nowrap">
-                                                        <td class="px-3 py-2 border">{{ $audit['date_time'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['trail'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['office_id'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['user_id'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['start'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['end'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['elapse'] }}</td>
-                                                        <td class="px-3 py-2 border">{{ $audit['is_open'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['created_at'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['action'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['remarks'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['office_id'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['user_id'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['time_elapse'] }}</td>
+                                                        <td class="px-3 py-2 border">{{ $track['status'] }}</td>
                                                     </tr>
                                                 @empty
                                                 @endforelse

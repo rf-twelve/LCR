@@ -18,14 +18,17 @@ class DocumentOverview extends Component
     public $origin;
     public $nature;
     public $class;
+    public $class_name;
     public $for;
     public $status;
     public $remarks;
-    public $created_by;
+    public $author_fullname;
+    public $author_id;
     public $updated_by;
 
+    public $docs;
     public $action_takens;
-    public $audit_trails;
+    public $tracks;
     public $images;
     public $offices;
     public $showDeleteSelectedRecordModal = false;
@@ -38,25 +41,32 @@ class DocumentOverview extends Component
 
     public function setFields($id)
     {
-        $data = Doc::query()
-            ->with('action_takens', 'audit_trails','images','offices')
+        $this->docs = Doc::query()
+            ->with('action_takens', 'tracks','images','offices')
             ->find($id);
-        $this->action_takens = $data->action_takens;
-        $this->audit_trails = $data->audit_trails;
-        $this->images = $data->images;
-        $this->offices = $data->offices;
-        $this->tn = $data['tn'];
-        $this->date = $data['date'];
-        $this->received_by = $data['received_by'];
-        $this->title = $data['title'];
-        $this->origin = $data['origin'];
-        $this->nature = $data['nature'];
-        $this->class = $data['class'];
-        $this->for = $data['for'];
-        $this->status = $data['status'];
-        $this->remarks = $data['remarks'];
-        $this->created_by = $data['created_by'];
-        $this->updated_by = $data['updated_by'];
+        $this->action_takens = $this->docs->action_takens;
+        $this->tracks = $this->docs->tracks;
+        $this->images = $this->docs->images;
+        $this->offices = $this->docs->offices;
+        $this->tn = $this->docs['tn'];
+        $this->date = $this->docs['date'];
+        $this->received_by = $this->docs['received_by'];
+        $this->title = $this->docs['title'];
+        $this->origin = $this->docs['origin'];
+        $this->nature = $this->docs['nature'];
+        $this->class = $this->docs['class'];
+        $this->class_name = $this->docs->DocumentClass;
+        $this->for = $this->docs['for'];
+        $this->status = $this->docs['status'];
+        $this->remarks = $this->docs['remarks'];
+        $this->author_id = $this->docs->author_id;
+        $this->author_fullname = $this->docs->author_fullname;
+        $this->updated_by = $this->docs['updated_by'];
+    }
+
+    public function render()
+    {
+        return view('livewire.dts.document-overview');
     }
 
 
@@ -153,12 +163,12 @@ class DocumentOverview extends Component
         # code...
     }
 
-    public function render()
-    {
-        return view('livewire.dts.document-overview',[
-            'document' => Doc::with('audit_trails', 'action_takens')
-                ->where('id',$this->doc_id)
-                ->first(),
-        ]);
-    }
+    // public function render()
+    // {
+    //     return view('livewire.dts.document-overview',[
+    //         'document' => Doc::with('audit_trails', 'action_takens')
+    //             ->where('id',$this->doc_id)
+    //             ->first(),
+    //     ]);
+    // }
 }

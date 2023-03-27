@@ -52,6 +52,9 @@ class Doc extends Model
         'terminal' => 'Terminal',
     ];
 
+    public function getAuthorFullnameAttribute(){
+        return (User::find($this->author_id))->fullname ?? '(Unknown)';
+    }
 
     public function getDocumentTypeAttribute(){
         return Doc::Document_Type[$this->for] ?? '(Unknown)';
@@ -93,14 +96,20 @@ class Doc extends Model
         return $this->hasMany(DocImage::class);
     }
 
+    public function tracks()
+    {
+        return $this->hasMany(DocTracking::class);
+    }
+
+
     public function offices()
     {
-        return $this->belongsToMany(Office::class)->withPivot('shared');
+        return $this->belongsToMany(Office::class,'doc_office');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class)->through('office_list');
+        return $this->belongsTo(User::class,'author_id')->through('office');
     }
 
     // Private variables

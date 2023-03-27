@@ -189,14 +189,17 @@ class SharedDocuments extends Component
 
     public function getRowsQueryProperty()
     {
-
-        return Doc::query()
-            ->with('action_takens', 'audit_trails')
-            ->where('author_office',auth()->user()->office_id)
-            ->where('type','office')
-            ->when($this->filters['search'], fn($query, $search) => $query->where($this->sortField, 'like','%'.$search.'%'))
-            // ->where('for', 'act')
+        $searchTerm = $this->filters['search'];
+        return auth()->user()->office->documents()
+            ->where(function ($query) use ($searchTerm) {
+                $query->where($this->sortField, 'LIKE', '%'.$searchTerm.'%')
+                    ->orWhereHas('offices', function ($query) use ($searchTerm) {
+                        $query->where($this->sortField, 'LIKE', '%'.$searchTerm.'%');
+                    });
+            })
+                // ->when($this->filters['search'], fn($query, $search) => $query->where($this->sortField, 'like','%'.$search.'%'))
             ->orderBy($this->sortField, $this->sortDirection);
+
     }
 
     public function getRowsProperty()

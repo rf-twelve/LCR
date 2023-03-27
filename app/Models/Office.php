@@ -14,12 +14,13 @@ class Office extends Model
 
     public function users()
     {
+        // return $this->hasMany(User::class);
         return $this->belongsToMany(User::class);
     }
 
     public function documents()
     {
-        return $this->hasMany(Doc::class);
+        return $this->belongsToMany(Doc::class, 'doc_office');
     }
 
 }

@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('origin')->nullable();
             $table->string('nature')->nullable();
             $table->string('for');
-            $table->string('status')->nullable();
             $table->text('remarks')->nullable();
             $table->unsignedInteger('author_id');
             $table->unsignedInteger('author_office');

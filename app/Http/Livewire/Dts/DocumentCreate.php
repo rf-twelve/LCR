@@ -11,14 +11,14 @@ class DocumentCreate extends Component
     use WithFileUploads;
     public $tn;
     public $date;
+    public $time;
     public $received_by;
     public $title;
     public $origin;
     public $nature;
     public $class;
     public $for;
-    public $type;
-    public $status;
+    public $type; //draft, office, public
     public $remarks;
     public $author_id;
     public $author_office;
@@ -29,17 +29,6 @@ class DocumentCreate extends Component
 
     public $recipient_office;
     public $recipient_person;
-    // office_origin
-    // office_recipient
-    // action_by
-    // received_at
-    // released_at
-    // elapsed
-    // action
-    // remarks
-    // status
-    // attachments
-    // encoder
 
     public function rules() { return [
         // 'editing.type' => 'required|in:'.collect(VmsPar::TYPES)->keys()->implode(','),
@@ -52,45 +41,43 @@ class DocumentCreate extends Component
         'class' => 'required',
         'for' => 'required',
         'type' => 'required',
-        'status' => 'nullable',
         'remarks' => 'nullable',
         'updated_by' => 'nullable'
     ]; }
 
-    // public function setFields()
-    // {
-    //     $this->date = '';
-    //     $this->received_by = '';
-    //     $this->title = '';
-    //     $this->origin = '';
-    //     $this->nature = '';
-    //     $this->class = '';
-    //     $this->for = '';
-    //     $this->status = '';
-    //     $this->remarks = '';
-    //     $this->author_id = '';
-    //     $this->updated_by = '';
-    // }
-    // public function resetFields()
-    // {
-    //     $this->date = '';
-    //     $this->received_by = '';
-    //     $this->title = '';
-    //     $this->origin = '';
-    //     $this->nature = '';
-    //     $this->class = '';
-    //     $this->for = '';
-    //     $this->status = '';
-    //     $this->remarks = '';
-    //     $this->author_id = '';
-    //     $this->updated_by = '';
-    //     $this->file_images = [];
-    // }
+    public function setFields()
+    {
+        $this->date = '';
+        $this->received_by = '';
+        $this->title = '';
+        $this->origin = '';
+        $this->nature = '';
+        $this->class = '';
+        $this->for = '';
+        $this->remarks = '';
+        $this->author_id = '';
+        $this->updated_by = '';
+    }
+    public function resetFields()
+    {
+        $this->date = '';
+        $this->received_by = '';
+        $this->title = '';
+        $this->origin = '';
+        $this->nature = '';
+        $this->class = '';
+        $this->for = '';
+        $this->remarks = '';
+        $this->author_id = '';
+        $this->updated_by = '';
+        $this->file_images = [];
+    }
 
     public function mount($user_id, $tn)
     {
         $this->tn = $tn;
-        $this->date = date('Y-m-d');
+        $this->time = time();
+        $this->date = date('Y-m-d', $this->time);
         $this->file_images = [];
         $this->temp_images = [];
 
@@ -101,37 +88,55 @@ class DocumentCreate extends Component
         $this->display_temp_images = $this->temp_images;
     }
 
-    public function saveAsDraft()
-    {
-        $data = $this->validate();
-        // $data['author_id'] = auth()->user()->id;
-        // $data['author_office'] = auth()->user()->office_id;
-        // $data['status'] = 'origin';
-        // $data['type'] = 'draft';
-        // $doc = Doc::create($data);
-        // if(count($this->temp_images)){
-        //     foreach($this->temp_images as $item){
-        //         $filename = $item->store('/','images');
-        //         $doc->images()->create(['name'=>$filename]);
-        //     }
-        // }
-        // return redirect()->route('my-documents',['user_id'=>auth()->user()->id]);
-    }
 
     public function save()
     {
+
+        $date_time_current = date('Y-m-d H:i:s', $this->time);
         $data = $this->validate();
         $data['status'] = 'origin';
+        $data['date'] = 'origin';
         $data['author_id'] = auth()->user()->id;
         $data['author_office'] = auth()->user()->office_id;
 
+        // Action: Received, Created, Sent, Released, Approved
+        // Status: pending", "in progress", or "completed"
         $doc = Doc::create($data);
+        switch ($this->type) {
+            case 'draft':
+                $doc->tracks()->create([
+                    'action' => 'Created',
+                    'remarks' => 'A draft document.',
+                    'on_transit' => false,
+                    'status' => 'draft',
+                    'assigned_to' => 'N/A',
+                    'deadline' => 'N/A',
+                    'time_elapse' => 'N/A',
+                    'created_at' => $date_time_current,
+                    'updated_at' => null,
+                    'office_id' => auth()->user()->office_id,
+                    'user_id' => auth()->user()->id,
+                ]);
+                # code...
+                break;
+            case 'office':
+                # code...
+                break;
+            case 'public':
+                # code...
+                break;
+
+            default:
+                # code...
+                break;
+        }
         if(count($this->temp_images)){
             foreach($this->temp_images as $item){
                 $filename = $item->store('/','images');
                 $doc->images()->create(['name'=>$filename]);
             }
         }
+        $this->notify('Success!');
         return redirect()->route('my-documents',['user_id'=>auth()->user()->id]);
     }
 
