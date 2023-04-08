@@ -167,7 +167,7 @@ class Equipments extends Component
 
     public function deleteSingleRecord()
     {
-        Doc::destroy($this->delete_single_record_id);
+        Vehicle::destroy($this->delete_single_record_id);
 
         $this->showDeleteSingleRecordModal = false;
 

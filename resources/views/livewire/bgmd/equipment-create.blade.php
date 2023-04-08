@@ -151,12 +151,12 @@
                                     </x-button>
                                 </div>
                             </div>
-                            <div class="sm:h-8"></div>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="sm:h-8"></div>
+
 </div>
