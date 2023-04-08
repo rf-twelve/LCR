@@ -11,6 +11,8 @@ class CompanyProfile extends Component
     use WithFileUploads;
     public $company_id;
     public $name;
+    public $system;
+    public $developer;
     public $logo;
     public $temp_logo;
     public $display_logo;
@@ -23,6 +25,8 @@ class CompanyProfile extends Component
         // 'editing.type' => 'required|in:'.collect(VmsPar::TYPES)->keys()->implode(','),
         'name' => 'required',
         'logo' => 'required',
+        'system' => 'required',
+        'developer' => 'required',
         'bg_image' => 'nullable',
         'address' => 'nullable',
     ]; }
@@ -30,33 +34,44 @@ class CompanyProfile extends Component
     public function save()
     {
         $validated = $this->validate();
-        $validated['logo'] = $this->temp_logo->store('/','images');
-        $validated['bg_image'] = $this->temp_bg_image->store('/','images');
-        Company::find('1')->update($validated);
+        $validated['logo'] = $this->temp_logo ? $this->temp_logo->store('/','images') : $this->logo;
+        $validated['bg_image'] =$this->temp_bg_image ? $this->temp_bg_image->store('/','images') : $this->bg_image;
+        $data = Company::find('1');
+        if($data){
+            $data->update($validated);
+        }else{
+            Company::create($validated);
+        }
         return redirect()->route('dashboard',['user_id'=>auth()->user()->id]);
         $this->notify('Company profile updated, Successfully!');
     }
 
     public function updatedTempLogo()
     {
-        $this->logo = $this->temp_logo->temporaryUrl();
+        $this->display_logo = $this->temp_logo->temporaryUrl();
     }
 
     public function updatedTempBgImage()
     {
-        $this->bg_image = $this->temp_bg_image->temporaryUrl();
+        $this->display_bg_image = $this->temp_bg_image->temporaryUrl();
     }
 
     public function setFields()
     {
         $company = Company::find(1);
-        $this->company_id = $company->id;
-        $this->name = $company->name;
-        $this->logo = $company->logoUrl();
-        $this->bg_image = $company->bgUrl();
-        $this->address = $company->address;
-        $this->temp_logo = null;
-        $this->temp_bg_image =null;
+        if($company){
+            $this->company_id = $company->id;
+            $this->name = $company->name;
+            $this->system = $company->system;
+            $this->developer = $company->developer;
+            $this->logo = $company->logo;
+            $this->display_logo = $company->logoUrl();
+            $this->bg_image = $company->bg_image;
+            $this->display_bg_image = $company->bgUrl();
+            $this->address = $company->address;
+            $this->temp_logo = null;
+            $this->temp_bg_image = null;
+        }
     }
     public function mount()
     {

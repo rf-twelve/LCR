@@ -2,7 +2,6 @@
     <div class="flex flex-col min-h-0">
         <!-- Top nav-->
         <x-header.navbar>
-            <!-- This example requires Tailwind CSS v2.0+ -->
             <nav class="flex" aria-label="Breadcrumb">
                 <ol role="list" class="flex items-center space-x-4">
                 <li>

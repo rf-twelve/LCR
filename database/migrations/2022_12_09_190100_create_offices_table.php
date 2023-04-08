@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('code');
             $table->string('name');
+            $table->string('author_id')->nullable();
             $table->timestamps();
         });
 
@@ -26,12 +27,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        Schema::create('doc_office', function (Blueprint $table) {
-            $table->foreignId('doc_id')->constrained();
-            $table->foreignId('office_id')->constrained();
-            $table->boolean('shared')->default(false);
-            $table->timestamps();
-        });
     }
 
     /**

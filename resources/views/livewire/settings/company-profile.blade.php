@@ -50,7 +50,7 @@
                       <div class="flex items-center">
                         <span class="w-12 h-12 overflow-hidden bg-gray-100 rounded-full">
                             @if ($logo)
-                                <img class="w-full h-full rounded-full ring-4 ring-gray-500" src="{{ $logo }}" alt="user profile">
+                                <img class="w-full h-full rounded-full ring-4 ring-gray-500" src="{{ $display_logo }}" alt="user profile">
                             @else
                                 <svg class="w-full h-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
                                 <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -66,9 +66,21 @@
                 </div>
 
                 <div class="space-y-1 sm:col-span-2">
-                    <label for="comapany_name" class="text-sm">Name: </label>
-                    <x-input wire:model.lazy="name" id="comapany_name" type="text" placeholder="Enter company name"/>
+                    <label for="company_name" class="text-sm">Name: </label>
+                    <x-input wire:model.lazy="name" id="company_name" type="text" placeholder="Enter company name"/>
                     @error('name')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                </div>
+
+                <div class="space-y-1 sm:col-span-2">
+                    <label for="system_name" class="text-sm">System: </label>
+                    <x-input wire:model.lazy="system" id="system_name" type="text" placeholder="Enter company name"/>
+                    @error('system')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                </div>
+
+                <div class="space-y-1 sm:col-span-2">
+                    <label for="developer_name" class="text-sm">Developer: </label>
+                    <x-input wire:model.lazy="developer" id="developer_name" type="text" placeholder="Enter company name"/>
+                    @error('developer')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                 </div>
 
                 <div class="space-y-1 sm:col-span-2">
@@ -85,7 +97,7 @@
                     @if ($bg_image)
                         <div class="mt-1 sm:mt-0 sm:col-span-2">
                             <div class="flex justify-center max-w-lg px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                <img class="w-20" src="{{ $bg_image }}" alt="Background image">
+                                <img class="w-20" src="{{ $display_bg_image }}" alt="Background image">
                             </div>
                         </div>
                     @else
