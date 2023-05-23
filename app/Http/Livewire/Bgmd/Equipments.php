@@ -7,9 +7,6 @@ use Livewire\WithFileUploads;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
-use App\Models\Doc;
-use App\Models\Office;
-use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,10 +28,6 @@ class Equipments extends Component
     public $searchTerm = '';
     public $sortField = 'id';
     public $sortDirection = 'asc';
-    public Doc $editing;
-    public $office;
-    public $viewing = [];
-    public $timeline = [];
     public $imports = [
         'count' => 0,
         'file',
@@ -80,59 +73,6 @@ class Equipments extends Component
             'user_id' => Auth::user()->id,
             'id' => date('Y-md-hms').'-'.rand(1000,date('Y'))
             ]));
-    }
-
-    public function edit($id){
-        $this->viewing = Doc::findOrFail($id);
-        // dd($this->viewing->dts_archives);
-        // $this->timeline = Activity::where('subject_id',$id)->orderBy('id')->get();
-        $this->useCachedRows();
-
-        // $this->setDataField($id, $this->viewing->refer_to);
-
-        $this->showTableGroup = false;
-        $this->showFormGroup = true;
-    }
-
-    public function openFile($id){
-        // $this->showFileImage = (DtsArchive::find($id))->image;
-        $this->showFormGroup = false;
-        $this->showFile = true;
-    }
-
-    public function closeFile(){
-        $this->showFormGroup = true;
-        $this->showFile = false;
-    }
-
-    // type
-        // make
-        // brand
-        // model
-        // year
-        // plate_no
-        // serial_no
-        // engine_no
-        // acquisition_date
-        // acquisition_cost
-        // remarks
-        // is_vehicle
-        // author_id
-
-
-    public function addAction(){
-        // $this->showFormGroup = true;
-        // $this->showFile = false;
-        $this->showActionForm = true;
-    }
-
-    public function saveAction(){
-        $validated = $this->validate();
-        $validated['editing']['dts_doc_id'] = $this->viewing['id'];
-        // DtsAction::create($validated['editing']);
-        $this->showActionForm = false;
-        $this->notify('New Action has been added successfully!');
-        $this->edit($this->viewing['id']);
     }
 
     public function print($id)
@@ -184,15 +124,6 @@ class Equipments extends Component
         dd('export');
     }
 
-// date
-// to
-// from
-// for
-// prepared_by
-// noted_by
-// author_id
-// vehicle_id
-
     public function getRowsQueryProperty()
     {
 
@@ -216,8 +147,6 @@ class Equipments extends Component
         // dd($this->rows);
         return view('livewire.bgmd.equipments',[
             'records' => $this->rows,
-            'offices' => Office::get(),
-            'user_list' => User::get()->toArray(),
         ]);
     }
 }

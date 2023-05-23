@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Bgmd;
 
 use App\Models\Vehicle;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Equipment extends Component

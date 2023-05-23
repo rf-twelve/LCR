@@ -4,9 +4,9 @@
         <div class="flex items-center justify-between w-full p-6 space-x-6">
             <div class="flex-1 truncate">
                 <div class="flex items-center space-x-3">
-                    <h2 class="text-sm font-medium text-gray-900 truncate">TRACK DOCUMENT</h2>
+                    <h2 class="text-sm font-medium text-gray-900 truncate">SEARCH SLIP</h2>
                 </div>
-                <p class="mt-1 text-sm text-gray-500">Trace the location of document.</p>
+                <p class="mt-1 text-sm text-gray-500">Search Charge Slip.</p>
             </div>
             <img src="{{ asset('\img\dts\dms_2.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
@@ -14,10 +14,10 @@
         <div class="p-2">
             <div class="flex mt-1 rounded-md shadow-sm">
                 <div class="relative flex items-stretch flex-grow focus-within:z-10">
-                    <x-form.input-text type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
+                    <x-form.input-text wire:model='charge_slip_tn' type="search" placeholder="Enter Tracking Number" class="pl-2 border rounded-none rounded-l-md"/>
                 </div>
-                <x-form.button class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-none rounded-r-md bg-gray-50 hover:bg-gray-100">
-                    <x-icon.location class="w-6 h-6" /><span>Track</span>
+                <x-form.button wire:click='searchSlip()' class="relative inline-flex items-center -ml-px space-x-2 border-gray-300 rounded-none rounded-r-md bg-gray-50 hover:bg-gray-100">
+                    <x-icon.location class="w-6 h-6" /><span>Search</span>
                 </x-form.button>
             </div>
         </div>

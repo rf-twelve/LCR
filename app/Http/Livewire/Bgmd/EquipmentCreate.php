@@ -59,11 +59,6 @@ class EquipmentCreate extends Component
         $this->notify('Equipment added, Successfully!');
     }
 
-    // public function updatedTempImages()
-    // {
-    //     $this->display_temp_images = $this->temp_images->temporaryUrl() ?? '';
-    // }
-
     public function render()
     {
         return view('livewire.bgmd.equipment-create');

@@ -92,7 +92,7 @@ class EquipmentEdit extends Component
             }
         }
         return redirect()->route('equipments',['user_id'=>auth()->user()->id]);
-        $this->notify('Equipment added, Successfully!');
+        $this->notify('Equipment updated, Successfully!');
     }
 
     public function render()

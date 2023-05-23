@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\User;
 
 use App\Models\AuditTrail;
+use App\Models\ChargeSlip;
 use App\Models\Doc;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -13,7 +14,7 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
-    public $tn_track = '';
+    public $charge_slip_tn = '';
     public $tn_received = '';
     public $tn_released = '';
     public $tn_terminal = '';
@@ -24,6 +25,21 @@ class Dashboard extends Component
             'user_id'=>Auth()->user()->id,
             'tn'=>date('Y-md-hms').'-'.rand(1000,date('Y'))
             ]));
+    }
+
+    public function searchSlip()
+    {
+        $tn = $this->validate([
+            'charge_slip_tn' => 'required'
+        ]);
+        $data = ChargeSlip::where('tn',$tn)->first();
+
+        if (isset($data)) {
+            $this->notify('Record not found!');
+        } else {
+            $this->alert('Record not found!');
+        }
+
     }
 
     public function releaseDocument()

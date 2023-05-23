@@ -21,7 +21,7 @@
                             <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                         </svg>
                         <a href="#" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
-                            My Documents
+                            Charge Slips
                         </a>
                     </div>
                 </li>
@@ -112,8 +112,8 @@
                             <x-table.head class="px-2 py-1" sortable wire:click="sortBy('author_id')"
                                 :direction="$sortField === 'author_id' ? $sortDirection : null">Encoded By</x-table.head>
 
-                            <x-table.head class="px-2 py-1" sortable wire:click="sortBy('vehicle_id')"
-                                :direction="$sortField === 'vehicle_id' ? $sortDirection : null">Vehicle</x-table.head>
+                            {{-- <x-table.head class="px-2 py-1" sortable wire:click="sortBy('vehicle_id')"
+                                :direction="$sortField === 'vehicle_id' ? $sortDirection : null">Vehicle</x-table.head> --}}
 
                             <x-table.head class="w-10 px-6 py-1"><span class="sr-only">Edit</span></x-table.head>
                         </x-slot>
@@ -150,7 +150,7 @@
                                     <span>{{ $item->from }}</span>
                                 </x-table.cell>
                                 <x-table.cell>
-                                    <span>{{ $item->for }}</span>
+                                    <span>{{ $item->vehicle->brand.'/'.$item->vehicle->model }}</span>
                                 </x-table.cell>
                                 <x-table.cell>
                                     <span>{{ $item->prepared_by }}</span>
@@ -159,19 +159,19 @@
                                     <span>{{ $item->noted_by }}</span>
                                 </x-table.cell>
                                 <x-table.cell>
-                                    <span>{{ $item->author_id }}</span>
+                                    <span>{{ $item->author->fullname }}</span>
                                 </x-table.cell>
-                                <x-table.cell>
+                                {{-- <x-table.cell>
                                     <span>{{ $item->vehicle_id }}</span>
-                                </x-table.cell>
+                                </x-table.cell> --}}
                                 <x-table.cell class="max-w-2xl">
                                     <div class="flex justify-center space-x-2">
                                         {{-- View --}}
-                                        <a href="{{ route('document-overview',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
+                                        <a href="{{ route('charge-slip',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-center text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-green-500 rounded-xl">
                                             <x-icon.view class="w-5 h-5" /></a>
                                         {{-- Edit --}}
                                         @if ($item->author_id == auth()->user()->id)
-                                            <a href="{{ route('edit-document',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
+                                            <a href="{{ route('charge-slip.edit',['user_id'=>auth()->user()->id,'id'=>$item->id]) }}" class="px-2 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 shadow-sm hover:text-white hover:bg-blue-500 rounded-xl">
                                             <x-icon.edit class="w-5 h-5" /></a>
                                         @endif
 
@@ -183,7 +183,7 @@
                             </x-table.row>
                             @empty
                             <x-table.row wire:loading.class.delay="opacity-50">
-                                <x-table.cell colspan="10">
+                                <x-table.cell colspan="9">
                                     <div class="flex items-center justify-center">
                                        <x-icon.box-empty class="w-8 h-8 text-slate-400" />
                                         <span class="px-2 py-8 text-xl font-medium text-slate-400">No Records
@@ -193,7 +193,7 @@
                             </x-table.row>
                             @endforelse
                             <x-table.row class="bg-gray-300" wire:key="row-message">
-                                <x-table.cell colspan="10" class="">
+                                <x-table.cell colspan="9" class="">
                                     {{ $records->links('vendor.livewire.modified-tailwind') }}
                                 </x-table.cell>
                             </x-table.row>

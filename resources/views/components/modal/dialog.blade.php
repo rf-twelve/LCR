@@ -3,7 +3,7 @@
 @props(['title' => false])
 <x-modal :id="$id" :maxWidth="$maxWidth" {{ $attributes }}>
 
-    <div class="px-6 py-4">
+    <div class="px-6 py-2">
         @if ($title)
         <div class="text-lg">
             {{ $title }}
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="px-6 py-4 bg-gray-100 text-right">
+    <div class="px-6 py-4 text-right bg-gray-100">
         {{ $footer }}
     </div>
 

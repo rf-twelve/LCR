@@ -8,9 +8,6 @@ use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Models\ChargeSlip;
-use App\Models\Doc;
-use App\Models\Office;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class ChargeSlips extends Component
@@ -19,22 +16,15 @@ class ChargeSlips extends Component
 
     public $showTableGroup = true;
     public $showFormGroup = false;
-    public $showFile = false;
-    public $showActionForm = false;
     public $showFileImage = '';
     public $showDeleteSelectedRecordModal = false;
     public $showDeleteSingleRecordModal = false;
     public $delete_single_record_id = '';
     public $showImportModal = false;
-    public $showEditModal = false;
     public $showFilters = false;
     public $searchTerm = '';
     public $sortField = 'id';
     public $sortDirection = 'asc';
-    public Doc $editing;
-    public $office;
-    public $viewing = [];
-    public $timeline = [];
     public $imports = [
         'count' => 0,
         'file',
@@ -76,61 +66,10 @@ class ChargeSlips extends Component
 
     public function create()
     {
-        return redirect(route('create-document',[
+        return redirect(route('charge-slip.create',[
             'user_id' => Auth::user()->id,
-            'tn' => date('Y-md-hms').'-'.rand(1000,date('Y'))
+            'id' => date('Y-md-hms').'-'.rand(1000,date('Y'))
             ]));
-    }
-
-    public function edit($id){
-        $this->viewing = Doc::findOrFail($id);
-        // dd($this->viewing->dts_archives);
-        // $this->timeline = Activity::where('subject_id',$id)->orderBy('id')->get();
-        $this->useCachedRows();
-
-        // $this->setDataField($id, $this->viewing->refer_to);
-
-        $this->showTableGroup = false;
-        $this->showFormGroup = true;
-    }
-
-    public function openFile($id){
-        // $this->showFileImage = (DtsArchive::find($id))->image;
-        $this->showFormGroup = false;
-        $this->showFile = true;
-    }
-
-    public function closeFile(){
-        $this->showFormGroup = true;
-        $this->showFile = false;
-    }
-
-    public function addAction(){
-        // $this->showFormGroup = true;
-        // $this->showFile = false;
-        $this->showActionForm = true;
-    }
-
-    public function saveAction(){
-        $validated = $this->validate();
-        $validated['editing']['dts_doc_id'] = $this->viewing['id'];
-        // DtsAction::create($validated['editing']);
-        $this->showActionForm = false;
-        $this->notify('New Action has been added successfully!');
-        $this->edit($this->viewing['id']);
-    }
-
-    public function print($id)
-    {
-        $dataArray = array(
-            'id' => $id,
-            'form' => 'incoming',
-        );
-
-        $query = http_build_query(array('aParam' => $dataArray));
-
-        return redirect()->route('PDF', $query);
-
     }
 
     public function deleteSelectedRecord()
@@ -152,7 +91,7 @@ class ChargeSlips extends Component
 
     public function deleteSingleRecord()
     {
-        Doc::destroy($this->delete_single_record_id);
+        ChargeSlip::destroy($this->delete_single_record_id);
 
         $this->showDeleteSingleRecordModal = false;
 
@@ -169,20 +108,11 @@ class ChargeSlips extends Component
         dd('export');
     }
 
-// date
-// to
-// from
-// for
-// prepared_by
-// noted_by
-// author_id
-// vehicle_id
-
     public function getRowsQueryProperty()
     {
 
         return ChargeSlip::query()
-            ->with('charge_slip_items')
+            ->with('charge_slip_items','author','vehicle')
             // ->where('author_id',auth()->user()->id)
             ->when($this->filters['search'], fn($query, $search) => $query->where($this->sortField, 'like','%'.$search.'%'))
             ->orderBy($this->sortField, $this->sortDirection);
@@ -200,8 +130,6 @@ class ChargeSlips extends Component
         // dd($this->rows);
         return view('livewire.bgmd.charge-slips',[
             'records' => $this->rows,
-            'offices' => Office::get(),
-            'user_list' => User::get()->toArray(),
         ]);
     }
 }
