@@ -50,6 +50,7 @@ class PageMarriageLicense extends Component
          'date-max' => null,
      ];
 
+
     public function mount(){
         $this->marriage_license_id = null;
     }
