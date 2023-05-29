@@ -143,7 +143,7 @@ class PageLiveBirth extends Component
             'parents_marriage_month' => 'required',
             'parents_marriage_year' => 'required',
             'parents_marriage_place' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
         ]);
 
         $valid['encoder'] = auth()->user()->id;

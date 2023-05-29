@@ -105,7 +105,7 @@ class PageCourtDecreeOrder extends Component
             'special_proceeding_no' => 'required',
             'date_issued' => 'required',
             'judge_name' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
         ]);
 
         $valid['encoder'] = auth()->user()->id;

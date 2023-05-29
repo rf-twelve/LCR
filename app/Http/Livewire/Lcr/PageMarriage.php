@@ -127,7 +127,7 @@ class PageMarriage extends Component
             'wife_mothers_nationality' => 'required',
             'marriage_place' => 'required',
             'marriage_date' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
         ]);
 
         $valid['encoder'] = auth()->user()->id;

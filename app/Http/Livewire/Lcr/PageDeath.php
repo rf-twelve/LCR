@@ -123,7 +123,7 @@ class PageDeath extends Component
             'death_cause' => 'required',
             'certifying_officer_name' => 'required',
             'certifying_officer_designation' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
         ]);
 
         $valid['encoder'] = auth()->user()->id;

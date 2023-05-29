@@ -120,7 +120,7 @@ class PageMarriageLicense extends Component
             'marriage_license_date_issue' => 'required',
             'marriage_license_date_expiry' => 'required',
             'marriage_license_date_release' => 'required',
-            'remarks' => 'required',
+            'remarks' => 'nullable',
         ]);
 
         $valid['encoder'] = auth()->user()->id;

@@ -274,7 +274,7 @@
                         </div>
                         <div class="space-y-1 sm:col-span-2">
                             <label for="register_no" class="text-sm">REGISTER NUMBER :</label>
-                            <x-input wire:model.lazy="register_no" id="register_no" type="number"/>
+                            <x-input wire:model.lazy="register_no" id="register_no" type="text"/>
                             @error('register_no')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                         </div>
                         <div class="space-y-1 sm:col-span-2">
