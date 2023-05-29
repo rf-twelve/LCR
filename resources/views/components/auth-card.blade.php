@@ -1,5 +1,5 @@
 {{-- Sample Logo: https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg --}}
-<div class="flex min-h-screen bg-white">
+<div class="flex min-h-screen bg-blue-300">
     <div class="flex flex-col justify-center flex-1 px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
         <div class="w-full max-w-sm mx-auto lg:w-96">
             <div class="text-center">

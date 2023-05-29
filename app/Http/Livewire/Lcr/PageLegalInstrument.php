@@ -136,7 +136,7 @@ class PageLegalInstrument extends Component
 
     public function toggleView($id)
     {
-        // return to_route('registrar/enrollment-management/view-student',['user_id'=>auth()->user()->id, 'id'=> $id]);
+        return to_route('legal-instrument/view',['user_id'=>auth()->user()->id, 'id'=> $id]);
     }
 
     public function toggleDeleteSingleRecordModal($id)

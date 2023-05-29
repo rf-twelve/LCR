@@ -36,7 +36,7 @@ CREATE TABLE `companies` (
 /*Data for the table `companies` */
 
 insert  into `companies`(`id`,`name`,`system`,`logo`,`bg_image`,`address`,`developer`,`created_at`,`updated_at`) values 
-(1,'BAGONG KALIBO','LCR Management Information System','logo.png','bg.jpg','KALIBO AKLAN',NULL,NULL,'2023-03-30 02:58:04');
+(1,'LGU KALIBO','LCR Management Information System','logo.png','bg.jpg','KALIBO AKLAN',NULL,NULL,'2023-03-30 02:58:04');
 
 /*Table structure for table `court_decree_orders` */
 
@@ -623,7 +623,7 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `fullname` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `office_id` int(10) unsigned NOT NULL,
+  `office_id` int(10) unsigned DEFAULT NULL,
   `username` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT 0,
@@ -640,7 +640,7 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`id`,`fullname`,`office_id`,`username`,`email`,`is_active`,`avatar`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'Administrator',1,'admin','francisco12rosel@gmail.com',0,NULL,NULL,'$2y$10$Mt0SPy0h2HXPhK41bTJbTuwRMiDvdujR3DSzEI53ZXd9gNmNRWybS',NULL,'2023-05-23 21:57:23','2023-05-23 21:57:23');
+(1,'Administrator',1,'admin','francisco12rosel@gmail.com',1,NULL,NULL,'$2y$10$Mt0SPy0h2HXPhK41bTJbTuwRMiDvdujR3DSzEI53ZXd9gNmNRWybS',NULL,'2023-05-23 21:57:23','2023-05-23 21:57:23');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
