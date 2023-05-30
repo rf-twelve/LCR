@@ -36,7 +36,138 @@
                     <div class="relative flex flex-col h-full bg-gray-100 border-r border-gray-200 w-96">
                         <div class="p-4 space-y-6 divide-y divide-gray-200 sm:space-y-5">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">Detailed Information</h3>
-                                {{-- Details Here --}}
+
+                            <div class="border-t border-gray-200">
+                                <ul role="list" class="divide-y divide-gray-200">
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">REGISTERED NUMBER :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['register_no'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">FILING DATE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['filing_date'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PERIOD FROM :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['posting_period_from'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PERIOD TO :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['posting_period_to'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">NAME OF HUSBAND :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['husband_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">BIRTHDATE/NATIONALITY/CIVIL STATUS :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['husband_birthdate'].'/'.$data['husband_nationality'].'/'.$data['husband_civil_status'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">HUSBAND RESIDENCE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['husband_residence'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">NAME OF WIFE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['wife_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">BIRTHDATE/NATIONALITY/CIVIL STATUS :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['wife_birthdate'].'/'.$data['wife_nationality'].'/'.$data['wife_civil_status'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">RESIDENCE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['wife_residence'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">MARRIAGE LICENSE NUMBER :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['marriage_license_no'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">LICENSE DATE ISSUE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['marriage_license_date_issue'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">LICENSE DATE EXPIRY :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['marriage_license_date_expiry'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">LICENSE DATE RELEASE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['marriage_license_date_release'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">REMARKS :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['remarks'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- More items... -->
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>

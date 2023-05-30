@@ -41,6 +41,7 @@ return new class extends Migration
             $table->string('father_age')->nullable();
             $table->string('father_nationality')->nullable();
             $table->string('father_religion')->nullable();
+            $table->string('parents_marriage_date')->nullable();
             $table->string('parents_marriage_day')->nullable();
             $table->string('parents_marriage_month')->nullable();
             $table->string('parents_marriage_year')->nullable();

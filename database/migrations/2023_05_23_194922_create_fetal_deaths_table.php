@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('nationality')->nullable();
             $table->string('residence')->nullable();
             $table->string('occupation')->nullable();
+            $table->string('death_date')->nullable();
             $table->string('death_date_time_day')->nullable();
             $table->string('death_date_time_month')->nullable();
             $table->string('death_date_time_year')->nullable();

@@ -22,9 +22,6 @@ class PageLiveBirth extends Component
     public $child_last_name;
     public $sex;
     public $birth_date;
-    public $birth_date_time_day;
-    public $birth_date_time_month;
-    public $birth_date_time_year;
     public $birth_date_time_time;
     public $birth_place;
     public $birth_type;
@@ -41,9 +38,7 @@ class PageLiveBirth extends Component
     public $father_age;
     public $father_nationality;
     public $father_religion;
-    public $parents_marriage_day;
-    public $parents_marriage_month;
-    public $parents_marriage_year;
+    public $parents_marriage_date;
     public $parents_marriage_place;
     public $remarks;
 
@@ -120,9 +115,6 @@ class PageLiveBirth extends Component
             'child_last_name' => 'required',
             'sex' => 'required',
             'birth_date' => 'required',
-            'birth_date_time_day' => 'nullable',
-            'birth_date_time_month' => 'nullable',
-            'birth_date_time_year' => 'nullable',
             'birth_date_time_time' => 'required',
             'birth_place' => 'required',
             'birth_type' => 'required',
@@ -139,9 +131,7 @@ class PageLiveBirth extends Component
             'father_age' => 'required',
             'father_nationality' => 'required',
             'father_religion' => 'required',
-            'parents_marriage_day' => 'required',
-            'parents_marriage_month' => 'required',
-            'parents_marriage_year' => 'required',
+            'parents_marriage_date' => 'required',
             'parents_marriage_place' => 'required',
             'remarks' => 'nullable',
         ]);
@@ -195,11 +185,7 @@ class PageLiveBirth extends Component
         $this->child_middle_name = $data['child_middle_name'];
         $this->child_last_name = $data['child_last_name'];
         $this->sex = $data['sex'];
-        $this->birth_date_time_day = $data['birth_date_time_day'];
         $this->birth_date = $data['birth_date'];
-        $this->birth_date_time_day = $data['birth_date_time_day'];
-        $this->birth_date_time_month = $data['birth_date_time_month'];
-        $this->birth_date_time_year = $data['birth_date_time_year'];
         $this->birth_date_time_time = $data['birth_date_time_time'];
         $this->birth_place = $data['birth_place'];
         $this->birth_type = $data['birth_type'];
@@ -216,9 +202,7 @@ class PageLiveBirth extends Component
         $this->father_age = $data['father_age'];
         $this->father_nationality = $data['father_nationality'];
         $this->father_religion = $data['father_religion'];
-        $this->parents_marriage_day = $data['parents_marriage_day'];
-        $this->parents_marriage_month = $data['parents_marriage_month'];
-        $this->parents_marriage_year = $data['parents_marriage_year'];
+        $this->parents_marriage_date = $data['parents_marriage_date'];
         $this->parents_marriage_place = $data['parents_marriage_place'];
         $this->remarks = $data['remarks'];
     }
@@ -233,9 +217,6 @@ class PageLiveBirth extends Component
         $this->child_last_name = '';
         $this->sex = '';
         $this->birth_date = '';
-        $this->birth_date_time_day = '';
-        $this->birth_date_time_month = '';
-        $this->birth_date_time_year = '';
         $this->birth_date_time_time = '';
         $this->birth_place = '';
         $this->birth_type = '';
@@ -252,9 +233,7 @@ class PageLiveBirth extends Component
         $this->father_age = '';
         $this->father_nationality = '';
         $this->father_religion = '';
-        $this->parents_marriage_day = '';
-        $this->parents_marriage_month = '';
-        $this->parents_marriage_year = '';
+        $this->parents_marriage_date = '';
         $this->parents_marriage_place = '';
         $this->remarks = '';
     }

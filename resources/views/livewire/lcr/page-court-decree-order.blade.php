@@ -101,7 +101,7 @@
                                 </x-table.head>
                                 <x-table.head class="px-2 py-1" sortable wire:click="sortBy('petitioner_citizenship')"
                                     :direction="$filters['sort-field'] === 'petitioner_citizenship' ? $filters['sort-direction'] : null">
-                                    CITIZENSHIP
+                                    PET. CITIZENSHIP
                                 </x-table.head>
                                 <x-table.head class="px-2 py-1" sortable wire:click="sortBy('court_name')"
                                     :direction="$filters['sort-field'] === 'court_name' ? $filters['sort-direction'] : null">

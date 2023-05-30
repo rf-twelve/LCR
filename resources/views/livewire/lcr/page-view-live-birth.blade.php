@@ -36,7 +36,161 @@
                     <div class="relative flex flex-col h-full bg-gray-100 border-r border-gray-200 w-96">
                         <div class="p-4 space-y-6 divide-y divide-gray-200 sm:space-y-5">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">Detailed Information</h3>
-                                {{-- Details Here --}}
+
+                            <div class="border-t border-gray-200">
+                                <ul role="list" class="divide-y divide-gray-200">
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">LCR NUMBER :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['lcr_no'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">REGISTERED DATE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['register_date'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">CHILD FIRST NAME :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['child_first_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">CHILD MIDDLE NAME :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['child_middle_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">CHILD LAST NAME :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['child_last_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">SEX/BIRTH DATE/TIME :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['sex'].'/'.$data['birth_date'].'/'.$data['birth_date_time_time'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PLACE OF BIRTH :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['birth_place'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">TYPE OF BIRTH/BIRTH ORDER :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['birth_type'].'/'.$data['birth_order'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">MOTHER'S NAME :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['mother_first_name'].'/'.$data['mother_middle_name'].'/'.$data['mother_last_name'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">AGE/NATIONALITY/RELIGION :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['mother_age'].'/'.$data['mother_nationality'].'/'.$data['mother_religion'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">FATHER'S NAME :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['father_first_name'].'/'.$data['father_middle_name'].'/'.$data['father_last_name'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">AGE/NATIONALITY/RELIGION :</h3>
+                                                <p class="text-sm text-gray-500">
+                                                    {{ $data['father_age'].'/'.$data['father_nationality'].'/'.$data['father_religion'] }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PARENTS MARRIAGE DATE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['parents_marriage_date'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PARENTS MARRIAGE PLACE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['parents_marriage_place'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">REMARKS :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['remarks'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+
+                                    <!-- More items... -->
+                                </ul>
+                            </div>
+
                         </div>
                     </div>
                 </div>

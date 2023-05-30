@@ -27,9 +27,10 @@ class PageDeath extends Component
     public $nationality;
     public $residence;
     public $occupation;
-    public $death_date_time_day;
-    public $death_date_time_month;
-    public $death_date_time_year;
+    public $death_date;
+    // public $death_date_time_day;
+    // public $death_date_time_month;
+    // public $death_date_time_year;
     public $death_date_time_time;
     public $death_place;
     public $death_cause;
@@ -115,9 +116,10 @@ class PageDeath extends Component
             'nationality' => 'required',
             'residence' => 'required',
             'occupation' => 'required',
-            'death_date_time_day' => 'required',
-            'death_date_time_month' => 'required',
-            'death_date_time_year' => 'required',
+            'death_date' => 'required',
+            // 'death_date_time_day' => 'required',
+            // 'death_date_time_month' => 'required',
+            // 'death_date_time_year' => 'required',
             'death_date_time_time' => 'required',
             'death_place' => 'required',
             'death_cause' => 'required',
@@ -181,9 +183,10 @@ class PageDeath extends Component
         $this->nationality = $data['nationality'];
         $this->residence = $data['residence'];
         $this->occupation = $data['occupation'];
-        $this->death_date_time_day = $data['death_date_time_day'];
-        $this->death_date_time_month = $data['death_date_time_month'];
-        $this->death_date_time_year = $data['death_date_time_year'];
+        $this->death_date = $data['death_date_time_date'];
+        // $this->death_date_time_day = $data['death_date_time_day'];
+        // $this->death_date_time_month = $data['death_date_time_month'];
+        // $this->death_date_time_year = $data['death_date_time_year'];
         $this->death_date_time_time = $data['death_date_time_time'];
         $this->death_place = $data['death_place'];
         $this->death_cause = $data['death_cause'];
@@ -207,9 +210,10 @@ class PageDeath extends Component
         $this->nationality = '';
         $this->residence = '';
         $this->occupation = '';
-        $this->death_date_time_day = '';
-        $this->death_date_time_month = '';
-        $this->death_date_time_year = '';
+        $this->death_date = '';
+        // $this->death_date_time_day = '';
+        // $this->death_date_time_month = '';
+        // $this->death_date_time_year = '';
         $this->death_date_time_time = '';
         $this->death_place = '';
         $this->death_cause = '';

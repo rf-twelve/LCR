@@ -133,7 +133,7 @@
                                     AGE | NATIONALITY | RELIGION
                                 </x-table.head>
                                 <x-table.head class="px-2 py-1">
-                                    MARRIAGE | DAY/MONTH/YEAR | PLACE
+                                    MARRIAGE DATE | PLACE
                                 </x-table.head>
                                 <x-table.head class="px-2 py-1">
                                     REMARKS
@@ -239,9 +239,7 @@
                                     </x-table.cell>
                                     <x-table.cell class="space-y-2">
                                         <span>{{
-                                            $item['parents_marriage_day']
-                                        .'/'.$item['parents_marriage_month']
-                                        .'/'.$item['parents_marriage_year']
+                                            $item['parents_marriage_date']
                                         .'/'.$item['parents_marriage_place']
                                         }}</span>
                                     </x-table.cell>
@@ -406,19 +404,9 @@
                             @error('father_religion')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                         </div>
                         <div class="space-y-1 sm:col-span-2">
-                            <label for="parents_marriage_day" class="text-sm">MARRIAGE DAY :</label>
-                            <x-input wire:model.lazy="parents_marriage_day" id="parents_marriage_day" type="number"/>
-                            @error('parents_marriage_day')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
-                        </div>
-                        <div class="space-y-1 sm:col-span-2">
-                            <label for="parents_marriage_month" class="text-sm">MARRIAGE MONTH :</label>
-                            <x-input wire:model.lazy="parents_marriage_month" id="parents_marriage_month" type="text"/>
-                            @error('parents_marriage_month')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
-                        </div>
-                        <div class="space-y-1 sm:col-span-2">
-                            <label for="parents_marriage_year" class="text-sm">MARRIAGE YEAR :</label>
-                            <x-input wire:model.lazy="parents_marriage_year" id="parents_marriage_year" type="number"/>
-                            @error('parents_marriage_year')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                            <label for="parents_marriage_date" class="text-sm">MARRIAGE DATE :</label>
+                            <x-input wire:model.lazy="parents_marriage_date" id="parents_marriage_date" type="date"/>
+                            @error('parents_marriage_date')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                         </div>
                         <div class="space-y-1 sm:col-span-2">
                             <label for="parents_marriage_place" class="text-sm">MARRIAGE PLACE :</label>

@@ -214,9 +214,7 @@
                                     </x-table.cell>
                                     <x-table.cell class="space-y-2">
                                         <span>
-                                            {{ $item['death_date_time_day']
-                                            .'/'.$item['death_date_time_month']
-                                            .'/'.$item['death_date_time_year']
+                                            {{ $item['death_date']
                                             .' ('.$item['death_date_time_time'].')' }}
                                         </span>
                                     </x-table.cell>
@@ -351,19 +349,9 @@
                             @error('occupation')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                         </div>
                         <div class="space-y-1 sm:col-span-2">
-                            <label for="death_date_time_day" class="text-sm">DAY OF DEATH :</label>
-                            <x-input wire:model.lazy="death_date_time_day" id="death_date_time_day" type="text"/>
-                            @error('death_date_time_day')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
-                        </div>
-                        <div class="space-y-1 sm:col-span-2">
-                            <label for="death_date_time_month" class="text-sm">MONTH OF DEATH :</label>
-                            <x-input wire:model.lazy="death_date_time_month" id="death_date_time_month" type="text"/>
-                            @error('death_date_time_month')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
-                        </div>
-                        <div class="space-y-1 sm:col-span-2">
-                            <label for="death_date_time_year" class="text-sm">YEAR OF DEATH :</label>
-                            <x-input wire:model.lazy="death_date_time_year" id="death_date_time_year" type="text"/>
-                            @error('death_date_time_year')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
+                            <label for="death_date" class="text-sm">DATE OF DEATH :</label>
+                            <x-input wire:model.lazy="death_date" id="death_date" type="date"/>
+                            @error('death_date')<x-comment class="text-red-500">*{{ $message }}</x-comment>@enderror
                         </div>
                         <div class="space-y-1 sm:col-span-2">
                             <label for="death_date_time_time" class="text-sm">TIME OF DEATH :</label>

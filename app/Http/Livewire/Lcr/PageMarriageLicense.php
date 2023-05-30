@@ -143,7 +143,7 @@ class PageMarriageLicense extends Component
 
     public function toggleView($id)
     {
-        return to_route('marriage-license/view',['user_id'=>auth()->user()->id, 'id'=> $id]);
+        return to_route('marriage-licenses/view',['user_id'=>auth()->user()->id, 'id'=> $id]);
     }
 
     public function toggleDeleteSingleRecordModal($id)

@@ -37,6 +37,108 @@
                         <div class="p-4 space-y-6 divide-y divide-gray-200 sm:space-y-5">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">Detailed Information</h3>
                                 {{-- Details Here --}}
+                            <div class="border-t border-gray-200">
+                                <ul role="list" class="divide-y divide-gray-200">
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">LCR NUMBER :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['lcr_no'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">REGISTERED DATE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['register_date'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">TYPE OF DOOCUMENT :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['document_type'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">SUBJECT PARTY/PARTIES :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['subject_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">CITIZENSHIP :</</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['subject_citizenship'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PETITIONER :</</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['petitioner_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">PETITIONER CITIZENSHIP :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['petitioner_citizenship'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">NAME OF COURT :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['court_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">SPECIAL PROCEEDING NO. :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['special_proceeding_no'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">DATE ISSUED :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['date_issued'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">NAME OF JUDGE :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['judge_name'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="py-4">
+                                        <div class="flex space-x-3">
+                                            <div class="flex-1 space-y-1">
+                                                <h3 class="text-sm font-medium">REMARKS :</h3>
+                                                <p class="text-sm text-gray-500">{{ $data['remarks'] }}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <!-- More items... -->
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
