@@ -6,6 +6,7 @@ use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Models\CourtDecreeOrder;
+use App\Models\FileImage;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 
@@ -27,6 +28,8 @@ class PageCourtDecreeOrder extends Component
     public $date_issued;
     public $judge_name;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -45,6 +48,8 @@ class PageCourtDecreeOrder extends Component
 
     public function mount(){
         $this->court_decree_order_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
     public function getRowsQueryProperty()
@@ -86,7 +91,7 @@ class PageCourtDecreeOrder extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = CourtDecreeOrder::find($id);
+        $data = CourtDecreeOrder::with('file_images')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -110,9 +115,22 @@ class PageCourtDecreeOrder extends Component
 
         $valid['encoder'] = auth()->user()->id;
 
-        isset($this->court_decree_order_id)
-            ? CourtDecreeOrder::find($this->court_decree_order_id)->update($valid)
-            : CourtDecreeOrder::create($valid);
+        if (isset($this->court_decree_order_id)) {
+            $model = CourtDecreeOrder::find($this->court_decree_order_id);
+            $model->update($valid);
+        } else {
+            $model = CourtDecreeOrder::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'court_decree_order',
+                ]);
+            }
+        }
 
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
@@ -148,6 +166,15 @@ class PageCourtDecreeOrder extends Component
         $this->notify('You\'ve deleted record successfully.');
     }
 
+    public function removeImage($id,$key)
+    {
+        FileImage::destroy($id);
+
+        $this->exist_image->forget($key);
+
+        $this->notify('You\'ve removed image successfully.');
+    }
+
     public function setFields($data)
     {
         $this->court_decree_order_id = $data['id'];
@@ -163,6 +190,8 @@ class PageCourtDecreeOrder extends Component
         $this->date_issued = $data['date_issued'];
         $this->judge_name = $data['judge_name'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','court_decree_order');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -180,6 +209,8 @@ class PageCourtDecreeOrder extends Component
         $this->date_issued = '';
         $this->judge_name = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }

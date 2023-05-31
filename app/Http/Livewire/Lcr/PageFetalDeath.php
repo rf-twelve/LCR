@@ -6,6 +6,7 @@ use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Models\FetalDeath;
+use App\Models\FileImage;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 
@@ -39,6 +40,8 @@ class PageFetalDeath extends Component
     public $certifying_officer_name;
     public $certifying_officer_designation;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -57,6 +60,8 @@ class PageFetalDeath extends Component
 
     public function mount(){
         $this->fetal_death_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
     public function getRowsQueryProperty()
@@ -98,7 +103,7 @@ class PageFetalDeath extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = FetalDeath::find($id);
+        $data = FetalDeath::with('file_images')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -132,9 +137,22 @@ class PageFetalDeath extends Component
 
         $valid['encoder'] = auth()->user()->id;
 
-        isset($this->fetal_death_id)
-            ? FetalDeath::find($this->fetal_death_id)->update($valid)
-            : FetalDeath::create($valid);
+        if (isset($this->fetal_death_id)) {
+            $model = FetalDeath::find($this->fetal_death_id);
+            $model->update($valid);
+        } else {
+            $model = FetalDeath::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'fetal_death',
+                ]);
+            }
+        }
 
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
@@ -170,6 +188,15 @@ class PageFetalDeath extends Component
         $this->notify('You\'ve deleted record successfully.');
     }
 
+    public function removeImage($id,$key)
+    {
+        FileImage::destroy($id);
+
+        $this->exist_image->forget($key);
+
+        $this->notify('You\'ve removed image successfully.');
+    }
+
     public function setFields($data)
     {
         $this->fetal_death_id = $data['id'];
@@ -194,6 +221,8 @@ class PageFetalDeath extends Component
         $this->certifying_officer_name = $data['certifying_officer_name'];
         $this->certifying_officer_designation = $data['certifying_officer_designation'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','fetal_death');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -218,6 +247,8 @@ class PageFetalDeath extends Component
         $this->certifying_officer_name = '';
         $this->certifying_officer_designation = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }

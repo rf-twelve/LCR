@@ -20,8 +20,19 @@
                         fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
                     </svg>
-                    <a href="{{ route('marriage-licenses/list',['user_id'=>auth()->user()->id]) }}" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
-                        Marriage License
+                    <a href="{{ route('marriage/list',['user_id'=>auth()->user()->id]) }}" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
+                        Marriage
+                    </a>
+                </div>
+            </li>
+            <li class="flex">
+                <div class="flex items-center">
+                    <svg class="flex-shrink-0 w-6 h-full text-gray-200" viewBox="0 0 24 44" preserveAspectRatio="none"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M.293 0l22 22-22 22h1.414l22-22-22-22H.293z" />
+                    </svg>
+                    <a href="#" class="ml-4 text-sm font-medium text-white hover:text-blue-200">
+                        View
                     </a>
                 </div>
             </li>
@@ -68,7 +79,7 @@
                                             <div class="flex-1 space-y-1">
                                                 <h3 class="text-sm font-medium">AGE/NATIONALITY/STATUS :</h3>
                                                 <p class="text-sm text-gray-500">
-                                                    {{ $data['husband_age']..$data['husband_nationality']..$data['husband_status'] }}
+                                                    {{ $data['husband_age'].'/'.$data['husband_nationality'].'/'.$data['husband_status'] }}
                                                 </p>
                                             </div>
                                         </div>
@@ -185,12 +196,36 @@
                             <div class="sm:items-baseline sm:justify-between">
 
                                 <div class="p-4 space-y-6 divide-y divide-gray-200 sm:space-y-5">
-                                        <h3 class="text-lg font-medium leading-6 text-gray-900">
-                                            Image/Scanned Document
-                                        </h3>
-                                         {{--IMAGE/SCANNED DOCUMENTS--}}
-                                        <img src="{{ asset('img/users/ijs_history.jpg') }}" alt="An image file"
-                                    class="object-cover object-center w-full p-2">
+                                    <h3 class="text-lg font-medium leading-6 text-gray-900">
+                                        Image/Scanned Document
+                                    </h3>
+                                        {{--IMAGE/SCANNED DOCUMENTS--}}
+                                        @forelse ($images as $key=>$image)
+                                        <img class="object-cover object-center w-full p-2"
+                                            src="{{ $image->imageUrl() }}"
+                                            alt="An image file">
+                                    @empty
+                                    <div class="p-4 rounded-md bg-red-50">
+                                        <div class="flex p-4 bg-gray-300 rounded">
+                                            <div class="flex-shrink-0">
+                                                <!-- Heroicon name: solid/exclamation -->
+                                                <svg class="text-yellow-800 w-7 h-7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="text-lg font-medium text-yellow-800">
+                                                    NO IMAGE FOUND!
+                                                </h3>
+                                                <div class="mt-2 text-yellow-700 text-md">
+                                                    <p>This record has no images or scanned document attached!</p>
+                                                    <p>To attach image file, go to edit record.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @endforelse
                                 </div>
                             </div>
                         </div>

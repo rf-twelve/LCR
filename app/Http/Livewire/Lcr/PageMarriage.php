@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Lcr;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
+use App\Models\FileImage;
 use App\Models\Marriage;
 use Livewire\WithFileUploads;
 use Livewire\Component;
@@ -38,6 +39,8 @@ class PageMarriage extends Component
     public $marriage_place;
     public $marriage_date;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -56,6 +59,9 @@ class PageMarriage extends Component
 
     public function mount(){
         $this->marriage_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
+
     }
 
     public function getRowsQueryProperty()
@@ -97,7 +103,7 @@ class PageMarriage extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = Marriage::find($id);
+        $data = Marriage::with('file_images')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -136,6 +142,23 @@ class PageMarriage extends Component
             ? Marriage::find($this->marriage_id)->update($valid)
             : Marriage::create($valid);
 
+        if (isset($this->marriage_id)) {
+            $model = Marriage::find($this->marriage_id);
+            $model->update($valid);
+        } else {
+            $model = Marriage::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'marriage',
+                ]);
+            }
+        }
+
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
         $this->showFormModal = false;
@@ -170,6 +193,15 @@ class PageMarriage extends Component
         $this->notify('You\'ve deleted record successfully.');
     }
 
+    public function removeImage($id,$key)
+    {
+        FileImage::destroy($id);
+
+        $this->exist_image->forget($key);
+
+        $this->notify('You\'ve removed image successfully.');
+    }
+
     public function setFields($data)
     {
         $this->marriage_id = $data['id'];
@@ -196,6 +228,8 @@ class PageMarriage extends Component
         $this->marriage_place = $data['marriage_place'];
         $this->marriage_date = $data['marriage_date'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','marriage');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -224,6 +258,8 @@ class PageMarriage extends Component
         $this->marriage_place = '';
         $this->marriage_date = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }

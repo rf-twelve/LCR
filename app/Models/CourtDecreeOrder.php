@@ -10,4 +10,10 @@ class CourtDecreeOrder extends Model
     use HasFactory;
     protected $guarded = [];
 
+    public function file_images()
+    {
+        return $this->hasMany(FileImage::class, 'imageable_id');
+    }
+
+
 }

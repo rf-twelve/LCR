@@ -8,9 +8,11 @@ use Livewire\Component;
 class PageViewLegalInstrument extends Component
 {
     public $data;
+    public $images;
 
     public function mount($user_id, $id){
-        $this->data = LegalInstrument::find($id);
+        $this->data = LegalInstrument::with('file_images')->find($id);
+        $this->images = $this->data->file_images->where('type','legal_instrument');
     }
 
     public function render()

@@ -31,6 +31,8 @@ class PageLegalInstrument extends Component
     public $acknowledge_parent_date;
     public $acknowledge_parent_place;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -49,6 +51,8 @@ class PageLegalInstrument extends Component
 
     public function mount(){
         $this->legal_instrument_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
     public function getRowsQueryProperty()
@@ -90,7 +94,7 @@ class PageLegalInstrument extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = LegalInstrument::find($id);
+        $data = LegalInstrument::with('file_images')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -118,9 +122,22 @@ class PageLegalInstrument extends Component
 
         $valid['encoder'] = auth()->user()->id;
 
-        isset($this->legal_instrument_id)
-            ? LegalInstrument::find($this->legal_instrument_id)->update($valid)
-            : LegalInstrument::create($valid);
+        if (isset($this->legal_instrument_id)) {
+            $model = LegalInstrument::find($this->legal_instrument_id);
+            $model->update($valid);
+        } else {
+            $model = LegalInstrument::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'legal_instrument',
+                ]);
+            }
+        }
 
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
@@ -175,6 +192,8 @@ class PageLegalInstrument extends Component
         $this->acknowledge_parent_date = $data['acknowledge_parent_date'];
         $this->acknowledge_parent_place = $data['acknowledge_parent_place'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','legal_instrument');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -196,6 +215,8 @@ class PageLegalInstrument extends Component
         $this->acknowledge_parent_date = '';
         $this->acknowledge_parent_place = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }

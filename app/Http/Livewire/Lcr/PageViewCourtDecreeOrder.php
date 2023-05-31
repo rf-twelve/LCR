@@ -8,9 +8,11 @@ use Livewire\Component;
 class PageViewCourtDecreeOrder extends Component
 {
     public $data;
+    public $images;
 
     public function mount($user_id, $id){
-        $this->data = CourtDecreeOrder::find($id);
+        $this->data = CourtDecreeOrder::with('file_images')->find($id);
+        $this->images = $this->data->file_images->where('type','court_decree_order');
     }
 
     public function render()

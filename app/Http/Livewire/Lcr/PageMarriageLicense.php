@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Lcr;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
+use App\Models\FileImage;
 use App\Models\MarriageLicense;
 use Livewire\WithFileUploads;
 use Livewire\Component;
@@ -34,6 +35,8 @@ class PageMarriageLicense extends Component
     public $marriage_license_date_expiry;
     public $marriage_license_date_release;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -53,6 +56,8 @@ class PageMarriageLicense extends Component
 
     public function mount(){
         $this->marriage_license_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
     public function getRowsQueryProperty()
@@ -94,7 +99,7 @@ class PageMarriageLicense extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = MarriageLicense::find($id);
+        $data = MarriageLicense::with('file_images')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -125,9 +130,22 @@ class PageMarriageLicense extends Component
 
         $valid['encoder'] = auth()->user()->id;
 
-        isset($this->marriage_license_id)
-            ? MarriageLicense::find($this->marriage_license_id)->update($valid)
-            : MarriageLicense::create($valid);
+        if (isset($this->marriage_license_id)) {
+            $model = MarriageLicense::find($this->marriage_license_id);
+            $model->update($valid);
+        } else {
+            $model = MarriageLicense::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'marriage_license',
+                ]);
+            }
+        }
 
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
@@ -163,6 +181,15 @@ class PageMarriageLicense extends Component
         $this->notify('You\'ve deleted record successfully.');
     }
 
+    public function removeImage($id,$key)
+    {
+        FileImage::destroy($id);
+
+        $this->exist_image->forget($key);
+
+        $this->notify('You\'ve removed image successfully.');
+    }
+
     public function setFields($data)
     {
         $this->marriage_license_id = $data['id'];
@@ -185,6 +212,8 @@ class PageMarriageLicense extends Component
         $this->marriage_license_date_expiry = $data['marriage_license_date_expiry'];
         $this->marriage_license_date_release = $data['marriage_license_date_release'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','marriage_license');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -209,6 +238,8 @@ class PageMarriageLicense extends Component
         $this->marriage_license_date_expiry = '';
         $this->marriage_license_date_release = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }

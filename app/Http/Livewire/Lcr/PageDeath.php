@@ -6,6 +6,7 @@ use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
 use App\Models\Death;
+use App\Models\FileImage;
 use Livewire\WithFileUploads;
 use Livewire\Component;
 
@@ -37,6 +38,8 @@ class PageDeath extends Component
     public $certifying_officer_name;
     public $certifying_officer_designation;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -55,6 +58,8 @@ class PageDeath extends Component
 
     public function mount(){
         $this->death_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
     public function getRowsQueryProperty()
@@ -96,7 +101,7 @@ class PageDeath extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = Death::find($id);
+        $data = Death::with('file_image')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -130,9 +135,23 @@ class PageDeath extends Component
 
         $valid['encoder'] = auth()->user()->id;
 
-        isset($this->death_id)
-            ? Death::find($this->death_id)->update($valid)
-            : Death::create($valid);
+
+        if (isset($this->death_id)) {
+            $model = Death::find($this->death_id);
+            $model->update($valid);
+        } else {
+            $model = Death::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'death',
+                ]);
+            }
+        }
 
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
@@ -168,6 +187,15 @@ class PageDeath extends Component
         $this->notify('You\'ve deleted record successfully.');
     }
 
+    public function removeImage($id,$key)
+    {
+        FileImage::destroy($id);
+
+        $this->exist_image->forget($key);
+
+        $this->notify('You\'ve removed image successfully.');
+    }
+
     public function setFields($data)
     {
         $this->death_id = $data['id'];
@@ -193,6 +221,8 @@ class PageDeath extends Component
         $this->certifying_officer_name = $data['certifying_officer_name'];
         $this->certifying_officer_designation = $data['certifying_officer_designation'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','death');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -220,6 +250,8 @@ class PageDeath extends Component
         $this->certifying_officer_name = '';
         $this->certifying_officer_designation = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }

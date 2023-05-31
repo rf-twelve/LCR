@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Lcr;
 use App\Http\Livewire\DataTable\WithPerPagePagination;
 use App\Http\Livewire\DataTable\WithBulkActions;
 use App\Http\Livewire\DataTable\WithCachedRows;
+use App\Models\FileImage;
 use App\Models\LiveBirth;
 use Livewire\WithFileUploads;
 use Livewire\Component;
@@ -41,6 +42,8 @@ class PageLiveBirth extends Component
     public $parents_marriage_date;
     public $parents_marriage_place;
     public $remarks;
+    public $exist_image;
+    public $temp_image;
 
      ## Modal initialize
      public $showDeleteSingleRecordModal = false;
@@ -59,6 +62,8 @@ class PageLiveBirth extends Component
 
     public function mount(){
         $this->live_birth_id = null;
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
     public function getRowsQueryProperty()
@@ -100,7 +105,7 @@ class PageLiveBirth extends Component
 
     public function toggleEditRecordModal($id)
     {
-        $data = LiveBirth::find($id);
+        $data = LiveBirth::with('file_images')->find($id);
         $this->setFields($data);
         $this->showFormModal = true;
     }
@@ -138,9 +143,22 @@ class PageLiveBirth extends Component
 
         $valid['encoder'] = auth()->user()->id;
 
-        isset($this->live_birth_id)
-            ? LiveBirth::find($this->live_birth_id)->update($valid)
-            : LiveBirth::create($valid);
+        if (isset($this->live_birth_id)) {
+            $model = LiveBirth::find($this->live_birth_id);
+            $model->update($valid);
+        } else {
+            $model = LiveBirth::create($valid);
+        }
+
+        if (isset($this->temp_image)) {
+            foreach ($this->temp_image as $key => $value) {
+                $filename = $value->store('/','images');
+                $model->file_images()->create([
+                    'name' => $filename,
+                    'type' => 'live_birth',
+                ]);
+            }
+        }
 
         $this->notify('You\'ve save record successfully.');
         $this->resetFields();
@@ -176,6 +194,15 @@ class PageLiveBirth extends Component
         $this->notify('You\'ve deleted record successfully.');
     }
 
+    public function removeImage($id,$key)
+    {
+        FileImage::destroy($id);
+
+        $this->exist_image->forget($key);
+
+        $this->notify('You\'ve removed image successfully.');
+    }
+
     public function setFields($data)
     {
         $this->live_birth_id = $data['id'];
@@ -205,6 +232,8 @@ class PageLiveBirth extends Component
         $this->parents_marriage_date = $data['parents_marriage_date'];
         $this->parents_marriage_place = $data['parents_marriage_place'];
         $this->remarks = $data['remarks'];
+        $this->exist_image = $data->file_images->where('type','live_birth');
+        $this->temp_image = null;
     }
 
     public function resetFields()
@@ -236,6 +265,8 @@ class PageLiveBirth extends Component
         $this->parents_marriage_date = '';
         $this->parents_marriage_place = '';
         $this->remarks = '';
+        $this->exist_image = null;
+        $this->temp_image = null;
     }
 
 }
