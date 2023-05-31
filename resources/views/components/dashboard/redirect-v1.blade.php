@@ -108,7 +108,7 @@
         <div class="flex items-center justify-between w-full p-6 space-x-6">
             <div class="flex-1 truncate">
                 <div class="flex items-center space-x-3">
-                    <h2 class="text-sm font-medium text-gray-900 truncate">Court Live Birth</h2>
+                    <h2 class="text-sm font-medium text-gray-900 truncate">Live Birth</h2>
                     <span class="px-2.5 py-0.5 text-sm font-medium text-white bg-blue-500 rounded-full">
                         {{ $live_birth_count }}
                     </span>
