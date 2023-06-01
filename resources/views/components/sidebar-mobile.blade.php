@@ -14,9 +14,8 @@
         </div>
 
         <div class="flex items-center flex-shrink-0 px-4">
-            <img class="w-auto h-8"
-                src="{{ asset(env('APP_LOGO')) }}" alt="Logo">
-                <span class="font-serif font-bold text-1xl">{{ env('APP_CLIENT') }}</span>
+            <img class="w-auto h-8" src="{{ $company ? $company->logoUrl() : '' }}" alt="Logo">
+                <span class="font-serif font-bold text-1xl">{{ $company ? $company->name : 'Company Name'}}</span>
         </div>
 
         <x-sidebar-content />
