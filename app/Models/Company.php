@@ -15,13 +15,13 @@ class Company extends Model
     {
         return $this->logo
             ? Storage::disk('images')->url($this->logo)
-            : asset('img/dts/dummy_logo.jpg');
+            : asset('users/logo.png');
     }
 
     public function bgUrl()
     {
         return $this->bg_image
             ? Storage::disk('images')->url($this->bg_image)
-            : asset('img/dts/bg.jpg');
+            : asset('users/bg.jpg');
     }
 }
