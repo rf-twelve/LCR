@@ -14,7 +14,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Court Decree/Order.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
@@ -40,7 +40,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Death.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
@@ -65,7 +65,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Fetal Death.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
@@ -90,7 +90,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Legal Instrument.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
@@ -115,7 +115,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Live Birth.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
@@ -140,7 +140,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Marriage.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
@@ -165,7 +165,7 @@
                 </div>
                 <p class="mt-1 text-sm text-gray-500">Search Marriage License.</p>
             </div>
-            <img src="{{ asset('\images\search.jpg') }}"
+            <img src="{{ asset('img/users/search.jpg') }}"
                 class="flex-shrink-0 w-10 h-10 bg-gray-300 rounded-full" alt="Image">
         </div>
         <div class="p-2">
